@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.user.UserMapper">
+<!--    &lt;!&ndash; User 테이블 가져오기 &ndash;&gt;-->
+<!--    <select id="getUserList" resultType="com.minki.football.vo.UserVo">-->
+<!--        SELECT *-->
+<!--        FROM member-->
+<!--    </select>-->
+
+    <!-- 회원가입 -->
+    <insert id="insertUser">
+        INSERT INTO member
+            (id, name, nickname, password, birthday, gender, phone)
+        VALUES
+            (#{id}, #{name}, #{nickname}, #{password},#{birthday}, #{gender}, #{phone})
+    </insert>
+
+    <!-- 회원 정보 가져오기 -->
+<!--    <select id="getUserByNickname" resultType="com.minki.football.vo.UserVo">-->
+<!--        SELECT *-->
+<!--        FROM member-->
+<!--        WHERE nickname = #{nickname}-->
+<!--    </select>-->
+
+    <select id="getUserById" resultType="com.minki.football.vo.UserVo">
+        SELECT *
+        FROM member
+        WHERE id = #{id}
+    </select>
+
+<!--    &lt;!&ndash; 회원정보 수정 &ndash;&gt;-->
+<!--    <update id="updateUser">-->
+<!--        UPDATE member-->
+<!--        SET name = #{name},-->
+<!--            username = #{username},-->
+<!--            email = #{email},-->
+<!--            password = #{password},-->
+<!--            address = #{address},-->
+<!--            phone = #{phone},-->
+<!--            website = #{website},-->
+<!--            company = #{company}-->
+<!--        WHERE id = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash; 탈퇴 &ndash;&gt;-->
+<!--    <delete id="deleteUser">-->
+<!--        DELETE-->
+<!--        FROM member-->
+<!--        WHERE id = #{id}-->
+<!--    </delete>-->
+</mapper>

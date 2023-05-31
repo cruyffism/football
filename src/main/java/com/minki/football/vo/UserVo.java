@@ -1,0 +1,17 @@
+package com.minki.football.vo;
+
+import lombok.Data;
+
+@Data
+public class UserVo {
+//    private Integer member_id;
+    private String id;
+    private String name;
+    private String nickname;
+    private String password;
+    private Integer birthday;
+    private String gender;
+    private String phone;
+
+
+}
