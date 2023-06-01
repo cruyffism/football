@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>SignUp</title>
 </head>
 <body>
 <h2>회원가입</h2>
-<form action="/user/signup" method="post">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+<form th:action="@{/user/signup}" method="post">
     <div>
-        <input type="text" id="id" name="id" placeholder="*id"/>
+        <input type="text" id="username" name="username" placeholder="*username"/>
     </div>
     <div>
         <input type="text" id="name" name="name" placeholder="Name"/>

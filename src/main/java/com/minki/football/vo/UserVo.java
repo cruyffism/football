@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class UserVo {
 //    private Integer member_id;
-    private String id;
+    private String username;
     private String name;
     private String nickname;
     private String password;
