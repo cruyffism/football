@@ -23,14 +23,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // 메인 페이지
     @GetMapping("/index")
-    public String home(Model model) { // 인증된 사용자의 정보를 보여줌
-//        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        // token에 저장되어 있는 인증된 사용자의 id 값
-//        System.out.println("id : " + username);
-//        UserVo userVo = userService.getUserById(username);
-//        userVo.setPassword(null); // password는 보이지 않도록 null로 설정
-//        model.addAttribute("user", userVo);
+    public String home() {
         return "index";
     }
 
@@ -46,6 +41,7 @@ public class UserController {
         return "user/signupPage";
     }
 
+    // 회원가입 진행
     @PostMapping("/signup")
     public String signup(UserVo userVo, HttpServletResponse response) throws IOException { // 회원 가입
         try {

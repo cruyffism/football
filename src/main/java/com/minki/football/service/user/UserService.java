@@ -1,13 +1,16 @@
 package com.minki.football.service.user;
 
 import com.minki.football.mapper.user.UserMapper;
+import com.minki.football.vo.UserRoleVo;
 import com.minki.football.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserService {
     @Autowired
     private UserMapper userMapper;
@@ -28,11 +31,13 @@ public class UserService {
 
     public void signup(UserVo userVo) { // 회원 가입
         if (!userVo.getName().equals("") && !userVo.getUsername().equals("")) {
-            System.out.println("userVo : " + userVo);
             // password는 암호화해서 DB에 저장
             userVo.setPassword(passwordEncoder.encode(userVo.getPassword()));
-            System.out.println("new userVo : " + userVo);
-            userMapper.insertUser(userVo);
+            userMapper.insertUser(userVo); // 회원정보 저장
+            UserRoleVo userRoleVo = new UserRoleVo();
+            userRoleVo.setMemberId(userVo.getMemberId());
+            userRoleVo.setRoleId(1);
+            userMapper.insertUserRole(userRoleVo); // 권한정보 저장
         }
     }
 
@@ -45,9 +50,5 @@ public class UserService {
 //    public void withdraw(Long id) { // 회원 탈퇴
 //        userMapper.deleteUser(id);
 //    }
-
-    public PasswordEncoder passwordEncoder() {
-        return this.passwordEncoder;
-    }
 
 }
