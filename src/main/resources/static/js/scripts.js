@@ -6,6 +6,15 @@
 //
 // Scripts
 // 
+function goPost(){
+    console.log("들어왓어");
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/logout');
+    document.body.appendChild(f);
+    console.log("f : " +  f);
+    f.submit();
+}
 
 window.addEventListener('DOMContentLoaded', event => {
 

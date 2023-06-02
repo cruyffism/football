@@ -26,15 +26,16 @@
             Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#services">League</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Team</a></li>
-<!--                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>-->
-<!--                <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>-->
-                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
+        <form name="logout" th:action="@{/logout}" method="post">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#services">League</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Rank</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="document.logout.submit();">Logout</a></li>
+                </ul>
+            </div>
+        </form>
     </div>
     <div class="container" sec:authorize="!isAuthenticated()">
         <a class="navbar-brand" href="#page-top"><img src="../static/assets/img/navbar-logo.svg" alt="..."/></a>
@@ -49,6 +50,7 @@
                 <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
                 <li class="nav-item"><a class="nav-link" href="/league/list">League</a></li>
                 <li class="nav-item"><a class="nav-link" href="/team/list">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="/rank/list">Rank</a></li>
             </ul>
         </div>
     </div>
