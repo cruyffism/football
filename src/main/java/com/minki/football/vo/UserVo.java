@@ -9,7 +9,7 @@ public class UserVo {
     private String name;
     private String nickname;
     private String password;
-    private Integer birthday;
+    private String birthday;
     private String gender;
     private String phone;
 
