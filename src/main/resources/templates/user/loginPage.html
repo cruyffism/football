@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header :: head('Login page!')">
 </head>
-<body>
-<form class="form-sign" th:action="@{/user/login}" method="post">
-    <h2>로그인</h2>
-    <div>
-        <input type="text" name=username placeholder="Username"/>
-    </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
-    </div>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
+     th:replace="fragments/header :: menu">
+</nav>
+<header class="masthead">
+    <form class="form-sign" th:action="@{/user/login}" method="post">
+        <h2>로그인</h2>
+        <div>
+            <input type="text" name=username placeholder="Username"/>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Password"/>
+        </div>
 
-    <button type="submit">로그인</button>
-    <button type="button" onclick="location.href='/user/signup'">회원가입</button>
-</form>
+        <button type="submit">로그인</button>
+        <button type="button" onclick="location.href='/user/signup'">회원가입</button>
+    </form>
+</header>
+<!-- Clients-->
+<div class="py-5" th:replace="fragments/header::clients">
+</div>
+<!-- Footer-->
+<footer class="footer py-4" th:replace="fragments/header::footer">
+</footer>
 </body>
 </html>

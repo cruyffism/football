@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title th:text="${title}">Agency - Start Bootstrap Theme</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../static/assets/img/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{../../static/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" th:fragment="menu">
+    <div class="container" sec:authorize="isAuthenticated()">
+        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..." href="/user/index"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <form name="logout" th:action="@{/logout}" method="post">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../#league">League</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../#portfolio">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../#about">Rank</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="document.logout.submit();">Logout</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div class="container" sec:authorize="!isAuthenticated()">
+        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..."/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/league/list">League</a></li>
+                <li class="nav-item"><a class="nav-link" href="/team/list">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="/rank/list">Rank</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="py-5" th:fragment="clients">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="../#!"><img class="img-fluid img-brand d-block mx-auto"
+                                  src="../../static/assets/img/logos/microsoft.svg" alt="..."
+                                  aria-label="Microsoft Logo"/></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="../#!"><img class="img-fluid img-brand d-block mx-auto"
+                                  src="../../static/assets/img/logos/google.svg" alt="..."
+                                  aria-label="Google Logo"/></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="../#!"><img class="img-fluid img-brand d-block mx-auto"
+                                  src="../../static/assets/img/logos/facebook.svg" alt="..."
+                                  aria-label="Facebook Logo"/></a>
+            </div>
+            <div class="col-md-3 col-sm-6 my-3">
+                <a href="../#!"><img class="img-fluid img-brand d-block mx-auto"
+                                  src="../../static/assets/img/logos/ibm.svg" alt="..." aria-label="IBM Logo"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer-->
+<footer class="footer py-4" th:fragment="footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+            <div class="col-lg-4 my-3 my-lg-0">
+                <a class="btn btn-dark btn-social mx-2" href="../#!" aria-label="Twitter"><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="../#!" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-social mx-2" href="../#!" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="link-dark text-decoration-none me-3" href="../#!">Privacy Policy</a>
+                <a class="link-dark text-decoration-none" href="../#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
