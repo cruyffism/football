@@ -9,6 +9,7 @@
     <title th:text="${title}">Agency - Start Bootstrap Theme</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../../static/assets/img/favicon.ico"/>
+    <script src="../static/js/scripts.js"></script>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -20,7 +21,8 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" th:fragment="menu">
     <div class="container" sec:authorize="isAuthenticated()">
-        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..." href="/user/index"/></a>
+<!--        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..." href="/user/index"/></a>-->
+        <a class="navbar-brand" href="../#page-top">Total FootBall</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -29,16 +31,17 @@
         <form name="logout" th:action="@{/logout}" method="post">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="../#league">League</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#portfolio">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../#about">Rank</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#league">League</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Rank</a></li>
                     <li class="nav-item"><a class="nav-link" onclick="document.logout.submit();">Logout</a></li>
                 </ul>
             </div>
         </form>
     </div>
     <div class="container" sec:authorize="!isAuthenticated()">
-        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..."/></a>
+<!--        <a class="navbar-brand" href="../#page-top"><img src="../../static/assets/img/navbar-logo.svg" alt="..."/></a>-->
+        <a class="navbar-brand" href="../#page-top">Total FootBall</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -46,9 +49,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/league/list">League</a></li>
-                <li class="nav-item"><a class="nav-link" href="/team/list">Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="/rank/list">Rank</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user/signup">SignUp</a></li>
+<!--                <li class="nav-item"><a class="nav-link" href="/rank/list">Rank</a></li>-->
             </ul>
         </div>
     </div>

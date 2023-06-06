@@ -1,5 +1,7 @@
 package com.minki.football.controller.user;
 
+import com.minki.football.dto.league.LeagueDto;
+import com.minki.football.service.league.LeagueService;
 import com.minki.football.service.user.UserService;
 import com.minki.football.vo.UserVo;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -23,9 +26,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LeagueService leagueService;
+
     // 메인 페이지
     @GetMapping("/index")
-    public String home() {
+    public String home(Model model) {
+        List<LeagueDto> leagueList = leagueService.list();
+
+//        LeagueDto leagueDto = leagueService.info();
+        model.addAttribute("leagueList",leagueList);
         return "index";
     }
 
