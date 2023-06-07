@@ -41,6 +41,6 @@ public class LeagueController {
          System.out.println("leagueDto22 : " + leagueDto);
          model.addAttribute("info", leagueDto);
 
-         return "index#portfolioModal1"; //league 폴더안에 info.html로 보낸다.
+         return "league/info"; //league 폴더안에 info.html로 보낸다.
      }
 }

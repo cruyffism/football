@@ -51,3 +51,32 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+function modalAjax(league_id) {
+    console.log("league_id : ", league_id);
+    const innerHtml = $("#portfolioModal1")
+    $.ajax({
+        url: "/league/info/" + league_id,
+        type: 'GET',
+        cache: false,
+        dataType: "html",
+        async: false,
+        success: function (data) {
+            document.getElementById("portfolioModal1").className += " show";
+            document.getElementById("page-top").style.cssText = 'overflow: hidden; padding-right: 15px;';
+            $(innerHtml).show()
+            $(innerHtml).html(data)
+            setTimeout(function () {
+            }, 1000)
+        },
+        error: function (e) {
+            $(innerHtml).html("")
+        }
+    })
+}
+
+function cancelModal() {
+    document.getElementById("portfolioModal1").classList.remove("show");
+    $("#portfolioModal1").removeAttr("style");
+    $("#page-top").removeAttr("style");
+}

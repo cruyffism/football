@@ -10,4 +10,5 @@ public class LeagueDto {
     private String history;	//리그 역사
     private String competition_method;	// 리그 운영 방식
     private String logo_image_path;		//로고 이미지 경로
+    private String info_image_path;		//로고 이미지 경로
 }
