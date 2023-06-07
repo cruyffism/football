@@ -42,10 +42,38 @@
                 p.file_name,
                 p.file_size,
                 p.file_bytes,
-                p.mime_type,
+                p.mime_type
         from team t
         inner join player p on t.team_id = p.team_id
         where t.team_id = #{teamId}
+    </select>
+
+    <select id="playerInfo" parameterType="Integer" resultType="com.minki.football.dto.team.PlayerDto">
+        select name,
+               height,
+               weight,
+               game_match,
+               playing_time,
+               goal,
+               assist,
+               yellow_card,
+               red_card,
+               mvp,
+               rating,
+               position,
+               age,
+               total_point,
+               back_number,
+               nationality,
+               play_style,
+               strength,
+               weakness,
+               file_name,
+               file_size,
+               file_bytes,
+               mime_type
+        from player
+        where player_id = #{playerId}
     </select>
 
 </mapper>

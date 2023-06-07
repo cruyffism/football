@@ -10,7 +10,7 @@ public class TeamDto {
     private Integer rank;
     private String team_name;
     private String team_style;
-    private Integer match;
+    private Integer game_match;
     private Integer point;
     private Integer win;
     private Integer draw;

@@ -1,6 +1,7 @@
 package com.minki.football.mapper.team;
 
 
+import com.minki.football.dto.team.PlayerDto;
 import com.minki.football.dto.team.TeamDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,6 @@ public interface TeamMapper {
 
     TeamDto info(Integer teamId);
 
+    PlayerDto playerInfo(Integer playerId);
 }
+

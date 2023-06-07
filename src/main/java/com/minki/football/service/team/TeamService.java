@@ -2,6 +2,7 @@ package com.minki.football.service.team;
 
 
 import com.minki.football.dto.league.LeagueDto;
+import com.minki.football.dto.team.PlayerDto;
 import com.minki.football.dto.team.TeamDto;
 import com.minki.football.mapper.league.LeagueMapper;
 import com.minki.football.mapper.team.TeamMapper;
@@ -28,5 +29,14 @@ public class TeamService {
 
         return teamDto;
     }
+
+    public PlayerDto playerInfo(Integer playerId) {
+        PlayerDto playerDto = teamMapper.playerInfo(playerId);
+
+
+        return playerDto;
+    }
+
+
 }
 
