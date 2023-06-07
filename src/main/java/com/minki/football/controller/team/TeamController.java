@@ -25,8 +25,8 @@ public class TeamController {
     public String list(Model model, @PathVariable Integer leagueId) {
         List<TeamDto> teamList = teamService.list(leagueId);
 
-        model.addAttribute("list", teamList);
-        System.out.println(teamList);
+        model.addAttribute("teamList", teamList);
+        System.out.println("팀 리스트 : " + teamList);
         return "team/list";
     }
 

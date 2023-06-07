@@ -5896,6 +5896,7 @@ textarea.form-control-lg {
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-dialog {
@@ -12644,7 +12645,7 @@ header.masthead .masthead-heading {
 }
 
 .portfolio-modal .modal-dialog {
-    margin: 1rem;
+    margin: 5rem;
     max-width: 100vw;
 }
 
