@@ -21,13 +21,21 @@
         </div>
     </div>
 </header>
-<p>팀 리스트 입니다.</p>
-<tr th:each="team : ${teamList}">
-<!--    <div th:each="team : ${teamList}">-->
-        <td th:text="${team.team_name}"></td>
-        <td><img th:src="${team.logo_image_path}"/></td>
-<!--    </div>-->
-</tr>
+<section class="page-section">
+    <div class="container">
+        <div class="text-center">
+            <p>팀 리스트 입니다.</p>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-4" th:each="team : ${teamList}">
+                    <!--    <div th:each="team : ${teamList}">-->
+                    <div><img th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>
+                    <div th:text="${team.team_name}"></div>
+                    <!--    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Clients-->
 <div class="py-5" th:replace="fragments/header::clients">
