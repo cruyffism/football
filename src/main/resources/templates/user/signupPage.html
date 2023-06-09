@@ -10,29 +10,40 @@
 <header class="masthead">
     <h2>회원가입</h2>
     <form th:action="@{/user/signup}" method="post">
-        <div>
-            <input type="text" id="username" name="username" placeholder="*username"/>
+<!--        <div class="mb-3">-->
+<!--            <label for="inputPassword">Password</label>-->
+<!--                <input type="password" class="form-control2" id="inputPassword">-->
+<!--        </div>-->
+        <div class="mb-3 ">
+            <input type="text" class="form-control2" id="username" name="username" placeholder="Id"/>
         </div>
-        <div>
-            <input type="text" id="name" name="name" placeholder="Name"/>
+        <div class="mb-3">
+            <input type="text" class="form-control2" id="name" name="name" placeholder="Name"/>
         </div>
-        <div>
-            <input type="text" id="nickname" name="nickname" placeholder="nickname"/>
+        <div class="mb-3">
+            <input type="text" class="form-control2" id="nickname" name="nickname" placeholder="Nickname"/>
         </div>
-        <div>
-            <input type="password" id="password" name="password" placeholder="Password"/>
+        <div class="mb-3">
+            <input type="password" class="form-control2" id="password" name="password" placeholder="Password"/>
         </div>
-        <div>
-            <input type="date" id="birthday" name="birthday" placeholder="birthday"/>
+        <div class="mb-3">
+            <input type="date" style="width: 223.5px;" class="form-control2" id="birthday" name="birthday" placeholder="Birthday"/>
         </div>
-        <div>
-            <input type="text" id="gender" name="gender" placeholder="gender"/>
+        <div class="mb-3">
+            <input type="text" class="form-control2" id="phone" name="phone" placeholder="Phone"/>
         </div>
-        <div>
-            <input type="text" id="phone" name="phone" placeholder="Phone"/>
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="gender" value="남">
+                <label class="form-check-label">남자</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="gender" value="여">
+                <label class="form-check-label">여자</label>
+            </div>
         </div>
-        <input type="submit" value="회원가입"/>
-        <!--    <button type="submit">회원가입</button>-->
+        <button type="submit" class="btn btn-primary btn-lg text-uppercase">회원가입</button>
+        <button type="button" class="btn btn-primary btn-lg text-uppercase" onclick="location.href='/user/login'">로그인</button>
     </form>
 </header>
 <!-- Clients-->

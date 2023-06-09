@@ -8,17 +8,17 @@
      th:replace="fragments/header :: menu">
 </nav>
 <header class="masthead">
-    <form class="form-sign" th:action="@{/user/login}" method="post">
+    <form th:action="@{/user/login}" method="post">
         <h2>로그인</h2>
-        <div>
-            <input type="text" name=username placeholder="Username"/>
+        <div class="mb-3">
+            <input type="text" class="form-control2" name=username placeholder="Id"/>
         </div>
-        <div>
-            <input type="password" name="password" placeholder="Password"/>
+        <div class="mb-3">
+            <input type="password" class="form-control2" name="password" placeholder="Password"/>
         </div>
 
-        <button type="submit">로그인</button>
-        <button type="button" onclick="location.href='/user/signup'">회원가입</button>
+        <button type="submit" class="btn btn-primary btn-lg text-uppercase">로그인</button>
+        <button type="button" class="btn btn-primary btn-lg text-uppercase" onclick="location.href='/user/signup'">회원가입</button>
     </form>
 </header>
 <!-- Clients-->
