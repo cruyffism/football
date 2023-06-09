@@ -7,7 +7,7 @@ import lombok.Data;
 public class TeamDto {
     private Integer team_id;
     private Integer league_id;
-    private Integer rank;
+    private Integer game_rank;
     private String team_name;
     private String team_style;
     private Integer game_match;
