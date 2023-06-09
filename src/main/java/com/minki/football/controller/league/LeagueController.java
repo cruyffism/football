@@ -36,7 +36,7 @@ public class LeagueController {
 
     // 리그페이지 상세 조회
      @GetMapping("/info/{leagueId}")
-    public String info(Model model, @PathVariable Integer leagueId) {
+    public String info(Model model, @PathVariable Integer leagueId) { // info 경로에서 leagueId를 사용하겠다.
          LeagueDto leagueDto = leagueService.info(leagueId);
          System.out.println("leagueDto22 : " + leagueDto);
          model.addAttribute("info", leagueDto);

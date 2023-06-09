@@ -4,7 +4,7 @@
     <select id="list" resultType="com.minki.football.dto.team.TeamDto">
     select
         team_id,
-        rank,
+        game_rank,
         team_name,
         game_match,
         point,
@@ -16,6 +16,25 @@
         diff_goal
     from team
     where league_id = #{leagueId}
-    order by rank asc;
+    order by game_rank asc;
+    </select>
+
+    <select id="rank" resultType="com.minki.football.dto.team.PlayerDto">
+    select
+        player_id,
+        name,
+        position,
+        game_match,
+        playing_time,
+        goal,
+        assist,
+        yellow_card,
+        red_card,
+        mvp,
+        rating,
+        total_point
+    from player
+    order by rating desc
+
     </select>
 </mapper>
