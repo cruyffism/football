@@ -25,7 +25,16 @@
 <section class="page-section">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading text-uppercase" th:text="${info.name}"></h2>
+      <h2 class="section-heading text-uppercase" th:text="${info.name}">
+      <p class="section-heading text-uppercase" th:text="${info.height}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.weight}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.age}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.position}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.nationality}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.back_number}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.strength}"></p>
+      <p class="section-heading text-uppercase" th:text="${info.weakness}"></p>
+      </h2>
     </div>
   </div>
 </section>
