@@ -32,19 +32,19 @@
       <p>선수단</p>
         <ul class="nav nav-tabs" style="margin-bottom: 50px">
             <li class="nav-item">
-                <a id="position_FW" class="nav-link active" aria-current="page" th:onclick="teamInfoAjax('FW', ${info.team_id})">공격수</a>
+                <a id="positionTab_FW" class="nav-link active" aria-current="page" th:onclick="teamInfoAjax('FW', ${info.team_id})">공격수</a>
             </li>
             <li class="nav-item">
-                <a id="position_MF" class="nav-link"  th:onclick="teamInfoAjax('MF', ${info.team_id})">미드필더</a>
+                <a id="positionTab_MF" class="nav-link"  th:onclick="teamInfoAjax('MF', ${info.team_id})">미드필더</a>
             </li>
             <li class="nav-item">
-                <a id="position_DF" class="nav-link"  th:onclick="teamInfoAjax('DF', ${info.team_id})">수비수</a>
+                <a id="positionTab_DF" class="nav-link"  th:onclick="teamInfoAjax('DF', ${info.team_id})">수비수</a>
             </li>
             <li class="nav-item">
-                <a id="position_GK" class="nav-link" th:onclick="teamInfoAjax('GK', ${info.team_id})">골키퍼</a>
+                <a id="positionTab_GK" class="nav-link" th:onclick="teamInfoAjax('GK', ${info.team_id})">골키퍼</a>
             </li>
         </ul>
-        <div id="palyerList"></div>
+        <div id="playerList"></div>
     </div>
     <div class="text-center">
       <p>best11</p>
