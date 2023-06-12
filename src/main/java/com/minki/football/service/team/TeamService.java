@@ -24,8 +24,8 @@ public class TeamService {
         return teamList;
     }
 
-    public TeamDto info(Integer teamId) {
-        TeamDto teamDto = teamMapper.info(teamId);
+    public TeamDto info(Integer teamId, String position) {
+        TeamDto teamDto = teamMapper.info(teamId, position);
 
         return teamDto;
     }

@@ -29,7 +29,7 @@
 --  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
     </select>
 
-    <select id="info" parameterType="Integer" resultMap="teamDto">
+    <select id="info" resultMap="teamDto">
         select  t.team_name,
                 t.team_style,
                 t.logo_image_path,
@@ -45,7 +45,7 @@
                 p.mime_type
         from team t
         inner join player p on t.team_id = p.team_id
-        where t.team_id = #{teamId}
+        where t.team_id = #{teamId} and p.position = #{position}
     </select>
 
     <select id="playerInfo" parameterType="Integer" resultType="com.minki.football.dto.team.PlayerDto">

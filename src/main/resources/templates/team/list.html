@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head('Hello, Football Homepage!')">
 </head>
+<script src="../../static/js/teamList.js"></script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -27,30 +28,30 @@
             <h2 class="section-heading text-uppercase">Team</h2>
             <h3 class="section-subheading text-muted"></h3>
         </div>
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" style="margin-bottom: 50px">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">프리미어리그</a>
+                <a id="leagueTab1" class="nav-link" aria-current="page" th:onclick="teamListAjax(1)">프리미어리그</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">라리가</a>
+                <a id="leagueTab2" class="nav-link"  th:onclick="teamListAjax(2)">라리가</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">세리에a</a>
+                <a id="leagueTab3" class="nav-link"  th:onclick="teamListAjax(3)">세리에a</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">분데스리가</a>
+                <a id="leagueTab4" class="nav-link" th:onclick="teamListAjax(4)">분데스리가</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">리그1</a>
+                <a id="leagueTab5" class="nav-link" th:onclick="teamListAjax(5)">리그1</a>
             </li>
         </ul>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6 mb-4" th:each="team : ${teamList}">
-                <!--    <div th:each="team : ${teamList}">-->
-                <div><img th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>
-                <div th:text="${team.team_name}"></div>
-                <!--    </div>-->
-            </div>
+        <div  id="teamList" class="row">
+<!--            <div class="col-lg-4 col-sm-6 mb-4" th:each="team : ${teamList}">-->
+<!--                &lt;!&ndash;    <div th:each="team : ${teamList}">&ndash;&gt;-->
+<!--                <div><img th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>-->
+<!--                <div th:text="${team.team_name}"></div>-->
+<!--                &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--            </div>-->
         </div>
     </div>
 </section>

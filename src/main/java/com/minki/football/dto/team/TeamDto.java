@@ -3,6 +3,8 @@ package com.minki.football.dto.team;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class TeamDto {
     private Integer team_id;
@@ -21,6 +23,6 @@ public class TeamDto {
     private String logo_image_path;
     private String best_image_path;
 
-    private PlayerDto playerDto;
+    private List<PlayerDto> playerDto;
 
 }
