@@ -1,13 +1,12 @@
-// $( document ).ready(function() {
-//     console.log( "ready!" );
-//     teamInfoAjax("FW");
-// });
+$( document ).ready(function() {
+    console.log( "ready!" );
+    teamInfoAjax("FW",1);
+});
 
 function teamInfoAjax(position,team_id) {
-    console.log("position : ", position);
     const innerHtml = $("#playerList")
     $.ajax({
-        url: "/team/info/" + team_id + "?position="+position,
+        url: "/team/infoAjax/" + team_id + "?position=" + position,
         type: 'GET',
         cache: false,
         dataType: "html",
@@ -17,7 +16,7 @@ function teamInfoAjax(position,team_id) {
             document.getElementById("positionTab_MF").classList.remove("active");
             document.getElementById("positionTab_DF").classList.remove("active");
             document.getElementById("positionTab_GK").classList.remove("active");
-            document.getElementById("positionTab_"+position).className += " active"
+            document.getElementById("positionTab_" + position).className += " active"
             $(innerHtml).html(data)
             setTimeout(function () {
             }, 1000)

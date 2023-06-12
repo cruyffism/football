@@ -43,12 +43,22 @@ public class TeamController {
 
     //해당 팀 상세 조회
     @GetMapping("/info/{teamId}")
-    public String info(Model model, @PathVariable Integer teamId, @RequestParam String position) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
-        TeamDto teamDto = teamService.info(teamId, position);
+    public String info(Model model, @PathVariable Integer teamId) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
+        TeamDto teamDto = teamService.info(teamId, "FW");
 
         model.addAttribute("info", teamDto);
         System.out.println("팀정보 : " + teamDto);
         return "team/info";
+    }
+
+    //해당 팀 상세 조회
+    @GetMapping("/infoAjax/{teamId}")
+    public String infoAjax(Model model, @PathVariable Integer teamId, @RequestParam String position) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
+        TeamDto teamDto = teamService.info(teamId, position);
+
+        model.addAttribute("info", teamDto);
+        System.out.println("팀정보2 : " + teamDto);
+        return "team/infoAjax";
     }
 
     //플레이어 조회
