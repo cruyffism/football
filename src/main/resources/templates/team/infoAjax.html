@@ -1,7 +1,32 @@
+<!--<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">-->
+<!--    <div class="carousel-indicators">-->
+<!--        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--    </div>-->
+<!--    <div class="carousel-inner" th:each="player : ${info.playerDto}">-->
+<!--        <div class="carousel-item active">-->
+<!--            <img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px" class="d-block w-100" alt="...">-->
+<!--            <div class="carousel-caption d-none d-md-block">-->
+<!--                <h5 th:text="${player.name}"></h5>-->
+<!--                <p th:text="${player.back_number}"></p>-->
+<!--            </div>-->gppg
+
+<!--        </div>-->
+<!--    </div>-->
+<!--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">-->
+<!--        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Previous</span>-->
+<!--    </button>-->
+<!--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">-->
+<!--        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Next</span>-->
+<!--    </button>-->
+<!--</div>-->
 <div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerDto}">
 <!--    <div><img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|"-->
 <!--              th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>-->
-    <div><img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px"/></div>
+ <img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px" th:onclick="|location.href='@{/team/info/player/{playerId}(playerId=${player.player_id})}'|"/>
     <div th:text="${player.name}"></div>
     <div th:text="${player.back_number}"></div>
 </div>
