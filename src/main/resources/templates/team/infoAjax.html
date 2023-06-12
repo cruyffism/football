@@ -1,0 +1,6 @@
+<div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerDto}">
+  <!--        <div><img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|" th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>-->
+  <div th:text="${player.name}"></div>
+  <div th:text="${player.back_number}"></div>
+  <!--    </div>-->
+</div>

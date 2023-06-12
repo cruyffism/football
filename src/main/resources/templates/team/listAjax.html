@@ -1,6 +1,19 @@
-<div class="col-lg-4 col-sm-6 mb-4" th:each="team : ${teamList}">
+
+    <div class="col-lg-4" th:each="team : ${teamList}">
+        <div class="team-member">
+            <img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|" class="mx-auto rounded-circle" th:src="${team.logo_image_path}" alt="..."/>
+            <h4 th:text="${team.team_name}"></h4>
+<!--            <p class="text-muted">Lead Designer</p>-->
+<!--            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i-->
+<!--                    class="fab fa-twitter"></i></a>-->
+<!--            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i-->
+<!--                    class="fab fa-facebook-f"></i></a>-->
+<!--            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i-->
+<!--                    class="fab fa-linkedin-in"></i></a>-->
+        </div>
+    </div>
     <!--    <div th:each="team : ${teamList}">-->
-    <div><img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|" th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>
-    <div th:text="${team.team_name}"></div>
-    <!--    </div>-->
-</div>
+<!--    <div><img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|" th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>-->
+<!--    <div th:text="${team.team_name}"></div>-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->

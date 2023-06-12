@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head('Hello, Football Homepage!')">
 </head>
-<script src="../../static/js/teamList.js"></script>
+<script src="../../static/js/teamInfo.js"></script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -30,12 +30,21 @@
     </div>
     <div class="text-center">
       <p>선수단</p>
-      <div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerDto}">
-<!--        <div><img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id}, position='FW')}'|" th:src="${team.logo_image_path}" style="width: 200px; height: 200px"/></div>-->
-        <div th:text="${player.name}"></div>
-        <div th:text="${player.back_number}"></div>
-        <!--    </div>-->
-      </div>
+        <ul class="nav nav-tabs" style="margin-bottom: 50px">
+            <li class="nav-item">
+                <a id="position_FW" class="nav-link active" aria-current="page" th:onclick="teamInfoAjax('FW', ${info.team_id})">공격수</a>
+            </li>
+            <li class="nav-item">
+                <a id="position_MF" class="nav-link"  th:onclick="teamInfoAjax('MF', ${info.team_id})">미드필더</a>
+            </li>
+            <li class="nav-item">
+                <a id="position_DF" class="nav-link"  th:onclick="teamInfoAjax('DF', ${info.team_id})">수비수</a>
+            </li>
+            <li class="nav-item">
+                <a id="position_GK" class="nav-link" th:onclick="teamInfoAjax('GK', ${info.team_id})">골키퍼</a>
+            </li>
+        </ul>
+        <div id="palyerList"></div>
     </div>
     <div class="text-center">
       <p>best11</p>
