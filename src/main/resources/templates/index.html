@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header :: head('Hello, Football Homepage!')">
+<head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/header :: menu">
+     th:replace="fragments/common :: menu">
 </nav>
 <!-- Masthead-->
 <header class="masthead">
@@ -263,10 +263,10 @@
 <!--    </section>-->
 </div>
 <!-- Clients-->
-<div class="py-5" th:replace="fragments/header::clients">
+<div class="py-5" th:replace="fragments/common::clients">
 </div>
 <!-- Footer-->
-<footer class="footer py-4" th:replace="fragments/header::footer">
+<footer class="footer py-4" th:replace="fragments/common::footer">
 </footer>
 <!-- Portfolio Modals-->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true"></div>

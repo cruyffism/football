@@ -1,6 +1,5 @@
 package com.minki.football.controller.team;
 
-import com.minki.football.dto.league.LeagueDto;
 import com.minki.football.dto.team.PlayerDto;
 import com.minki.football.dto.team.TeamDto;
 import com.minki.football.service.team.TeamService;
@@ -28,7 +27,7 @@ public class TeamController {
 
         model.addAttribute("teamList", teamList);
         System.out.println("팀 리스트 : " + teamList);
-        return "team/list";
+        return "team/teamList";
     }
 
     //팀 리스트 조회
@@ -38,7 +37,7 @@ public class TeamController {
 
         model.addAttribute("teamList", teamList);
         System.out.println("팀 리스트 : " + teamList);
-        return "team/listAjax";
+        return "team/teamListAjax";
     }
 
     //해당 팀 상세 조회
@@ -48,7 +47,7 @@ public class TeamController {
 
         model.addAttribute("info", teamDto);
         System.out.println("팀정보 : " + teamDto);
-        return "team/info";
+        return "team/teamInfo";
     }
 
     //해당 팀 상세 조회
@@ -58,17 +57,17 @@ public class TeamController {
 
         model.addAttribute("info", teamDto);
         System.out.println("팀정보2 : " + teamDto);
-        return "team/infoAjax";
+        return "team/teamInfoAjax";
     }
 
     //플레이어 조회
-    @GetMapping("/info/player/{playerId}")
+    @GetMapping("/playerInfo/{playerId}")
     public String playerInfo(Model model, @PathVariable Integer playerId) {
         PlayerDto playerDto = teamService.playerInfo(playerId);
 
         model.addAttribute("info", playerDto);
        System.out.println("선수정보 : "+ playerDto);
-        return "player/info";
+        return "team/playerInfo";
 
     }
 

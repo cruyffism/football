@@ -2,11 +2,7 @@ package com.minki.football.controller.league;
 
 import com.minki.football.dto.league.LeagueDto;
 import com.minki.football.service.league.LeagueService;
-import com.minki.football.service.user.UserService;
-import com.minki.football.vo.League.LeagueVo;
-import com.minki.football.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +37,6 @@ public class LeagueController {
          System.out.println("leagueDto22 : " + leagueDto);
          model.addAttribute("info", leagueDto);
 
-         return "league/info"; //league 폴더안에 info.html로 보낸다.
+         return "league/leagueInfo"; //league 폴더안에 info.html로 보낸다.
      }
 }
