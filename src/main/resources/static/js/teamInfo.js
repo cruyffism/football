@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-    teamInfoAjax("FW",1);
+    const team_id = $("#teamId").val();
+    teamInfoAjax("FW",team_id);
 });
 
 function teamInfoAjax(position,team_id) {

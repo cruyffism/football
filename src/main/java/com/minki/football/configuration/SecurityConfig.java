@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
@@ -25,6 +26,10 @@ import javax.sql.DataSource;
 public class SecurityConfig {
     @Autowired
     private DataSource dataSource;
+
+    /* 로그인 실패 핸들러 의존성 주입 */
+//    @Autowired
+//    private AuthenticationFailureHandler customFailureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -47,10 +52,12 @@ public class SecurityConfig {
                 .formLogin((formLogin) ->
                         formLogin
                                 .loginPage("/user/login")
-                                .loginProcessingUrl("/user/login")
+                                .loginProcessingUrl("/user/loginProc")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/user/index",true)
+                                .failureHandler(loginFailHandler()) // 로그인 실패 핸들러
+//                                .failureForwardUrl("/user/login?error=true") // 로그인 실패 핸들러
                                 .permitAll()
                 );
 
@@ -59,10 +66,16 @@ public class SecurityConfig {
                 .logout((logout) ->
                         logout
                                 .logoutSuccessUrl("/")
+                                .invalidateHttpSession(true).deleteCookies("JSESSIONID")
                                 .permitAll()
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public CustomAuthFailureHandler loginFailHandler(){
+        return new CustomAuthFailureHandler();
     }
 
     // 비밀번호 암호화

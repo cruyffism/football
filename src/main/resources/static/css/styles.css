@@ -629,6 +629,11 @@ progress {
     content: "— ";
 }
 
+.img-fluid2 {
+    max-width: 100%;
+    height: 100%;
+}
+
 .img-fluid {
     max-width: 100%;
     height: 300px;
@@ -5209,6 +5214,13 @@ textarea.form-control-lg {
     background-color: var(--bs-alert-bg);
     border: var(--bs-alert-border);
     border-radius: var(--bs-alert-border-radius);
+}
+
+.alert-size {
+    width: 223.5px;
+    margin: auto;
+    margin-bottom: 1rem !important;
+    height: 38px
 }
 
 .alert-heading {

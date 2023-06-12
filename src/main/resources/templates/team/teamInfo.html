@@ -44,6 +44,7 @@
                 <a id="positionTab_GK" class="nav-link" th:onclick="|javascript:teamInfoAjax('GK',${info.team_id})|">골키퍼</a>
             </li>
         </ul>
+        <input type="hidden" th:value="${info.team_id}" id="teamId" class="teamId"/>
         <div id="playerList"></div>
     </div>
     <div class="text-center">
