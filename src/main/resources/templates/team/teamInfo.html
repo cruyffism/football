@@ -10,53 +10,66 @@
 </nav>
 <!-- Masthead-->
 <header class="masthead">
-  <div class="container">
-    <div class="masthead-subheading">Welcome To Our FootBall!</div>
-    <!--        <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>-->
-    <div sec:authorize="!isAuthenticated()" class="mainBtn">
-      <a class="btn btn-primary btn-lg text-uppercase" href="/user/login">Login</a>
-      <a class="btn btn-primary btn-lg text-uppercase" href="/user/signup">SignUp</a>
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our FootBall!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#teamInfo">Here to Go</a>
     </div>
-    <div sec:authorize="isAuthenticated()">
-      <a class="btn btn-primary btn-xl text-uppercase" href="#league">Here to Go</a>
-    </div>
-  </div>
 </header>
-<section class="page-section">
-  <div class="container">
-    <div class="text-center">
-      <img th:src="${info.logo_image_path}" style="width: 80px; height: 80px"/>
-      <h2 class="section-heading text-uppercase" th:text="${info.team_name}"></h2>
+<section class="page-section" id="teamInfo">
+    <div class="container">
+        <!--        <div class="d-flex align-items-center justify-content-center">-->
+        <!--            <div class="flex-shrink-0">-->
+        <!--                <img th:src="${info.logo_image_path}" style="width: 80px; height: 80px"/>-->
+        <!--            </div>-->
+        <!--            <div class="flex-grow-1 ms-3">-->
+        <!--                <h2 class="section-heading text-uppercase" th:text="${info.team_name}"></h2>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="text-center">
+            <img th:src="${info.logo_image_path}" style="width: 80px; height: 80px"/>
+            <h2 class="section-heading text-uppercase" th:text="${info.team_name}"></h2>
+        </div>
+        <div class="text-center align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder">선수단</h2>
+            <ul class="nav nav-tabs" style="margin-bottom: 50px">
+                <li class="nav-item">
+                    <a id="positionTab_FW" class="nav-link active" aria-current="page"
+                       th:onclick="|javascript:teamInfoAjax('FW',${info.team_id})|">공격수</a>
+                </li>
+                <li class="nav-item">
+                    <a id="positionTab_MF" class="nav-link"
+                       th:onclick="|javascript:teamInfoAjax('MF',${info.team_id})|">미드필더</a>
+                </li>
+                <li class="nav-item">
+                    <a id="positionTab_DF" class="nav-link"
+                       th:onclick="|javascript:teamInfoAjax('DF',${info.team_id})|">수비수</a>
+                </li>
+                <li class="nav-item">
+                    <a id="positionTab_GK" class="nav-link"
+                       th:onclick="|javascript:teamInfoAjax('GK',${info.team_id})|">골키퍼</a>
+                </li>
+            </ul>
+            <input type="hidden" th:value="${info.team_id}" id="teamId" class="teamId"/>
+            <div id="playerList"></div>
+        </div>
+        <div class="text-center align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder">best11</h2>
+            <!--            <img th:src="${info.best_image_path}"/>-->
+        </div>
+        <div class="text-center card shadow border-0 rounded-4 mb-5">
+            <img th:src="${info.best_image_path}"/>
+        </div>
+        <div class="text-center align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder">team style</h2>
+        </div>
+        <div class="text-center card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="row align-items-center gx-5">
+                    <pre class="section-subheading text-muted" th:text="${info.team_style}"></pre>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text-center">
-      <p>선수단</p>
-        <ul class="nav nav-tabs" style="margin-bottom: 50px">
-            <li class="nav-item">
-                <a id="positionTab_FW" class="nav-link active" aria-current="page" th:onclick="|javascript:teamInfoAjax('FW',${info.team_id})|">공격수</a>
-            </li>
-            <li class="nav-item">
-                <a id="positionTab_MF" class="nav-link"  th:onclick="|javascript:teamInfoAjax('MF',${info.team_id})|">미드필더</a>
-            </li>
-            <li class="nav-item">
-                <a id="positionTab_DF" class="nav-link"  th:onclick="|javascript:teamInfoAjax('DF',${info.team_id})|">수비수</a>
-            </li>
-            <li class="nav-item">
-                <a id="positionTab_GK" class="nav-link" th:onclick="|javascript:teamInfoAjax('GK',${info.team_id})|">골키퍼</a>
-            </li>
-        </ul>
-        <input type="hidden" th:value="${info.team_id}" id="teamId" class="teamId"/>
-        <div id="playerList"></div>
-    </div>
-    <div class="text-center">
-      <p>best11</p>
-      <img th:src="${info.best_image_path}"/>
-    </div>
-    <div class="text-center">
-      <p>team style</p>
-      <pre th:text="${info.team_style}"></pre>
-    </div>
-
-  </div>
 </section>
 <!— Clients—>
 <div class="py-5" th:replace="fragments/common::clients">
