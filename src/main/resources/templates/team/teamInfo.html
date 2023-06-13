@@ -6,7 +6,7 @@
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/common :: menu">
+     th:replace="fragments/common2 :: menu">
 </nav>
 <!-- Masthead-->
 <header class="masthead">
@@ -15,7 +15,7 @@
         <a class="btn btn-primary btn-xl text-uppercase" href="#teamInfo">Here to Go</a>
     </div>
 </header>
-<section class="page-section" id="teamInfo">
+<section class="page-section bg-light" id="teamInfo">
     <div class="container">
         <!--        <div class="d-flex align-items-center justify-content-center">-->
         <!--            <div class="flex-shrink-0">-->
@@ -31,7 +31,7 @@
         </div>
         <div class="text-center align-items-center justify-content-between mb-4">
             <h2 class="text-primary fw-bolder">선수단</h2>
-            <ul class="nav nav-tabs" style="margin-bottom: 50px">
+            <ul class="nav nav-tabs nav-fill flex-column flex-sm-row" style="margin-bottom: 50px">
                 <li class="nav-item">
                     <a id="positionTab_FW" class="nav-link active" aria-current="page"
                        th:onclick="|javascript:teamInfoAjax('FW',${info.team_id})|">공격수</a>

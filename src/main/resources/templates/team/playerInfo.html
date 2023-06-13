@@ -2,48 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
-<script src="../../static/js/teamInfo.js"></script>
+<script>
+    $(document).ready(function () {
+        const strength = $("#strength").val();
+        const st1 = strength.split("\\n");
+        console.log("strength : " + strength)
+        console.log("st1 : " + st1[0])
+    });
+</script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/common :: menu">
+     th:replace="fragments/common2 :: menu">
 </nav>
 <!-- Masthead-->
 <header class="masthead">
-  <div class="container">
-    <div class="masthead-subheading">Welcome To Our FootBall!</div>
-      <a class="btn btn-primary btn-xl text-uppercase" href="#playerInfo">Here to Go</a>
-  </div>
-</header>
-<section class="page-section" id="playerInfo">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase" style="margin-bottom: 40px;">player info</h2>
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="../../static/images/player/팀메인사진.jpg" class="img-fluid2 rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${info.name}"></h5>
-              <div class="line"></div>
-              <p class="section-heading text-uppercase" th:text="'키 : '+ ${info.height}"></p>
-              <p class="section-heading text-uppercase" th:text="'몸무게 : '+ ${info.weight}"></p>
-              <p class="section-heading text-uppercase" th:text="'나이 : '+ ${info.age}"></p>
-              <p class="section-heading text-uppercase" th:text="'포지션 : '+ ${info.position}"></p>
-              <p class="section-heading text-uppercase" th:text="'국가 : '+ ${info.nationality}"></p>
-              <p class="section-heading text-uppercase" th:text="'등번호 : '+ ${info.back_number}"></p>
-              <p class="section-heading text-uppercase" th:text="'강점 : '+ ${info.strength}"></p>
-              <p class="section-heading text-uppercase" th:text="'약점 : '+ ${info.weakness}"></p>
-<!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-<!--              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our FootBall!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#playerInfo">Here to Go</a>
     </div>
-  </div>
+</header>
+<section class="page-section bg-light" id="playerInfo">
+    <input type="hidden" th:value="${info.strength}" id="strength" class="strength"/>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase" style="margin-bottom: 40px;">player info</h2>
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../static/images/player/팀메인사진.jpg" class="img-fluid2 rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${info.name}"></h5>
+                            <div class="line"></div>
+                            <p class="section-heading text-uppercase" th:text="'키 : '+ ${info.height}"></p>
+                            <p class="section-heading text-uppercase" th:text="'몸무게 : '+ ${info.weight}"></p>
+                            <p class="section-heading text-uppercase" th:text="'나이 : '+ ${info.age}"></p>
+                            <p class="section-heading text-uppercase" th:text="'포지션 : '+ ${info.position}"></p>
+                            <p class="section-heading text-uppercase" th:text="'국가 : '+ ${info.nationality}"></p>
+                            <p class="section-heading text-uppercase" th:text="'등번호 : '+ ${info.back_number}"></p>
+                            <p class="section-heading text-uppercase" th:text="'강점 : '+ ${info.strength}"></p>
+                            <p class="section-heading text-uppercase" th:text="'약점 : '+ ${info.weakness}"></p>
+                            <!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                            <!--              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!— Clients—>
 <div class="py-5" th:replace="fragments/common::clients">

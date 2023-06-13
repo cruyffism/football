@@ -46,13 +46,13 @@ public class UserController {
         System.out.println("error : " + error);
         System.out.println("exception : " + exception);
 
-        return "user/loginPage";
+        return "user/login";
     }
 
     // 회원가입 페이지
     @GetMapping("/signup")
     public String signupPage() {  // 회원 가입 페이지
-        return "user/signupPage";
+        return "user/signup";
     }
 
     // 회원가입 진행
@@ -72,7 +72,7 @@ public class UserController {
         writer.println("<script>alert('회원가입되었습니다.');</script>");
         writer.flush();
 
-        return "user/loginPage";
+        return "user/login";
     }
 
     //    @GetMapping("/userList")
