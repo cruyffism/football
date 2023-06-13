@@ -3,7 +3,7 @@ package com.minki.football.dto.league;
 import lombok.Data;
 
 @Data // get set을 자동으로 만들어줘서 변수만 선언해주며 된다!
-public class LeagueDto {
+public class LeagueRes {
     private Integer league_id;		//리그 아이디
     private String league_name;	//리그 이름
     private String content;	//내용

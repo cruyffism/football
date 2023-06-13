@@ -1,8 +1,8 @@
 package com.minki.football.service.user;
 
 import com.minki.football.mapper.user.UserMapper;
-import com.minki.football.vo.UserRoleVo;
-import com.minki.football.vo.UserVo;
+import com.minki.football.dto.user.UserReq;
+import com.minki.football.dto.user.UserRoleReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +21,7 @@ public class UserService {
 //        return userMapper.getUserList();
 //    }
 
-    public UserVo getUserById(String username) {
+    public UserReq getUserById(String username) {
         return userMapper.getUserById(username);
     }
 
@@ -29,15 +29,15 @@ public class UserService {
 //        return userMapper.getUserByNickname(nickname);
 //    }
 
-    public void signup(UserVo userVo) { // 회원 가입
-        if (!userVo.getName().equals("") && !userVo.getUsername().equals("")) {
+    public void signup(UserReq userReq) { // 회원 가입
+        if (!userReq.getName().equals("") && !userReq.getUsername().equals("")) {
             // password는 암호화해서 DB에 저장
-            userVo.setPassword(passwordEncoder.encode(userVo.getPassword()));
-            userMapper.insertUser(userVo); // 회원정보 저장
-            UserRoleVo userRoleVo = new UserRoleVo();
-            userRoleVo.setMemberId(userVo.getMemberId());
-            userRoleVo.setRoleId(1);
-            userMapper.insertUserRole(userRoleVo); // 권한정보 저장
+            userReq.setPassword(passwordEncoder.encode(userReq.getPassword()));
+            userMapper.insertUser(userReq); // 회원정보 저장
+            UserRoleReq userRoleReq = new UserRoleReq();
+            userRoleReq.setMemberId(userReq.getMemberId());
+            userRoleReq.setRoleId(1);
+            userMapper.insertUserRole(userRoleReq); // 권한정보 저장
         }
     }
 

@@ -1,9 +1,9 @@
 package com.minki.football.controller.user;
 
-import com.minki.football.dto.league.LeagueDto;
+import com.minki.football.dto.league.LeagueRes;
 import com.minki.football.service.league.LeagueService;
 import com.minki.football.service.user.UserService;
-import com.minki.football.vo.UserVo;
+import com.minki.football.dto.user.UserReq;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -27,7 +27,7 @@ public class UserController {
     // 메인 페이지
     @GetMapping("/index")
     public String home(Model model) {
-        List<LeagueDto> leagueList = leagueService.list();
+        List<LeagueRes> leagueList = leagueService.list();
 
 //        LeagueDto leagueDto = leagueService.info();
         model.addAttribute("leagueList", leagueList);
@@ -57,9 +57,9 @@ public class UserController {
 
     // 회원가입 진행
     @PostMapping("/signup")
-    public String signup(UserVo userVo, HttpServletResponse response) throws IOException { // 회원 가입
+    public String signup(UserReq userReq, HttpServletResponse response) throws IOException { // 회원 가입
         try {
-            userService.signup(userVo);
+            userService.signup(userReq);
         } catch (DuplicateKeyException e) {
             return "redirect:/user/signup?error_code=-1";
         } catch (Exception e) {

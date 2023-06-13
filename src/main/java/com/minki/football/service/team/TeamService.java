@@ -1,10 +1,8 @@
 package com.minki.football.service.team;
 
 
-import com.minki.football.dto.league.LeagueDto;
-import com.minki.football.dto.team.PlayerDto;
-import com.minki.football.dto.team.TeamDto;
-import com.minki.football.mapper.league.LeagueMapper;
+import com.minki.football.dto.team.PlayerRes;
+import com.minki.football.dto.team.TeamRes;
 import com.minki.football.mapper.team.TeamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,24 +15,24 @@ public class TeamService {
     @Autowired
     private TeamMapper teamMapper;
 
-    public List<TeamDto> list(Integer leagueId) {
+    public List<TeamRes> list(Integer leagueId) {
 
-        List<TeamDto> teamList = teamMapper.list(leagueId);
+        List<TeamRes> teamList = teamMapper.list(leagueId);
 
         return teamList;
     }
 
-    public TeamDto info(Integer teamId, String position) {
-        TeamDto teamDto = teamMapper.info(teamId, position);
+    public TeamRes info(Integer teamId, String position) {
+        TeamRes teamRes = teamMapper.info(teamId, position);
 
-        return teamDto;
+        return teamRes;
     }
 
-    public PlayerDto playerInfo(Integer playerId) {
-        PlayerDto playerDto = teamMapper.playerInfo(playerId);
+    public PlayerRes playerInfo(Integer playerId) {
+        PlayerRes playerRes = teamMapper.playerInfo(playerId);
 
 
-        return playerDto;
+        return playerRes;
     }
 
 

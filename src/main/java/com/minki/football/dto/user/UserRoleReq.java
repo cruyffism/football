@@ -1,9 +1,9 @@
-package com.minki.football.vo;
+package com.minki.football.dto.user;
 
 import lombok.Data;
 
 @Data
-public class UserRoleVo {
+public class UserRoleReq {
     private Integer memberId;
     private Integer roleId;
 }

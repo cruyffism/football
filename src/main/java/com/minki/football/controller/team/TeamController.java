@@ -1,7 +1,7 @@
 package com.minki.football.controller.team;
 
-import com.minki.football.dto.team.PlayerDto;
-import com.minki.football.dto.team.TeamDto;
+import com.minki.football.dto.team.PlayerRes;
+import com.minki.football.dto.team.TeamRes;
 import com.minki.football.service.team.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class TeamController {
     //팀 리스트 조회
     @GetMapping("/list/{leagueId}")
     public String list(Model model, @PathVariable Integer leagueId) {
-        List<TeamDto> teamList = teamService.list(leagueId);
+        List<TeamRes> teamList = teamService.list(leagueId);
 
         model.addAttribute("teamList", teamList);
         System.out.println("팀 리스트 : " + teamList);
@@ -33,7 +33,7 @@ public class TeamController {
     //팀 리스트 조회
     @GetMapping("/listAjax/{leagueId}")
     public String listAjax(Model model, @PathVariable Integer leagueId) {
-        List<TeamDto> teamList = teamService.list(leagueId);
+        List<TeamRes> teamList = teamService.list(leagueId);
 
         model.addAttribute("teamList", teamList);
         System.out.println("팀 리스트 : " + teamList);
@@ -43,30 +43,30 @@ public class TeamController {
     //해당 팀 상세 조회
     @GetMapping("/info/{teamId}")
     public String info(Model model, @PathVariable Integer teamId) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
-        TeamDto teamDto = teamService.info(teamId, "FW");
+        TeamRes teamRes = teamService.info(teamId, "FW");
 
-        model.addAttribute("info", teamDto);
-        System.out.println("팀정보 : " + teamDto);
+        model.addAttribute("info", teamRes);
+        System.out.println("팀정보 : " + teamRes);
         return "team/teamInfo";
     }
 
     //해당 팀 상세 조회
     @GetMapping("/infoAjax/{teamId}")
     public String infoAjax(Model model, @PathVariable Integer teamId, @RequestParam String position) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
-        TeamDto teamDto = teamService.info(teamId, position);
+        TeamRes teamRes = teamService.info(teamId, position);
 
-        model.addAttribute("info", teamDto);
-        System.out.println("팀정보2 : " + teamDto);
+        model.addAttribute("info", teamRes);
+        System.out.println("팀정보2 : " + teamRes);
         return "team/teamInfoAjax";
     }
 
     //플레이어 조회
     @GetMapping("/playerInfo/{playerId}")
     public String playerInfo(Model model, @PathVariable Integer playerId) {
-        PlayerDto playerDto = teamService.playerInfo(playerId);
+        PlayerRes playerRes = teamService.playerInfo(playerId);
 
-        model.addAttribute("info", playerDto);
-       System.out.println("선수정보 : "+ playerDto);
+        model.addAttribute("info", playerRes);
+       System.out.println("선수정보 : "+ playerRes);
         return "team/playerInfo";
 
     }

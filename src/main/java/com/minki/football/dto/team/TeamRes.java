@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class TeamDto {
+public class TeamRes {
     private Integer team_id;
     private Integer league_id;
     private Integer game_rank;
@@ -23,6 +23,6 @@ public class TeamDto {
     private String logo_image_path;
     private String best_image_path;
 
-    private List<PlayerDto> playerDto;
+    private List<PlayerRes> playerRes;
 
 }

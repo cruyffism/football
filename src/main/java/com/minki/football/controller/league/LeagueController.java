@@ -1,6 +1,6 @@
 package com.minki.football.controller.league;
 
-import com.minki.football.dto.league.LeagueDto;
+import com.minki.football.dto.league.LeagueRes;
 import com.minki.football.service.league.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class LeagueController {
     // 리그페이지 리스트 조회
     @GetMapping("/list") // GET(조회), POST(생성, 자장), PUT(수정), DELETE(삭제) 뒤에다가 경로 설정하기! ex) "/list"
     public String list(Model model) { // 접근제한자 리턴값 메소드명(매개변수){}  >> 이게 하나의 메소드이다.
-        List<LeagueDto> leagueList = leagueService.list(); // 리그리스트를 조회한 결과 값(우측값)을 leagueList(좌측값)에 담았다.
+        List<LeagueRes> leagueList = leagueService.list(); // 리그리스트를 조회한 결과 값(우측값)을 leagueList(좌측값)에 담았다.
         // 데이터 타입     변수명       호출메소드
 
         //System.out.println("leagueDto : " + leagueList);
@@ -33,9 +33,9 @@ public class LeagueController {
     // 리그페이지 상세 조회
      @GetMapping("/info/{leagueId}")
     public String info(Model model, @PathVariable Integer leagueId) { // info 경로에서 leagueId를 사용하겠다.
-         LeagueDto leagueDto = leagueService.info(leagueId);
-         System.out.println("leagueDto22 : " + leagueDto);
-         model.addAttribute("info", leagueDto);
+         LeagueRes leagueRes = leagueService.info(leagueId);
+         System.out.println("leagueDto22 : " + leagueRes);
+         model.addAttribute("info", leagueRes);
 
          return "league/leagueInfo"; //league 폴더안에 info.html로 보낸다.
      }

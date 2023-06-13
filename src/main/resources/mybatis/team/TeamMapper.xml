@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.team.TeamMapper">
-    <resultMap id="playerDto" type="com.minki.football.dto.team.PlayerDto">
+    <resultMap id="playerRes" type="com.minki.football.dto.team.PlayerRes">
 <!--        <result property="team_id" column="team_id"/>-->
         <result property="player_id" column="player_id"/>
         <result property="name" column="name"/>
@@ -13,23 +13,23 @@
         <result property="mime_type" column="mime_type"/>
     </resultMap>
 
-    <resultMap id="teamDto" type="com.minki.football.dto.team.TeamDto">
+    <resultMap id="teamRes" type="com.minki.football.dto.team.TeamRes">
         <result property="team_id" column="team_id"/>
         <result property="team_name" column="team_name"/>
         <result property="team_style" column="team_style"/>
         <result property="logo_image_path" column="logo_image_path"/>
         <result property="best_image_path" column="best_image_path"/>
-        <collection property="playerDto" resultMap="playerDto"/>
+        <collection property="playerRes" resultMap="playerRes"/>
     </resultMap>
     <!-- namespace로 LeagueMapper와 연결함   -->
-    <select id="list" resultType="com.minki.football.dto.team.TeamDto">
+    <select id="list" resultType="com.minki.football.dto.team.TeamRes">
         select team_id, team_name, logo_image_path, league_id
         from team
         where league_id = #{leagueId}
 --  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
     </select>
 
-    <select id="info" resultMap="teamDto">
+    <select id="info" resultMap="teamRes">
         select
                 t.team_id,
                 t.team_name,
@@ -50,7 +50,7 @@
         where t.team_id = #{teamId} and p.position = #{position}
     </select>
 
-    <select id="playerInfo" parameterType="Integer" resultType="com.minki.football.dto.team.PlayerDto">
+    <select id="playerInfo" parameterType="Integer" resultType="com.minki.football.dto.team.PlayerRes">
         select name,
                height,
                weight,

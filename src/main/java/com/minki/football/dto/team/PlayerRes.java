@@ -3,7 +3,7 @@ package com.minki.football.dto.team;
 import lombok.Data;
 
 @Data
-public class PlayerDto {
+public class PlayerRes {
     private Integer team_id;
     private Integer player_id;
     private String name;

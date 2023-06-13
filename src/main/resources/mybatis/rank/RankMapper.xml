@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.rank.RankMapper">
-    <select id="list" resultType="com.minki.football.dto.team.TeamDto">
+    <select id="list" resultType="com.minki.football.dto.team.TeamRes">
     select
         team_id,
         game_rank,
@@ -19,7 +19,7 @@
     order by game_rank asc;
     </select>
 
-    <select id="rank" resultType="com.minki.football.dto.team.PlayerDto">
+    <select id="rank" resultType="com.minki.football.dto.team.PlayerRes">
     select
         player_id,
         name,

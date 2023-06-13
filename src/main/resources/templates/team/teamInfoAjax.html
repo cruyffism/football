@@ -4,7 +4,7 @@
 <!--        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
 <!--        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
 <!--    </div>-->
-<!--    <div class="carousel-inner" th:each="player : ${info.playerDto}">-->
+<!--    <div class="carousel-inner" th:each="player : ${info.playerRes}">-->
 <!--        <div class="carousel-item active">-->
 <!--            <img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px" class="d-block w-100" alt="...">-->
 <!--            <div class="carousel-caption d-none d-md-block">-->
@@ -24,7 +24,7 @@
 <!--    </button>-->
 <!--</div>-->
 
-<div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerDto}">
+<div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerRes}">
  <img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px" th:onclick="|location.href='@{/team/playerInfo/{playerId}(playerId=${player.player_id})}'|"/>
     <div th:text="${player.name}"></div>
     <div th:text="${player.back_number}"></div>

@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.league.LeagueMapper">
 <!-- namespace로 LeagueMapper와 연결함   -->
-    <select id="list" resultType="com.minki.football.dto.league.LeagueDto">
+    <select id="list" resultType="com.minki.football.dto.league.LeagueRes">
       select league_id, league_name, logo_image_path
       from league;
 --  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
     </select>
 
-    <select id="info" resultType="com.minki.football.dto.league.LeagueDto">
+    <select id="info" resultType="com.minki.football.dto.league.LeagueRes">
         select *
         from league
         where league_id = #{leagueId}
