@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.team.TeamMapper">
-    <resultMap id="playerRes" type="com.minki.football.dto.team.PlayerRes">
-<!--        <result property="team_id" column="team_id"/>-->
-        <result property="player_id" column="player_id"/>
-        <result property="name" column="name"/>
-        <result property="back_number" column="back_number"/>
-        <result property="position" column="position"/>
-        <result property="file_name" column="file_name"/>
-        <result property="file_size" column="file_size"/>
-        <result property="file_bytes" column="file_bytes"/>
-        <result property="mime_type" column="mime_type"/>
-    </resultMap>
+<!--    <resultMap id="playerRes" type="com.minki.football.dto.team.PlayerRes">-->
+<!--&lt;!&ndash;        <result property="team_id" column="team_id"/>&ndash;&gt;-->
+<!--        <result property="player_id" column="player_id"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <result property="back_number" column="back_number"/>-->
+<!--        <result property="position" column="position"/>-->
+<!--        <result property="file_name" column="file_name"/>-->
+<!--        <result property="file_size" column="file_size"/>-->
+<!--        <result property="file_bytes" column="file_bytes"/>-->
+<!--        <result property="mime_type" column="mime_type"/>-->
+<!--    </resultMap>-->
 
-    <resultMap id="teamRes" type="com.minki.football.dto.team.TeamRes">
-        <result property="team_id" column="team_id"/>
-        <result property="team_name" column="team_name"/>
-        <result property="team_style" column="team_style"/>
-        <result property="logo_image_path" column="logo_image_path"/>
-        <result property="best_image_path" column="best_image_path"/>
-        <collection property="playerRes" resultMap="playerRes"/>
-    </resultMap>
+<!--    <resultMap id="teamRes" type="com.minki.football.dto.team.TeamRes">-->
+<!--        <result property="team_id" column="team_id"/>-->
+<!--        <result property="team_name" column="team_name"/>-->
+<!--        <result property="team_style" column="team_style"/>-->
+<!--        <result property="logo_image_path" column="logo_image_path"/>-->
+<!--        <result property="best_image_path" column="best_image_path"/>-->
+<!--        <collection property="playerRes" resultMap="playerRes"/>-->
+<!--    </resultMap>-->
     <!-- namespace로 LeagueMapper와 연결함   -->
     <select id="list" resultType="com.minki.football.dto.team.TeamRes">
         select team_id, team_name, logo_image_path, league_id
@@ -29,28 +29,32 @@
 --  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
     </select>
 
-    <select id="info" resultMap="teamRes">
+    <select id="info" resultType="com.minki.football.dto.team.TeamRes">
         select
-                t.team_id,
-                t.team_name,
-                t.team_style,
-                t.logo_image_path,
-                t.best_image_path,
---                 p.team_id,
-                p.player_id,
-                p.name,
-                p.back_number,
-                p.position,
-                p.file_name,
-                p.file_size,
-                p.file_bytes,
-                p.mime_type
-        from team t
-        inner join player p on t.team_id = p.team_id
-        where t.team_id = #{teamId} and p.position = #{position}
+                team_id,
+                team_name,
+                team_style,
+                logo_image_path,
+                best_image_path
+        from team
+        where team_id = #{teamId}
     </select>
 
-    <select id="playerInfo" parameterType="Integer" resultType="com.minki.football.dto.team.PlayerRes">
+    <select id="playerList" resultType="com.minki.football.dto.team.PlayerRes">
+        select
+            player_id,
+            name,
+            back_number,
+            position,
+            file_name,
+            file_size,
+            file_bytes,
+            mime_type
+        from player
+        where team_id = #{teamId} and position = #{position}
+    </select>
+
+    <select id="playerInfo" resultType="com.minki.football.dto.team.PlayerRes">
         select name,
                height,
                weight,

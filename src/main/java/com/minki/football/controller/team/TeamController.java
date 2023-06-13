@@ -21,12 +21,8 @@ public class TeamController {
     private TeamService teamService;
 
     //팀 리스트 조회
-    @GetMapping("/list/{leagueId}")
-    public String list(Model model, @PathVariable Integer leagueId) {
-        List<TeamRes> teamList = teamService.list(leagueId);
-
-        model.addAttribute("teamList", teamList);
-        System.out.println("팀 리스트 : " + teamList);
+    @GetMapping("/list")
+    public String list() {
         return "team/teamList";
     }
 
@@ -43,7 +39,7 @@ public class TeamController {
     //해당 팀 상세 조회
     @GetMapping("/info/{teamId}")
     public String info(Model model, @PathVariable Integer teamId) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
-        TeamRes teamRes = teamService.info(teamId, "FW");
+        TeamRes teamRes = teamService.info(teamId);
 
         model.addAttribute("info", teamRes);
         System.out.println("팀정보 : " + teamRes);
@@ -53,10 +49,10 @@ public class TeamController {
     //해당 팀 상세 조회
     @GetMapping("/infoAjax/{teamId}")
     public String infoAjax(Model model, @PathVariable Integer teamId, @RequestParam String position) { // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
-        TeamRes teamRes = teamService.info(teamId, position);
+        List<PlayerRes> playerList = teamService.playerList(teamId, position);
 
-        model.addAttribute("info", teamRes);
-        System.out.println("팀정보2 : " + teamRes);
+        model.addAttribute("playerList", playerList);
+        System.out.println("팀정보2 : " + playerList);
         return "team/teamInfoAjax";
     }
 

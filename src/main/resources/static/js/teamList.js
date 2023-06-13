@@ -1,9 +1,9 @@
-$( document ).ready(function() {
-    console.log( "ready!" );
-    teamListAjax(1);
+$(document).ready(function () {
+    console.log("ready!");
+    leagueTabAjax(1);
 });
 
-function teamListAjax(league_id) {
+function leagueTabAjax(league_id) {
     console.log("league_id : ", league_id);
     const innerHtml = $("#teamList")
     $.ajax({
@@ -18,7 +18,7 @@ function teamListAjax(league_id) {
             document.getElementById("leagueTab3").classList.remove("active");
             document.getElementById("leagueTab4").classList.remove("active");
             document.getElementById("leagueTab5").classList.remove("active");
-            document.getElementById("leagueTab"+league_id).className += " active"
+            document.getElementById("leagueTab" + league_id).className += " active"
             $(innerHtml).html(data)
             setTimeout(function () {
             }, 1000)

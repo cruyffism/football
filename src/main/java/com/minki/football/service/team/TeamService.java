@@ -22,10 +22,16 @@ public class TeamService {
         return teamList;
     }
 
-    public TeamRes info(Integer teamId, String position) {
-        TeamRes teamRes = teamMapper.info(teamId, position);
+    public TeamRes info(Integer teamId) {
+        TeamRes teamRes = teamMapper.info(teamId);
 
         return teamRes;
+    }
+
+    public List<PlayerRes> playerList(Integer teamId, String position) {
+        List<PlayerRes> playerList = teamMapper.playerList(teamId, position);
+
+        return playerList;
     }
 
     public PlayerRes playerInfo(Integer playerId) {

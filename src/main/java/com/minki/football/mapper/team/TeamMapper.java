@@ -11,7 +11,9 @@ import java.util.List;
 public interface TeamMapper {
     List<TeamRes> list(Integer leagueId);
 
-    TeamRes info(Integer teamId, String position);
+    TeamRes info(Integer teamId);
+    
+    List<PlayerRes> playerList(Integer teamId, String position);
 
     PlayerRes playerInfo(Integer playerId);
 }
