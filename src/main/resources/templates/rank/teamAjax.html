@@ -1,18 +1,30 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">순위</th>
+        <th scope="col">팀</th>
+        <th scope="col">경기수</th>
+        <th scope="col">승점</th>
+        <th scope="col">승</th>
+        <th scope="col">무</th>
+        <th scope="col">패</th>
+        <th scope="col">득점</th>
+        <th scope="col">실점</th>
+        <th scope="col">득실차</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+    <tr th:each="team_rank : ${list}">
+        <td th:text="${team_rank.game_rank}"></td>
+        <td th:text="${team_rank.team_name}"></td>
+        <td th:text="${team_rank.game_match}"></td>
+        <td th:text="${team_rank.point}"></td>
+        <td th:text="${team_rank.win}"></td>
+        <td th:text="${team_rank.draw}"></td>
+        <td th:text="${team_rank.lose}"></td>
+        <td th:text="${team_rank.plus_goal}"></td>
+        <td th:text="${team_rank.minus_goal}"></td>
+        <td th:text="${team_rank.diff_goal}"></td>
     </tr>
     </tbody>
 </table>
