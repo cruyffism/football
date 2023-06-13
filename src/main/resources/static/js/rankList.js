@@ -15,7 +15,7 @@ function rankListAjax(type) {
             async: false,
             success: function (data) {
                 // document.getElementById("rankTab1").classList.remove("active");
-                document.getElementById("rankTab2").classList.remove("active");
+                document.getElementById("rankLeagueListTab2").classList.remove("active");
                 document.getElementById("rankTab1").className += " active"
                 $(innerHtml).html(data)
                 setTimeout(function () {
@@ -35,7 +35,7 @@ function rankListAjax(type) {
             async: false,
             success: function (data) {
                 document.getElementById("rankTab1").classList.remove("active");
-                // document.getElementById("rankTab2").classList.remove("active");
+                document.getElementById("rankTab2").classList.remove("active");
                 document.getElementById("rankTab2").className += " active"
                 $(innerHtml).html(data)
                 setTimeout(function () {
@@ -46,4 +46,26 @@ function rankListAjax(type) {
             }
         })
     }
+}
+function rankLegaListAjax(type) {
+    console.log("league_id : ", league_id);
+    const innerHtml = $("#rankList")
+        $.ajax({
+            url: "/rank/team/"+league_id,
+            type: 'GET',
+            cache: false,
+            dataType: "html",
+            async: false,
+            success: function (data) {
+                // document.getElementById("rankTab1").classList.remove("active");
+                document.getElementById("rankLagueListTab2").classList.remove("active");
+                document.getElementById("rankLagueListTab1").className += " active"
+                $(innerHtml).html(data)
+                setTimeout(function () {
+                }, 1000)
+            },
+            error: function (e) {
+                $(innerHtml).html("")
+            }
+        })
 }
