@@ -26,7 +26,7 @@ public class RankController {
 
         model.addAttribute("list",rankList);
         System.out.println("순위정보 : " + rankList);
-        return "rank/list";
+        return "rank/teamAjax";
     }
 
 
@@ -44,6 +44,6 @@ public class RankController {
     @GetMapping
     public String rank(Model model) {
         System.out.println("순위페이지" );
-        return "rank/list";
+        return "rank/playerAjax";
     }
 }
