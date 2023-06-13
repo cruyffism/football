@@ -23,27 +23,27 @@
     </div>
     <ul class="nav nav-tabs nav-fill flex-column flex-sm-row" style="margin-bottom: 50px">
       <li class="nav-item">
-        <a id="rankTab1" class="nav-link" aria-current="page" th:onclick="rankListAjax(1)">팀</a>
+        <a id="rankTab1" class="nav-link" aria-current="page" th:onclick="rankTeamListAjax(1)">팀</a>
       </li>
       <li class="nav-item">
-        <a id="rankTab2" class="nav-link"  th:onclick="rankListAjax(2)">선수</a>
+        <a id="rankTab2" class="nav-link"  th:onclick="rankPlayerListAjax()">선수</a>
       </li>
     </ul>
-    <ul class="nav nav-pills nav-fill flex-column flex-sm-row">
+    <ul id="league" class="nav nav-pills nav-fill flex-column flex-sm-row">
       <li class="nav-item">
-        <a id="leagueTab1" class="nav-link" aria-current="page" th:onclick="rankLeagueListAjax(1)">팀</a>
+        <a id="leagueTab1" class="nav-link" aria-current="page" th:onclick="rankTeamListAjax(1)">팀</a>
       </li>
       <li class="nav-item">
-        <a id="leagueTab2" class="nav-link"  th:onclick="rankLeagueListAjax(2)">선수</a>
+        <a id="leagueTab2" class="nav-link"  th:onclick="rankTeamListAjax(2)">선수</a>
       </li>
       <li class="nav-item">
-        <a id="leagueTab3" class="nav-link"  th:onclick="rankLeagueListAjax(3)">선수</a>
+        <a id="leagueTab3" class="nav-link"  th:onclick="rankTeamListAjax(3)">선수</a>
       </li>
       <li class="nav-item">
-        <a id="leagueTab4" class="nav-link"  th:onclick="rankLeagueListAjax(4)">선수</a>
+        <a id="leagueTab4" class="nav-link"  th:onclick="rankTeamListAjax(4)">선수</a>
       </li>
       <li class="nav-item">
-        <a id="leagueTab5" class="nav-link"  th:onclick="rankLeagueListAjax(5)">선수</a>
+        <a id="leagueTab5" class="nav-link"  th:onclick="rankTeamListAjax(5)">선수</a>
       </li>
     </ul>
     <div  id="rankList" class="row">
