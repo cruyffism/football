@@ -48,7 +48,7 @@ function rankListAjax(type) {
     }
 }
 
-function rankLegaListAjax(league_id) {
+function rankLeagueListAjax(league_id) {
     console.log("league_id : ", league_id);
     const innerHtml = $("#rankList")
     $.ajax({
