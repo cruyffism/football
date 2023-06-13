@@ -25,7 +25,7 @@
 <!--</div>-->
 
 <div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${info.playerRes}">
- <img src="../../static/images/player/팀메인사진.jpg" style="width: 200px; height: 200px" th:onclick="|location.href='@{/team/playerInfo/{playerId}(playerId=${player.player_id})}'|"/>
+ <img src="../../static/images/player/홀란드.webp" style="width: 200px; height: 200px" th:onclick="|location.href='@{/team/playerInfo/{playerId}(playerId=${player.player_id})}'|"/>
     <div th:text="${player.name}"></div>
     <div th:text="${player.back_number}"></div>
 </div>

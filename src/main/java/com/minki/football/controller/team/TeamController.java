@@ -66,7 +66,7 @@ public class TeamController {
         PlayerRes playerRes = teamService.playerInfo(playerId);
 
         model.addAttribute("info", playerRes);
-       System.out.println("선수정보 : "+ playerRes);
+        System.out.println("선수정보 : " + playerRes);
         return "team/playerInfo";
 
     }

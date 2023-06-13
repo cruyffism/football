@@ -2,14 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
-<script>
-    $(document).ready(function () {
-        const strength = $("#strength").val();
-        const st1 = strength.split("\\n");
-        console.log("strength : " + strength)
-        console.log("st1 : " + st1[0])
-    });
-</script>
+<script></script>
+<link href="../../static/css/styles2.css" rel="stylesheet" />
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -30,7 +24,7 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="../../static/images/player/팀메인사진.jpg" class="img-fluid2 rounded-start" alt="...">
+                        <img src="../../static/images/player/홀란드.webp" class="img-fluid2 rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -42,8 +36,12 @@
                             <p class="section-heading text-uppercase" th:text="'포지션 : '+ ${info.position}"></p>
                             <p class="section-heading text-uppercase" th:text="'국가 : '+ ${info.nationality}"></p>
                             <p class="section-heading text-uppercase" th:text="'등번호 : '+ ${info.back_number}"></p>
-                            <p class="section-heading text-uppercase" th:text="'강점 : '+ ${info.strength}"></p>
-                            <p class="section-heading text-uppercase" th:text="'약점 : '+ ${info.weakness}"></p>
+<!--                            <div th:each="strength : ${#strings.arraySplit(info.strength, '&lt;br /&gt;')}">-->
+<!--                                <p class="section-heading text-uppercase" th:text="'강점 : ' + ${strength}"></p>-->
+<!--                            </div>-->
+<!--                            <div th:each="weakness : ${#strings.arraySplit(info.weakness, '&lt;br /&gt;')}">-->
+<!--                                <p class="section-heading text-uppercase" th:text="'약점 : '+ ${weakness}"></p>-->
+<!--                            </div>-->
                             <!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
                             <!--              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
                         </div>
@@ -52,6 +50,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Skillset Card-->
+    <div class="container card shadow border-0 rounded-4 mb-5">
+        <div class="card-body p-5">
+            <!-- Professional skills list-->
+            <div class="mb-5">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="fa-regular fa-thumbs-up"></i></div>
+                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">강점</span></h3>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 mb-4">
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">SEO/SEM Marketing</div></div>
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Statistical Analysis</div></div>
+                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Web Development</div></div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Network Security</div></div>
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Adobe Software Suite</div></div>
+                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">User Interface Design</div></div>
+                </div>
+            </div>
+            <!-- Languages list-->
+            <div class="mb-0">
+                <div class="d-flex align-items-center mb-4">
+                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="fa-regular fa-thumbs-down"></i></div>
+                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">약점</span></h3>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 mb-4">
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">HTML</div></div>
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">CSS</div></div>
+                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">JavaScript</div></div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Python</div></div>
+                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Ruby</div></div>
+                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Node.js</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 <!— Clients—>
 <div class="py-5" th:replace="fragments/common::clients">
