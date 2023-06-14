@@ -1,5 +1,6 @@
 package com.minki.football.service.rank;
 
+import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
 import com.minki.football.mapper.rank.RankMapper;
@@ -21,8 +22,13 @@ public class RankService {
         return rankList;
     }
 
-    public List<PlayerRes> player(){
-        List<PlayerRes> playerRes = rankMapper.rank();
+    public List<PlayerRes> player(Criteria criteria){
+        List<PlayerRes> playerRes = rankMapper.rank(criteria);
         return playerRes;
+    }
+
+    public Integer selectPlayerTotalCount(Criteria criteria) {
+        int cnt = rankMapper.selectPlayerTotalCount(criteria);
+        return cnt;
     }
 }

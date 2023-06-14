@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">순위</th>
+        <th scope="col">선수</th>
+        <th scope="col">경기수</th>
+        <th scope="col">출전시간</th>
+        <th scope="col">득점</th>
+        <th scope="col">도움</th>
+        <th scope="col">공격포인트</th>
+        <th scope="col">평점</th>
+        <th scope="col">mvp</th>
+        <th scope="col">경고</th>
+        <th scope="col">퇴장</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player_rank, playerStat : ${player}">
+    <td th:text="${playerStat.index+1}"></td>
+        <td th:text="${player_rank.name}"></td>
+        <td th:text="${player_rank.game_match}"></td>
+        <td th:text="${player_rank.playing_time}"></td>
+        <td th:text="${player_rank.goal}"></td>
+        <td th:text="${player_rank.assist}"></td>
+        <td th:text="${player_rank.total_point}"></td>
+        <td th:text="${player_rank.mvp}"></td>
+        <td th:text="${player_rank.rating}"></td>
+        <td th:text="${player_rank.yellow_card}"></td>
+        <td th:text="${player_rank.red_card}"></td>
+    </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

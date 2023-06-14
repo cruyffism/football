@@ -19,7 +19,7 @@
     order by game_rank asc;
     </select>
 
-    <select id="rank" resultType="com.minki.football.dto.team.PlayerRes">
+    <select id="rank" parameterType="com.minki.football.dto.page.Criteria" resultType="com.minki.football.dto.team.PlayerRes">
     select
         player_id,
         name,
@@ -35,6 +35,13 @@
         total_point
     from player
     order by rating desc
-
+        LIMIT #{pageStart}, #{perPageNum}
     </select>
+
+    <select id="selectPlayerTotalCount" parameterType="com.minki.football.dto.page.Criteria"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*) AS TOTAL_ROWS
+        FROM player
+    </select>
+
 </mapper>

@@ -1,5 +1,7 @@
 package com.minki.football.controller.rank;
 
+import com.minki.football.dto.page.Criteria;
+import com.minki.football.dto.page.PageMaker;
 import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
 import com.minki.football.service.rank.RankService;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,8 +35,13 @@ public class RankController {
 
     //선수 순위 조회
     @GetMapping("/player")
-    public String info(Model model) {
-        List<PlayerRes> playerRes = rankService.player();
+    public String info(Model model, @ModelAttribute("criteria") Criteria criteria) {
+        List<PlayerRes> playerRes = rankService.player(criteria);
+
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCriteria(criteria);
+        pageMaker.setTotalCount(rankService.selectPlayerTotalCount(criteria));
+        model.addAttribute("PageMaker", pageMaker);
 
         model.addAttribute("player", playerRes);
         System.out.println("선수순위 : " + playerRes);
