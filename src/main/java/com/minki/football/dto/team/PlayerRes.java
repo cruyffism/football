@@ -16,7 +16,7 @@ public class PlayerRes {
     private Integer yellow_card;
     private Integer red_card;
     private Integer mvp;
-    private Integer rating;
+    private double rating;
     private Integer age;
     private Integer total_point;
     private String nationality;
