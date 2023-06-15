@@ -17,6 +17,8 @@ public class Criteria {
 
     private String sortType;
 
+    private String sort;
+
     private String idx;
 
     public Criteria() {
@@ -50,5 +52,9 @@ public class Criteria {
 
     public int getPageStart() {
         return (this.page - 1) * perPageNum;
+    }
+
+    public String getSort(){
+        return this.sortColumn+ " " + this.sortType;
     }
 }

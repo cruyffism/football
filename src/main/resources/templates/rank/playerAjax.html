@@ -51,25 +51,30 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.startPage - PageMaker.displayPageNum},'rating','DESC',6)|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+            <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+               th:onclick="|javascript:rankPlayerAjax(${PageMaker.startPage - PageMaker.displayPageNum},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1},'rating','DESC',6)|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+            <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+               th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
                 <span aria-hidden="true">&lsaquo;</span>
             </a>
         </li>
         <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
-            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num},'rating','DESC',6)|" th:text="${num}"></a></li>
+            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+                                                                                                         th:onclick="|javascript:rankPlayerAjax(${num},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" th:text="${num}"></a></li>
         </th:block>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1},'rating','DESC',6)|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+            <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+               th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
                 <span aria-hidden="true">&rsaquo;</span>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.endPage + 1},'rating','DESC',6)|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+            <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+               th:onclick="|javascript:rankPlayerAjax(${PageMaker.endPage + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
