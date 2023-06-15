@@ -34,7 +34,7 @@
         rating,
         total_point
     from player
-    order by rating desc
+    order by #{sortColumn} #{sortType}
         LIMIT #{pageStart}, #{perPageNum}
     </select>
 
