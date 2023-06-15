@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    console.log("ready!");
     rankTeamAjax(1);
 });
 
 function rankTeamAjax(league_id) {
-    console.log("league_id : ", league_id);
     const innerHtml = $("#rankList")
 
     $.ajax({
@@ -33,6 +31,7 @@ function rankPlayerAjax(page, sortColumn, sortType, idx) {
     f.sortColumn.value = sortColumn;
     f.sortType.value = sortType;
     f.idx.value = idx;
+
     $.ajax({
         url: "/rank/player",
         type: 'GET',
@@ -46,15 +45,9 @@ function rankPlayerAjax(page, sortColumn, sortType, idx) {
             $(innerHtml).html(data)
             if (sortType !== 'undefined') {
                 if (sortType === 'DESC') {
-                    console.log("내림2")
                     $(`#sort`+idx).attr({src:"../../static/images/rank/sortDown.svg"})
-                    $('#type').val('D');
-                    $('#typeCol').val('${PageMaker.criteria.sortColumn}');
                 } else {
-                    console.log("오름2")
                     $(`#sort`+idx).attr({src:"../../static/images/rank/sortUp.svg"})
-                    $('#type').val('A');
-                    $('#typeCol').val('${PageMaker.criteria.sortColumn}');
                 }
             }
             setTimeout(function () {
@@ -78,7 +71,7 @@ function leagueTabAjax(league_id) {
 
 function sortUpDown(idx) {
     const imgTag = document.getElementById("sort" + idx);
-    if ($('#type').val() === 'D' && imgTag.className === $('#typeCol').val()) {
+    if ($('#sortType').val() === 'DESC' && imgTag.className === $('#sortColumn').val()) {
         rankPlayerAjax('1', imgTag.className, 'ASC', idx);
     } else {
         rankPlayerAjax('1', imgTag.className, 'DESC', idx);
