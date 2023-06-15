@@ -50,7 +50,8 @@ public class RankController {
 
     //랭크페이지 가기
     @GetMapping
-    public String rank(Model model) {
+    public String rank(Model model, @ModelAttribute("criteria") Criteria criteria) {
+        model.addAttribute("criteria", criteria);
         System.out.println("순위페이지" );
         return "rank/rankList";
     }

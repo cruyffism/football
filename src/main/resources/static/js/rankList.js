@@ -26,13 +26,16 @@ function rankTeamAjax(league_id) {
     })
 }
 
-function rankPlayerAjax() {
+function rankPlayerAjax(num) {
     const innerHtml = $("#rankList")
+    const f = document.getElementById("form1");
+    f.page.value = num;
     $.ajax({
         url: "/rank/player",
         type: 'GET',
         cache: false,
         dataType: "html",
+        data: $('#form1').serialize(),
         async: false,
         success: function (data) {
             document.getElementById("rankTab1").classList.remove("active");
