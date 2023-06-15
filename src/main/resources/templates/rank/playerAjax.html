@@ -8,28 +8,28 @@
                                  onclick="sortUpDown(1);"></th>
         <th scope="col">출전시간 <img id="sort2" class="playing_time"
                                  src="../../static/images/rank/sortUp.svg"
-                                 onclick="sortUpDown(1);"></th>
+                                 onclick="sortUpDown(2);"></th>
         <th scope="col">득점 <img id="sort3" class="goal"
                                src="../../static/images/rank/sortUp.svg"
-                               onclick="sortUpDown(1);"></th>
+                               onclick="sortUpDown(3);"></th>
         <th scope="col">도움 <img id="sort4" class="assist"
                                src="../../static/images/rank/sortUp.svg"
-                               onclick="sortUpDown(1);"></th>
+                               onclick="sortUpDown(4);"></th>
         <th scope="col">공격포인트 <img id="sort5" class="total_point"
                                    src="../../static/images/rank/sortUp.svg"
-                                   onclick="sortUpDown(1);"></th>
+                                   onclick="sortUpDown(5);"></th>
         <th scope="col">평점 <img id="sort6" class="rating"
                                 src="../../static/images/rank/sortUp.svg"
-                                onclick="sortUpDown(1);"></th>
+                                onclick="sortUpDown(6);"></th>
         <th scope="col">mvp <img id="sort7" class="mvp"
                                  src="../../static/images/rank/sortUp.svg"
-                                 onclick="sortUpDown(1);"></th>
+                                 onclick="sortUpDown(7);"></th>
         <th scope="col">경고 <img id="sort8" class="yellow_card"
                                 src="../../static/images/rank/sortUp.svg"
-                                onclick="sortUpDown(1);"></th>
+                                onclick="sortUpDown(8);"></th>
         <th scope="col">퇴장 <img id="sort9" class="red_card"
                                 src="../../static/images/rank/sortUp.svg"
-                                onclick="sortUpDown(1);"></th>
+                                onclick="sortUpDown(9);"></th>
     </tr>
     </thead>
     <tbody>
@@ -51,12 +51,12 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.startPage - PageMaker.displayPageNum})|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.startPage - PageMaker.displayPageNum},'rating','DESC',6)|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1})|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1},'rating','DESC',6)|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
                 <span aria-hidden="true">&lsaquo;</span>
             </a>
         </li>
@@ -64,12 +64,12 @@
             <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
         </th:block>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1})|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1},'rating','DESC',6)|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
                 <span aria-hidden="true">&rsaquo;</span>
             </a>
         </li>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.endPage + 1})|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.endPage + 1},'rating','DESC',6)|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

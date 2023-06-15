@@ -45,6 +45,7 @@ public class RankController {
 
         model.addAttribute("player", playerRes);
         System.out.println("선수순위 : " + playerRes);
+        System.out.println("pageMaker : " + pageMaker);
         return "rank/playerAjax"; //league 폴더안에 info.html로 보낸다.
     }
 
