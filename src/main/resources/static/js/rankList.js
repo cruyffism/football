@@ -63,3 +63,11 @@ function leagueTabAjax(league_id) {
 
 
 }
+function sortUpDown(idx) {
+    var imgTag = document.getElementById("sort" + idx);
+    if (imgTag.className === $('#typeCol').val()) {
+        rankPlayerAjax('1', imgTag.className, 'ASC', idx);
+    } else {
+        rankPlayerAjax('1', imgTag.className, 'DESC', idx);
+    }
+}
