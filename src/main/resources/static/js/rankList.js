@@ -43,19 +43,20 @@ function rankPlayerAjax(page, sortColumn, sortType, idx) {
         success: function (data) {
             document.getElementById("rankTab1").classList.remove("active");
             document.getElementById("rankTab2").className += " active"
-            if (f.sortType !== 'undefined') {
-                var imgClass = document.getElementById("sort" + f.idx);
-                if (f.sortType === 'DESC') {
-                    imgClass.setAttribute("src", "${../../static/images/rank/sortDown.svg}")
+            $(innerHtml).html(data)
+            if (sortType !== 'undefined') {
+                if (sortType === 'DESC') {
+                    console.log("내림2")
+                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortDown.svg"})
                     $('#type').val('D');
                     $('#typeCol').val('${PageMaker.criteria.sortColumn}');
                 } else {
-                    imgClass.setAttribute("src", "${../../static/images/rank/sortUp.svg}")
+                    console.log("오름2")
+                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortUp.svg"})
                     $('#type').val('A');
                     $('#typeCol').val('${PageMaker.criteria.sortColumn}');
                 }
             }
-            $(innerHtml).html(data)
             setTimeout(function () {
             }, 1000)
         },
@@ -66,20 +67,17 @@ function rankPlayerAjax(page, sortColumn, sortType, idx) {
 }
 
 function leagueTabAjax(league_id) {
-    console.log("league_id : ", league_id);
     rankTeamAjax(league_id);
-
     document.getElementById("leagueTab1").classList.remove("active");
     document.getElementById("leagueTab2").classList.remove("active");
     document.getElementById("leagueTab3").classList.remove("active");
     document.getElementById("leagueTab4").classList.remove("active");
     document.getElementById("leagueTab5").classList.remove("active");
     document.getElementById("leagueTab" + league_id).className += " active";
-
-
 }
+
 function sortUpDown(idx) {
-    var imgTag = document.getElementById("sort" + idx);
+    const imgTag = document.getElementById("sort" + idx);
     if ($('#type').val() === 'D' && imgTag.className === $('#typeCol').val()) {
         rankPlayerAjax('1', imgTag.className, 'ASC', idx);
     } else {
