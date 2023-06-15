@@ -17,7 +17,7 @@
 </ul>
 <table class="table">
     <thead>
-    <tr>
+    <tr style="text-align: center">
         <th scope="col">순위</th>
         <th scope="col">팀</th>
         <th scope="col">경기수</th>
@@ -31,7 +31,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="team_rank : ${list}">
+    <tr th:each="team_rank : ${list}" style="text-align: center">
         <td th:text="${team_rank.game_rank}"></td>
         <td th:text="${team_rank.team_name}"></td>
         <td th:text="${team_rank.game_match}"></td>

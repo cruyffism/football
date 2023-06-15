@@ -1,6 +1,6 @@
 <table class="table">
     <thead>
-    <tr>
+    <tr style="text-align: center">
         <th scope="col">순위</th>
         <th scope="col">선수</th>
         <th scope="col">경기수 <img id="sort1" class="game_match"
@@ -33,7 +33,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="player_rank, playerStat : ${player}">
+    <tr th:each="player_rank, playerStat : ${player}" style="text-align: center">
         <td th:text="${(PageMaker.criteria.page - 1) * 10 + playerStat.index + 1}"></td>
         <td th:text="${player_rank.name}"></td>
         <td th:text="${player_rank.game_match}"></td>
@@ -61,7 +61,7 @@
             </a>
         </li>
         <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
-            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
+            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num},'rating','DESC',6)|" th:text="${num}"></a></li>
         </th:block>
         <li class="page-item">
             <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1},'rating','DESC',6)|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
