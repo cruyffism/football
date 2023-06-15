@@ -33,29 +33,25 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1})|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.startPage - PageMaker.displayPageNum})|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <th:block th:if="${PageMaker.endPage > PageMaker.displayPageNum && PageMaker.criteria.page + (PageMaker.displayPageNum - 1) < PageMaker.endPage}">
-            <th:block  th:each="num : ${#numbers.sequence(PageMaker.criteria.page,PageMaker.criteria.page+2)}">
-                <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
-            </th:block>
-            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:text="..."></a></li>
-            <th:block  th:each="num : ${#numbers.sequence(PageMaker.endPage - 2,PageMaker.endPage)}">
-                <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
-            </th:block>
-        </th:block>
-        <th:block th:unless="${PageMaker.endPage > PageMaker.displayPageNum && PageMaker.criteria.page + (PageMaker.displayPageNum - 1) < PageMaker.endPage}">
-            <th:block th:if="PageMaker.endPage <= PageMaker.displayPageNum" th:each="num : ${#numbers.sequence(1,PageMaker.endPage)}">
-                <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
-            </th:block>
-            <th:block th:if="PageMaker.endPage > PageMaker.displayPageNum" th:each="num : ${#numbers.sequence((PageMaker.endPage)-(PageMaker.displayPageNum - 1),PageMaker.endPage)}">
-                <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
-            </th:block>
+        <li class="page-item">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page - 1})|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+                <span aria-hidden="true">&lsaquo;</span>
+            </a>
+        </li>
+        <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
+            <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:onclick="|javascript:rankPlayerAjax(${num})|" th:text="${num}"></a></li>
         </th:block>
         <li class="page-item">
-            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1})|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.endPage} ? ' disabled' : ''">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.criteria.page + 1})|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+                <span aria-hidden="true">&rsaquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" th:onclick="|javascript:rankPlayerAjax(${PageMaker.endPage + 1})|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
