@@ -25,7 +25,7 @@ function rankTeamAjax(league_id) {
 }
 
 function rankPlayerAjax(page, sortColumn, sortType, idx) {
-    const innerHtml = $("#rankList")
+    const innerHtml = $("#rankAllList")
     const f = document.getElementById("form1");
     f.page.value = page;
     f.sortColumn.value = sortColumn;
@@ -57,6 +57,28 @@ function rankPlayerAjax(page, sortColumn, sortType, idx) {
             $(innerHtml).html("")
         }
     })
+}
+
+function podiumAjax() {
+    const innerHtml = $("#rankList")
+    $.ajax({
+        url: "/rank/player/podium",
+        type: 'GET',
+        cache: false,
+        dataType: "html",
+        async: false,
+        success: function (data) {
+            document.getElementById("rankTab2").classList.remove("active");
+            document.getElementById("rankTab1").className += " active"
+            $(innerHtml).html(data)
+            setTimeout(function () {
+            }, 1000)
+        },
+        error: function (e) {
+            $(innerHtml).html("")
+        }
+    })
+    rankPlayerAjax(1,'rating','DESC',6);
 }
 
 function leagueTabAjax(league_id) {

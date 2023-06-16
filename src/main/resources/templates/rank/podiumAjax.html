@@ -1,0 +1,84 @@
+<form id="form1">
+  <input type="hidden" id="page" name="page" value="1">
+  <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
+  <input type="hidden" name="sortType" id="sortType" value=""/>
+  <input type="hidden" name="idx" id="idx" value=""/>
+  <table class="table">
+    <thead>
+    <tr style="text-align: center">
+      <th scope="col">순위</th>
+      <th scope="col">선수</th>
+      <th scope="col">득점 TOP3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="goal, goalStat : ${playerGoal}" style="text-align: center">
+      <th:block th:each="player : ${goal.playerRes}">
+        <td th:text="${goalStat.index + 1}"></td>
+        <td th:text="|${player.name} (${goal.team_name})|"></td>
+        <td th:text="${player.goal}"></td>
+      </th:block>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+    <tr style="text-align: center">
+      <th scope="col">순위</th>
+      <th scope="col">선수</th>
+      <th scope="col">도움 TOP3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="assist, assistStat : ${playerAssist}" style="text-align: center">
+      <th:block th:each="player : ${assist.playerRes}">
+        <td th:text="${assistStat.index + 1}"></td>
+        <td th:text="|${player.name} (${assist.team_name})|"></td>
+        <td th:text="${player.assist}"></td>
+      </th:block>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+    <tr style="text-align: center">
+      <th scope="col">순위</th>
+      <th scope="col">선수</th>
+      <th scope="col">공격포인트 TOP3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="total_point, total_pointStat : ${playerTotalPoint}" style="text-align: center">
+      <th:block th:each="player : ${total_point.playerRes}">
+        <td th:text="${total_pointStat.index + 1}"></td>
+        <td th:text="|${player.name} (${total_point.team_name})|"></td>
+        <td th:text="${player.total_point}"></td>
+      </th:block>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+    <tr style="text-align: center">
+      <th scope="col">순위</th>
+      <th scope="col">선수</th>
+      <th scope="col">MVP TOP3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="mvp, mvptStat : ${playerMvp}" style="text-align: center">
+      <th:block th:each="player : ${mvptStat.playerRes}">
+        <td th:text="${mvptStat.index + 1}"></td>
+        <td th:text="|${player.name} (${mvp.team_name})|"></td>
+        <td th:text="${player.mvp}"></td>
+      </th:block>
+    </tr>
+    </tbody>
+  </table>
+
+  <div  id="rankAllList" class="row">
+  </div>
+</form>

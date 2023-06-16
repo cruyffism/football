@@ -71,7 +71,7 @@ public class RankController {
         System.out.println("어시 : " + playerAssist);
         System.out.println("총스탯 :  " + playerTotalPoint);
         System.out.println("엠비피 : " + playerMvp);
-        return "/player/podium";
+        return "rank/podiumAjax";
     }
 
 }

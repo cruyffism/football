@@ -17,11 +17,11 @@
 </header>
 
 <section class="page-section bg-light" id="rankList2">
-  <form id="form1">
-    <input type="hidden" id="page" name="page" th:value="${criteria.page}">
-    <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
-    <input type="hidden" name="sortType" id="sortType" value=""/>
-    <input type="hidden" name="idx" id="idx" value=""/>
+<!--  <form id="form1">-->
+<!--    <input type="hidden" id="page" name="page" th:value="${criteria.page}">-->
+<!--    <input type="hidden" name="sortColumn" id="sortColumn" value=""/>-->
+<!--    <input type="hidden" name="sortType" id="sortType" value=""/>-->
+<!--    <input type="hidden" name="idx" id="idx" value=""/>-->
   <div class="container">
     <div class="text-center">
       <h2 class="section-heading text-uppercase">Rank</h2>
@@ -31,13 +31,13 @@
         <a id="rankTab1" class="nav-link" aria-current="page" th:onclick="rankTeamAjax(1)">팀</a>
       </li>
       <li class="nav-item">
-        <a id="rankTab2" class="nav-link"  th:onclick="|javascript:rankPlayerAjax(1,'rating','DESC',6)|">선수</a>
+        <a id="rankTab2" class="nav-link" th:onclick="podiumAjax()">선수</a>
       </li>
     </ul>
     <div  id="rankList" class="row">
     </div>
   </div>
-  </form>
+<!--  </form>-->
 </section>
 
 <!— Clients—>
