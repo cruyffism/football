@@ -26,8 +26,8 @@
         <!--            </div>-->
         <!--        </div>-->
         <div class="text-center">
-            <img th:src="${info.logo_image_path}" style="width: 80px; height: 80px"/>
-            <h2 class="section-heading text-uppercase" th:text="${info.team_name}"></h2>
+            <img id="teamLogo" class="rounded-circle" th:src="${info.logo_image_path}"/>
+            <h2 id="teamName" class="section-heading text-uppercase" th:text="${info.team_name}"></h2>
         </div>
         <div class="text-center align-items-center justify-content-between mb-4">
             <h2 class="text-primary fw-bolder">선수단</h2>

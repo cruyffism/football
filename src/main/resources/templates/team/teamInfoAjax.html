@@ -23,8 +23,8 @@
 <!--        <span class="visually-hidden">Next</span>-->
 <!--    </button>-->
 <!--</div>-->
-
-<div class="col-lg-4 col-sm-6 mb-4" th:each="player : ${playerList}">
+<!--class="col-lg-4 col-sm-6 mb-4"-->
+<div th:each="player : ${playerList}" style="display: inline-block; margin: 10px">
  <img src="../../static/images/player/홀란드.webp" style="width: 200px; height: 200px" th:onclick="|location.href='@{/team/playerInfo/{playerId}(playerId=${player.player_id})}'|"/>
     <div th:text="${player.name}"></div>
     <div th:text="${player.back_number}"></div>

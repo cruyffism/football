@@ -15,6 +15,20 @@
 /*    !*content: attr(data-placeholder);*!*/
 /*    width: 100%;*/
 /*}*/
+#teamLogo{
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+    margin-right: 20px;
+    border: 0.4rem solid rgba(0, 0, 0, 0.1);
+}
+
+#teamName{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+
 .line{
     border-top: 1px solid lightgray;
     margin: 30px 0px;
