@@ -65,14 +65,9 @@
         p.assist,
         p.total_point,
         p.mvp
-    from player p
-        left inner join team t on p.team_id = t.team_id
-            <trim prefix="ORDER BY">
-            <if test="type == 'goal'">  p.goal DESC </if>
-            <if test="type == 'assist'">  p.assist DESC </if>
-            <if test="type == 'totalPoint'"> p.total_point DESC </if>
-            <if test="type == 'mvp'"> p.mvp DESC </if>
-        </trim>
+    from team t
+        inner join player p on p.team_id = t.team_id
+        order by ${type} DESC
         limit 3
     </select>
 

@@ -43,7 +43,7 @@ public class RankService {
     }
 
     public List<TeamRes> total_point() {
-        List<TeamRes> playerTotalPoint = rankMapper.podium("totalPoint");
+        List<TeamRes> playerTotalPoint = rankMapper.podium("total_point");
         return playerTotalPoint;
     }
 
