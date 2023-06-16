@@ -3,84 +3,180 @@
   <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
   <input type="hidden" name="sortType" id="sortType" value=""/>
   <input type="hidden" name="idx" id="idx" value=""/>
-  <div style="display:inline-flex">
-
-    <table class="table" style="margin: 10px;">
-    <thead>
-    <tr style="text-align: center">
-      <th scope="col">순위</th>
-      <th scope="col">선수</th>
-      <th scope="col">득점 TOP3</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr th:each="goal, goalStat : ${playerGoal}" style="text-align: center" class="table-success">
-      <th:block th:each="player : ${goal.playerRes}">
-        <td th:text="${goalStat.index + 1}"></td>
-        <td th:text="|${player.name} (${goal.team_name})|"></td>
-        <td th:text="${player.goal}"></td>
-      </th:block>
-    </tr>
-    </tbody>
-  </table>
-
-    <table class="table" style="margin: 10px;">
-    <thead>
-    <tr style="text-align: center">
-      <th scope="col">순위</th>
-      <th scope="col">선수</th>
-      <th scope="col">도움 TOP3</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr th:each="assist, assistStat : ${playerAssist}" style="text-align: center" class="table-success">
-      <th:block th:each="player : ${assist.playerRes}">
-        <td th:text="${assistStat.index + 1}"></td>
-        <td th:text="|${player.name} (${assist.team_name})|"></td>
-        <td th:text="${player.assist}"></td>
-      </th:block>
-    </tr>
-    </tbody>
-  </table>
-
-    <table class="table" style="margin: 10px;">
-    <thead>
-    <tr style="text-align: center">
-      <th scope="col">순위</th>
-      <th scope="col">선수</th>
-      <th scope="col">공격포인트 TOP3</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr th:each="total_point, total_pointStat : ${playerTotalPoint}" style="text-align: center" class="table-success">
-      <th:block th:each="player : ${total_point.playerRes}">
-        <td th:text="${total_pointStat.index + 1}"></td>
-        <td th:text="|${player.name} (${total_point.team_name})|"></td>
-        <td th:text="${player.total_point}"></td>
-      </th:block>
-    </tr>
-    </tbody>
-  </table>
-
-    <table class="table" style="margin: 10px;">
-    <thead>
-    <tr style="text-align: center">
-      <th scope="col">순위</th>
-      <th scope="col">선수</th>
-      <th scope="col">MVP TOP3</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr th:each="mvp, mvpStat : ${playerMvp}" style="text-align: center" class="table-success">
-      <th:block th:each="player :${mvp.playerRes}">
-        <td th:text="${mvpStat.index + 1}"></td>
-        <td th:text="|${player.name} (${mvp.team_name})|"></td>
-        <td th:text="${player.mvp}"></td>
-      </th:block>
-    </tr>
-    </tbody>
-  </table>
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <h4 style="text-align: center; margin-bottom: 20px">득점 TOP3</h4>
+        <table class="table" style="width: 40%; margin: auto">
+          <thead>
+          <tr style="text-align: center">
+            <th scope="col">순위</th>
+            <th scope="col">선수</th>
+            <th scope="col">득점</th>
+          </tr>
+          </thead>
+          <tbody class="table-group-divider">
+          <tr th:each="goal, goalStat : ${playerGoal}" style="text-align: center" class="table-success">
+            <th:block th:each="player : ${goal.playerRes}">
+              <td th:text="${goalStat.index + 1}"></td>
+              <td th:text="|${player.name} (${goal.team_name})|"></td>
+              <td th:text="${player.goal}"></td>
+            </th:block>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="carousel-item">
+        <h4 style="text-align: center; margin-bottom: 20px">도움 TOP3</h4>
+        <table class="table" style="width: 40%; margin: auto">
+          <thead>
+          <tr style="text-align: center">
+            <th scope="col">순위</th>
+            <th scope="col">선수</th>
+            <th scope="col">도움</th>
+          </tr>
+          </thead>
+          <tbody class="table-group-divider">
+          <tr th:each="assist, assistStat : ${playerAssist}" style="text-align: center" class="table-success">
+            <th:block th:each="player : ${assist.playerRes}">
+              <td th:text="${assistStat.index + 1}"></td>
+              <td th:text="|${player.name} (${assist.team_name})|"></td>
+              <td th:text="${player.assist}"></td>
+            </th:block>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="carousel-item">
+        <h4 style="text-align: center; margin-bottom: 20px">공격 포인트 TOP3</h4>
+        <table class="table" style="width: 40%; margin: auto">
+          <thead>
+          <tr style="text-align: center">
+            <th scope="col">순위</th>
+            <th scope="col">선수</th>
+            <th scope="col">공격 포인트</th>
+          </tr>
+          </thead>
+          <tbody class="table-group-divider">
+          <tr th:each="total_point, total_pointStat : ${playerTotalPoint}" style="text-align: center" class="table-success">
+            <th:block th:each="player : ${total_point.playerRes}">
+              <td th:text="${total_pointStat.index + 1}"></td>
+              <td th:text="|${player.name} (${total_point.team_name})|"></td>
+              <td th:text="${player.total_point}"></td>
+            </th:block>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="carousel-item">
+        <h4 style="text-align: center; margin-bottom: 20px">MVP TOP3</h4>
+        <table class="table" style="width: 40%; margin: auto">
+          <thead>
+          <tr style="text-align: center">
+            <th scope="col">순위</th>
+            <th scope="col">선수</th>
+            <th scope="col">MVP</th>
+          </tr>
+          </thead>
+          <tbody class="table-group-divider">
+          <tr th:each="mvp, mvpStat : ${playerMvp}" style="text-align: center" class="table-success">
+            <th:block th:each="player :${mvp.playerRes}">
+              <td th:text="${mvpStat.index + 1}"></td>
+              <td th:text="|${player.name} (${mvp.team_name})|"></td>
+              <td th:text="${player.mvp}"></td>
+            </th:block>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button style="width: 40%" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button style="width: 40%" class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <div  id="rankAllList" class="row">
+<!--  <div style="display:inline-flex">-->
+
+<!--    <table class="table" style="margin: 10px;">-->
+<!--    <thead>-->
+<!--    <tr style="text-align: center">-->
+<!--      <th scope="col">순위</th>-->
+<!--      <th scope="col">선수</th>-->
+<!--      <th scope="col">득점</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody class="table-group-divider">-->
+<!--    <tr th:each="goal, goalStat : ${playerGoal}" style="text-align: center" class="table-success">-->
+<!--      <th:block th:each="player : ${goal.playerRes}">-->
+<!--        <td th:text="${goalStat.index + 1}"></td>-->
+<!--        <td th:text="|${player.name} (${goal.team_name})|"></td>-->
+<!--        <td th:text="${player.goal}"></td>-->
+<!--      </th:block>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--    <table class="table" style="margin: 10px;">-->
+<!--    <thead>-->
+<!--    <tr style="text-align: center">-->
+<!--      <th scope="col">순위</th>-->
+<!--      <th scope="col">선수</th>-->
+<!--      <th scope="col">도움</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody class="table-group-divider">-->
+<!--    <tr th:each="assist, assistStat : ${playerAssist}" style="text-align: center" class="table-success">-->
+<!--      <th:block th:each="player : ${assist.playerRes}">-->
+<!--        <td th:text="${assistStat.index + 1}"></td>-->
+<!--        <td th:text="|${player.name} (${assist.team_name})|"></td>-->
+<!--        <td th:text="${player.assist}"></td>-->
+<!--      </th:block>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--    <table class="table" style="margin: 10px;">-->
+<!--    <thead>-->
+<!--    <tr style="text-align: center">-->
+<!--      <th scope="col">순위</th>-->
+<!--      <th scope="col">선수</th>-->
+<!--      <th scope="col">공격포인트</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody class="table-group-divider">-->
+<!--    <tr th:each="total_point, total_pointStat : ${playerTotalPoint}" style="text-align: center" class="table-success">-->
+<!--      <th:block th:each="player : ${total_point.playerRes}">-->
+<!--        <td th:text="${total_pointStat.index + 1}"></td>-->
+<!--        <td th:text="|${player.name} (${total_point.team_name})|"></td>-->
+<!--        <td th:text="${player.total_point}"></td>-->
+<!--      </th:block>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+
+<!--    <table class="table" style="margin: 10px;">-->
+<!--    <thead>-->
+<!--    <tr style="text-align: center">-->
+<!--      <th scope="col">순위</th>-->
+<!--      <th scope="col">선수</th>-->
+<!--      <th scope="col">MVP</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody class="table-group-divider">-->
+<!--    <tr th:each="mvp, mvpStat : ${playerMvp}" style="text-align: center" class="table-success">-->
+<!--      <th:block th:each="player :${mvp.playerRes}">-->
+<!--        <td th:text="${mvpStat.index + 1}"></td>-->
+<!--        <td th:text="|${player.name} (${mvp.team_name})|"></td>-->
+<!--        <td th:text="${player.mvp}"></td>-->
+<!--      </th:block>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--  </div>-->
+  <div  id="rankAllList" class="row" style="margin-top: 50px">
   </div>
 </form>
