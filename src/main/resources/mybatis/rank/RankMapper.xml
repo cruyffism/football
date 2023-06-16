@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.rank.RankMapper">
+    <resultMap id="playerRes" type="com.minki.football.dto.team.PlayerRes">
+                <result property="team_id" column="team_id"/>
+        <result property="name" column="name"/>
+        <result property="goal" column="goal"/>
+        <result property="assist" column="assist"/>
+        <result property="total_point" column="total_point"/>
+        <result property="mvp" column="mvp"/>
+    </resultMap>
+
+    <resultMap id="teamRes" type="com.minki.football.dto.team.TeamRes">
+        <result property="team_name" column="team_name"/>
+        <collection property="playerRes" resultMap="playerRes"/>
+    </resultMap>
     <select id="list" resultType="com.minki.football.dto.team.TeamRes">
     select
         team_id,
@@ -42,6 +55,25 @@
             resultType="java.lang.Integer">
         SELECT COUNT(*) AS TOTAL_ROWS
         FROM player
+    </select>
+
+    <select  id="podium" parameterType="String" resultMap="teamRes">
+    select
+        p.name,
+        t.team_name,
+        p.goal,
+        p.assist,
+        p.total_point,
+        p.mvp
+    from player p
+        left inner join team t on p.team_id = t.team_id
+            <trim prefix="ORDER BY">
+            <if test="type == 'goal'">  p.goal DESC </if>
+            <if test="type == 'assist'">  p.assist DESC </if>
+            <if test="type == 'totalPoint'"> p.total_point DESC </if>
+            <if test="type == 'mvp'"> p.mvp DESC </if>
+        </trim>
+        limit 3
     </select>
 
 </mapper>

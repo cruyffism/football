@@ -31,4 +31,24 @@ public class RankService {
         int cnt = rankMapper.selectPlayerTotalCount(criteria);
         return cnt;
     }
+
+    public List<TeamRes> goal() {
+        List<TeamRes> playerGoal = rankMapper.podium("goal");
+        return playerGoal;
+    }
+
+    public List<TeamRes> assist() {
+        List<TeamRes> playerAssist = rankMapper.podium("assist");
+        return playerAssist;
+    }
+
+    public List<TeamRes> total_point() {
+        List<TeamRes> playerTotalPoint = rankMapper.podium("totalPoint");
+        return playerTotalPoint;
+    }
+
+    public List<TeamRes> mvp() {
+        List<TeamRes> playerMvp = rankMapper.podium("mvp");
+        return playerMvp;
+    }
 }

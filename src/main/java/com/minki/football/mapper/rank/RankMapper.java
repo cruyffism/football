@@ -15,4 +15,8 @@ public interface RankMapper {
     List<PlayerRes> rank(Criteria criteria);
 
     int selectPlayerTotalCount(Criteria criteria);
+
+    List<TeamRes> podium(String type);
+
+
 }

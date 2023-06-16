@@ -56,4 +56,22 @@ public class RankController {
         System.out.println("순위페이지" );
         return "rank/rankList";
     }
+
+    @GetMapping("/player/podium")
+    public String podium(Model model) {
+        List<TeamRes> playerGoal = rankService.goal();
+        List<TeamRes> playerAssist = rankService.assist();
+        List<TeamRes> playerTotalPoint = rankService.total_point();
+        List<TeamRes> playerMvp = rankService.mvp();
+        model.addAttribute("playerGoal", playerGoal);
+        model.addAttribute("playerAssist", playerAssist);
+        model.addAttribute("playerTotalPoint", playerTotalPoint);
+        model.addAttribute("playerMvp", playerMvp);
+        System.out.println("득점 : " + playerGoal);
+        System.out.println("어시 : " + playerAssist);
+        System.out.println("총스탯 :  " + playerTotalPoint);
+        System.out.println("엠비피 : " + playerMvp);
+        return "/player/podium";
+    }
+
 }
