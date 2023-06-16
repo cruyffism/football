@@ -1,23 +1,15 @@
 package com.minki.football.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -28,8 +20,8 @@ public class SecurityConfig {
     private DataSource dataSource;
 
     /* 로그인 실패 핸들러 의존성 주입 */
-//    @Autowired
-//    private AuthenticationFailureHandler customFailureHandler;
+    @Autowired
+    private AuthenticationFailureHandler customFailureHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/user/signup","/league/**","/team/**","/player/**","/rank/**","/static/js/**","/static/assets/img/**","/static/css/**","/static/images/**").permitAll()
+                                        .requestMatchers("/", "/user/login", "/user/signup", "/league/**", "/team/**", "/player/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .anyRequest().authenticated()
                 );
@@ -56,8 +48,7 @@ public class SecurityConfig {
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/user/index",true)
-                                .failureHandler(loginFailHandler()) // 로그인 실패 핸들러
-//                                .failureForwardUrl("/user/login?error=true") // 로그인 실패 핸들러
+                                .failureHandler(customFailureHandler) // 로그인 실패 핸들러
                                 .permitAll()
                 );
 
@@ -71,11 +62,6 @@ public class SecurityConfig {
                 );
 
         return http.build();
-    }
-
-    @Bean
-    public CustomAuthFailureHandler loginFailHandler(){
-        return new CustomAuthFailureHandler();
     }
 
     // 비밀번호 암호화

@@ -27,10 +27,7 @@
         <div class="mb-3">
             <input type="password" class="form-control2" name="password" placeholder="Password"/>
         </div>
-<!--        <div class="mb-3" th:if="${error != null}">-->
-<!--            <p id="valid" class="alert alert-danger"><a th:text="${exception}"></a></p>-->
-<!--        </div>-->
-        <div th:if="${error == null}" class="alert alert-danger d-flex align-items-center alert-size" role="alert">
+        <div th:if="${error != null}" class="alert alert-danger d-flex align-items-center alert-size" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
             <div th:text="${exception}">
             </div>
