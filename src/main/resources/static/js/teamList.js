@@ -13,11 +13,7 @@ function leagueTabAjax(league_id) {
         dataType: "html",
         async: false,
         success: function (data) {
-            document.getElementById("leagueTab1").classList.remove("active");
-            document.getElementById("leagueTab2").classList.remove("active");
-            document.getElementById("leagueTab3").classList.remove("active");
-            document.getElementById("leagueTab4").classList.remove("active");
-            document.getElementById("leagueTab5").classList.remove("active");
+            $('.nav-link').removeClass('active');
             document.getElementById("leagueTab" + league_id).className += " active"
             $(innerHtml).html(data)
             setTimeout(function () {
