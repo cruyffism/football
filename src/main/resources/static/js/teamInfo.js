@@ -13,10 +13,7 @@ function teamInfoAjax(position,team_id) {
         dataType: "html",
         async: false,
         success: function (data) {
-            document.getElementById("positionTab_FW").classList.remove("active");
-            document.getElementById("positionTab_MF").classList.remove("active");
-            document.getElementById("positionTab_DF").classList.remove("active");
-            document.getElementById("positionTab_GK").classList.remove("active");
+            $('.nav-link').removeClass('active');
             document.getElementById("positionTab_" + position).className += " active"
             $(innerHtml).html(data)
             setTimeout(function () {

@@ -83,11 +83,9 @@ function podiumAjax() {
 
 function leagueTabAjax(league_id) {
     rankTeamAjax(league_id);
-    document.getElementById("leagueTab1").classList.remove("active");
-    document.getElementById("leagueTab2").classList.remove("active");
-    document.getElementById("leagueTab3").classList.remove("active");
-    document.getElementById("leagueTab4").classList.remove("active");
-    document.getElementById("leagueTab5").classList.remove("active");
+    $('.nav-link').not(this).removeClass('active');
+    // document.getElementById("rankTab2").classList.remove("active");
+    document.getElementById("rankTab1").className += " active"
     document.getElementById("leagueTab" + league_id).className += " active";
 }
 
