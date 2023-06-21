@@ -5,10 +5,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-// 클래와 인터페이스의 차이 : 클래스는 구현하고 인터페이스는 뼈대만 만든다.(즉 선언만하고 구현 자체를 안 한다. 그래서 중괄호 없어!!)
-@Mapper // Mapper입니다 ~~ 선언한거임.(Mapper는 무조건 인터페이스로 만든다.)
+@Mapper
 public interface LeagueMapper {
-    List<LeagueRes> list(); // LeagueMapper.xml의 아이디 값은 이 메소도의 이름 = list와 같아야 한다.
 
-    LeagueRes info(Integer leagueId);
+    //리그리스트 조회
+    List<LeagueRes> list(); //xml과 연결하려는 메소드(인터페이스)를 하나 만들었음. 메소드 괄호 안에 원래 메개변수를 넣을 수 있지만 현재 변수를 사용 안해서 안 넣음.
+                            // 타입 매소드명
+
+    //리그 상세 조회
+    LeagueRes info(Integer leagueId); // 타입   메소드명    매개변수
 }

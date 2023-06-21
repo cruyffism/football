@@ -19,19 +19,19 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService userService;  //UserService를 userService라고 지정함.
 
     @Autowired
-    private LeagueService leagueService;
+    private LeagueService leagueService; // LeagueService를  leagueService라고 지정함.
 
     // 메인 페이지
-    @GetMapping("/index")
-    public String home(Model model) {
-        List<LeagueRes> leagueList = leagueService.list();
+    @GetMapping("/index") // GET(조회), POST(생성, 자장), PUT(수정), DELETE(삭제) 뒤에다가 경로 설정하기! ex) "/index"
+    public String home(Model model) { // 접근제한자 리턴값 메소드명(매개변수){}  >> 이게 하나의 메소드이다.
+        List<LeagueRes> leagueList = leagueService.list(); // leagueService.list()라는 메소드를 호출해서  leagueList(좌측값)에 담았다.
+        // 데이터 타입     변수명       호출메소드
+        model.addAttribute("leagueList", leagueList); //leagueList를 "leagueList"란 변수로 담은 후에 프론트엔드, 즉 아래에 있는 "index" 여기다가 보내줌.
 
-//        LeagueDto leagueDto = leagueService.info();
-        model.addAttribute("leagueList", leagueList);
-        return "index";
+        return "index"; // 리턴값은 프론트엔드로 가는 경로 (템플릿 밑에 경로), index.html로 보낸다.
     }
 
     // 로그인 페이지

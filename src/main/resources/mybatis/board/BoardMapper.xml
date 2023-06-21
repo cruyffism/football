@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minki.football.mapper.board.BoardMapper">
+    <select id="boardList" resultType="com.minki.football.dto.board.BoardRes">
+        select board_id,
+               title,
+               content,
+               nickname,
+               click,
+               create_date,
+               update_date
+        from board
+    </select>
+
+    <select id="boardInfo" resultType="com.minki.football.dto.board.BoardRes">
+        select board_id,
+               title,
+               content,
+               nickname,
+               click,
+               create_date,
+               update_date
+        from board
+        where board_id = #{boardId}
+--         where은 조건문!  실제로 디비버에 쓴 변수명 = #{우리가 보내줄 변수명}, resultType은 추출 시에 사용
+-- resultType : 비즈니스 로직으로 반환할, 결과값의 자료형
+    </select>
+
+    <insert id="boardRegister" parameterType="com.minki.football.dto.board.BoardReq">
+        insert into board
+              (board_id,
+               title,
+               content,
+               nickname,
+               click,
+               create_date,
+               update_date)
+        values (#{boardId}, #{title}, #{content}, #{nickname}, #{click}, #{createDate}, #{updateDate} )
+    </insert>
+<!--  parameterTyp에 boardReq라고 설정했으니 boardReq 안에 있는 content라는 변수가 #{content}에 들어가져서 결과적으로는 insert into board(content) values("음바페는 바보") 이렇게 변한다.
+그리고 "음바페는 바보" 이 값이 dbeaver에 들어가진다.
+( boardReq에 담겨져 있는  "음바페는 바보"라는 내용을 꺼내서 #{content}에 저장) -->
+
+<!--    BoardReq에서 xml을 부르는 과정-->
+<!--    parameterType : 비즈니스 로직으로부터 전달 받은, SQL 구문에 사용될 매개변수의 자료형-->
+</mapper>
+
+<!--백엔드개발 순서
+
+1. dto에 변수(디비버에 작성한)를 작성
+2. 매퍼.xml을 만든다.
+3. 매퍼.xml에서 네임스페이스 경로 연결을 위해 매퍼.자바(인터페이스)파일을 만든다.
+4. 네임스페이스에 그 경로를 넣고  sql코드를 작성한다.
+  <select id = 뒤에 내가 쓰고 싶은 메소드 이름을 적는다
+   리절트 타입에 해당 dto경로를 넣어준다.
+5. 매퍼.자바(인터페이스)에서 리절트타입이랑 id(메소드명)를 부르기 위해
+   작성한다. -->
