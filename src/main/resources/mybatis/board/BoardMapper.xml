@@ -22,9 +22,9 @@
                update_date
         from board
         where board_id = #{boardId}
---         where은 조건문!  실제로 디비버에 쓴 변수명 = #{우리가 보내줄 변수명}, resultType은 추출 시에 사용
--- resultType : 비즈니스 로직으로 반환할, 결과값의 자료형
     </select>
+<!-- where은 조건문!  실제로 디비버에 쓴 변수명 = #{우리가 보내줄 변수명}, resultType은 추출 시에 사용
+resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 
     <insert id="boardRegister" parameterType="com.minki.football.dto.board.BoardReq">
         insert into board
