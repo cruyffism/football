@@ -26,8 +26,8 @@
         select team_id, team_name, logo_image_path, league_id
         from team
         where league_id = #{leagueId}
---  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
     </select>
+    --  select로 실행 된 구문의 결과값이 resultType에 담아지고 이게 Mapper로 간다.
 
     <select id="info" resultType="com.minki.football.dto.team.TeamRes">
         select

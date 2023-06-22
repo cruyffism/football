@@ -33,9 +33,8 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
                content,
                nickname,
                click,
-               create_date,
-               update_date)
-        values (#{boardId}, #{title}, #{content}, #{nickname}, #{click}, #{createDate}, #{updateDate} )
+               create_date)
+        values (#{boardId}, #{title}, #{content}, #{nickname}, #{click}, now())
     </insert>
 <!--  parameterTyp에 boardReq라고 설정했으니 boardReq 안에 있는 content라는 변수가 #{content}에 들어가져서 결과적으로는 insert into board(content) values("음바페는 바보") 이렇게 변한다.
 그리고 "음바페는 바보" 이 값이 dbeaver에 들어가진다.
@@ -43,10 +42,28 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 
 <!--    BoardReq에서 xml을 부르는 과정-->
 <!--    parameterType : 비즈니스 로직으로부터 전달 받은, SQL 구문에 사용될 매개변수의 자료형-->
+
+    <update id="boardUpdate" parameterType="com.minki.football.dto.board.BoardReq">
+        update board set
+        title = #{title},
+        content = #{content},
+        nickname = #{nickname},
+        click = #{click},
+        update_date = now()
+        where board_id = #{boardId}
+    </update>
+
+    <delete id="boardDelete" parameterType="Integer" >
+    delete from board  where board_id = #{boardId}
+    </delete>
 </mapper>
+    <!--  parameterTyp에 boardReq라고 설정했으니 boardReq 안에 있는 content라는 변수가 #{content}에 들어가져서 결과적으로는 insert into board(content) values("음바페는 바보") 이렇게 변한다.
+그리고 "음바페는 바보" 이 값이 dbeaver에 들어가진다. >> 여기서 업데이트하면 "음바페는 바보"를 "네이마르는 바보"로 수정해서 다시 dbeaver에 넣는다.
+    <!-    boardId 번호를 조건으로 해서 1번 게시물, 2번 게시물.. 바꿀지 선택 가능 .
 
-<!--백엔드개발 순서
 
+
+<!-백엔드개발 순서
 1. dto에 변수(디비버에 작성한)를 작성
 2. 매퍼.xml을 만든다.
 3. 매퍼.xml에서 네임스페이스 경로 연결을 위해 매퍼.자바(인터페이스)파일을 만든다.

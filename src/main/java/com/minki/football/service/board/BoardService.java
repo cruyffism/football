@@ -32,8 +32,15 @@ public class BoardService {
     //게시판 글 등록(작성)
     public Integer boardRegister(BoardReq boardReq) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardRegister(BoardReq boardReq)라는 메소드를 만듦
         Integer boardRegister = boardMapper.boardRegister(boardReq);
-        // 타입 변수명 = boardMapper.boardRegister(boardReq)를 저장한 결과 ; >> boardMapper에 있는 boardRegister(boardReq)를 저장한 결과를 왼쪽 변수명 boardRegister에 담은것
+        // 타입 변수명 = boardMapper.boardRegister(boardReq)를 저장한 결과 ; >> boardMapper에 있는 boardRegister(boardReq)를 저장한 결과를 왼쪽 변수명 boardRegister에 담은 것
         return boardRegister; // 그리고 이 결과값을 리턴
+    }
+
+    //게시판 업데이트
+    public Integer boardUpdate(BoardReq boardReq) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가  boardUpdate(BoardReq boardReq)라는 메소드를 만듦
+        Integer boardUpdate = boardMapper.boardUpdate(boardReq);
+        //타입 변수명 = boardMapper.boardUpdate(boardReq)를 저장한 결과 ; >> boardMapper에 있는 boardUpdate(boardReq)를 저장한 결과를 왼쪽 변수명 boardUpdate에 담은 것
+        return boardUpdate;  // 그리고 이 결과값을 리턴
     }
 
 }

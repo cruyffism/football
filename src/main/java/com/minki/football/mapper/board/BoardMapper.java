@@ -21,4 +21,9 @@ public interface BoardMapper {
     Integer boardRegister(BoardReq boardReq); // 타입 메소드명 매개변수
     // BoardReq라는 타입을 boardReq로 변수 선언
     // BoardService에서 이 메소도를 호출하면서 boardReq라는 변수를 사용할 예정
+
+    //게시판 업데이트
+    Integer boardUpdate(BoardReq boardReq); // 타입 메소드명 매개변수
+    // BoardReq라는 타입을 boardReq로 변수 선언
+    // BoardService에서 이 메소도를 호출하면서 boardReq라는 변수를 사용할 예정
 }

@@ -41,15 +41,25 @@ public class BoardController { // 기본 클래스 이름
 
     //게시판 글 등록(작성)
     @PostMapping("/boardRegister") // 우리가 임의로 지정한 경로
-    public String boardRegister(Model model, @ModelAttribute BoardReq boardReq ) {
+    public String boardRegister(Model model, @ModelAttribute BoardReq boardReq) {
         // 게시글 작성하려고 내용을 쓰고 저장 버튼 누르는 순간  그 값들을 @ModelAttribute BoardReq boardReq 여기다가 넣어줌 그리고 이게 xml로 보내진다
         Integer boardRegister = boardService.boardRegister(boardReq); //boardService파일 안에 있는 boardRegister(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
         model.addAttribute("boardRegister",boardRegister); // "/board/boardRegister"라는 경로에다가 boardRegister를 "boardRegister"라는 변수명에 담아서 프론트로 보냄
         return "/board/boardRegister"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardRegister.html)
-        //결론적으로 프론트에서 저장버튼 누르면  @ModelAttribute가 매개변수 boardReq를 보내고 그 변수들(타이틀,컨탠트 등등)이 #으로 치환되고 그 내용들이 dbeaver에 들어간다.
 
-        // @ModelAttribute : 론트가 보낸 변수들을 받을때 사용
+        //결론적으로 프론트에서 저장버튼 누르면  @ModelAttribute가 매개변수 boardReq를 보내고 그 변수들(타이틀,컨탠트 등등)이 #으로 치환되고 그 내용들이 dbeaver에 들어간다.
+        // @ModelAttribute : 프론트가 보낸 변수들을 받을때 사용
         // model.addattribute : 메소드를 실행하고 난 결과를 담아서 프론트에 보내주는 역할
+    }
+
+    // 게시판 업데이트
+    @PostMapping("/boardUpdate/{boardId}") // 우리가 임의로 지정한 경로
+    public String boardUpdate(Model model, @PathVariable Integer boardId,  @ModelAttribute BoardReq boardReq) {
+        // 게시글을 수정하고 저장 버튼 누르는 순간  그 값들을 @ModelAttribute BoardReq boardReq 여기다가 넣어줌 그리고 이게 xml로 보내진다
+    boardReq.setBoardId(boardId);
+    Integer boardUpdate = boardService.boardUpdate(boardReq); //boardService파일 안에 있는 boardUpdate(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
+    model.addAttribute("boardUpdate",boardUpdate); //  "/board/boardUpdate"라는 경로에다가 boardUpdate를 "boardUpdate"라는 변수명에 담아서 프론트로 보냄
+    return "/board/boardUpdate"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardUpdate.html)
     }
 
 }

@@ -40,9 +40,6 @@ public class TeamController {
     }
 
 
-
-
-
     //해당 팀 상세 조회
     @GetMapping("/info/{teamId}")       // @RequestParam url뒤에 ?오는 값의 이름에 맞춰서 값이 들어옴
     public String info(Model model, @PathVariable Integer teamId) { // @pathvariable을 통해 teamId라는 이름으로 저기 위에 path에 있는 {teamId}를 가져다 쓴다
