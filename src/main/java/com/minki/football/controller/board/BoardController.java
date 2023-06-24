@@ -3,6 +3,8 @@ package com.minki.football.controller.board;
 
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
+import com.minki.football.dto.page.Criteria;
+import com.minki.football.dto.page.PageMaker;
 import com.minki.football.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +22,13 @@ public class BoardController { // 기본 클래스 이름
 
     //게시판 리스트 조회
     @GetMapping("/list")  // 우리가 임의로 지정한 경로
-    public String boardList(Model model) { //접근제한자 리턴값 메소드명(매개변수) >> 이게 하나의 메소드다.
-       List<BoardRes> boardList = boardService.boardList(); // boardService.boardList라는 메소드를 호출해서 왼쪽 boardList에 담아준 것.
+    public String boardList(Model model, @ModelAttribute Criteria criteria) { //접근제한자 리턴값 메소드명(매개변수) >> 이게 하나의 메소드다.
+       List<BoardRes> boardList = boardService.boardList(criteria); // boardService 파일 안에 있는 boardList(criteria)라는 메소드를 호출한 결과값이 왼쪽 List<BoardRes>타입의 boardList라는 변수명으로 담긴다.
+        PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
+        pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
+        pageMaker.setTotalCount(boardService.selectBoardCount());// pageMaker에 있는 totalcount라는 변수에다가 ㅇ우리가 아까만든 게시ㅋ물 총개수 결과값을 넣은거야
+        model.addAttribute("PageMaker", pageMaker);
+
        model.addAttribute("boardList", boardList); //  "/board/list"경로에다가 boardList를  "boardList" 여기 변수명에 담아서 프론트로 보냄
         System.out.println("게시판 조회 : " + boardList);
         return "/board/list"; // 프론트엔드로 가는 경로 (템플릿 밑에 경로)
@@ -60,6 +67,14 @@ public class BoardController { // 기본 클래스 이름
     Integer boardUpdate = boardService.boardUpdate(boardReq); //boardService파일 안에 있는 boardUpdate(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
     model.addAttribute("boardUpdate",boardUpdate); //  "/board/boardUpdate"라는 경로에다가 boardUpdate를 "boardUpdate"라는 변수명에 담아서 프론트로 보냄
     return "/board/boardUpdate"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardUpdate.html)
+    }
+
+    // 게시판 삭제
+    @DeleteMapping ("/boardDelete") // 우리가 임의로 지정한 경로
+    public String boardDelete (Model model, @ModelAttribute Integer boardId) {
+    Integer boardDelete =boardService.boardDelete(boardId);
+    model.addAttribute("boardDelete", boardDelete);
+    return "/board/boardDelete";
     }
 
 }

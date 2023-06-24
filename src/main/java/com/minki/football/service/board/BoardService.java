@@ -2,6 +2,7 @@ package com.minki.football.service.board;
 
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
+import com.minki.football.dto.page.Criteria;
 import com.minki.football.mapper.board.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,17 @@ public class BoardService {
     private BoardMapper boardMapper; // (접근제한자 파일이름 변수명) BoardMapper라는 파일을 오른쪽 변수명(boardMapper)으로 정의한다.
 
     //게시판 리스트 조회
-    public List<BoardRes> boardList() { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardList()라는 메소드를 만듦
-      List<BoardRes> boardList  = boardMapper.boardList();
-      //타입은 List<BoardRes> 변수명 = boardMapper. boardList()를 호출한 결과 ; >> 호출한 결과를 왼쪽 boardList에 담은 것
+    public List<BoardRes> boardList(Criteria criteria) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardList()라는 메소드를 만듦
+      List<BoardRes> boardList  = boardMapper.boardList(criteria);
+      //   타입        변수명 = boardMapper. boardList(criteria)를 호출한 결과 ; >> 호출한 결과를 왼쪽 boardList에 담은 것
         return boardList; // 그리고 이 결과값을 리턴
+    }
+
+    //  게시판 총 게시글 개수 가져오기
+    public Integer selectBoardCount() { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 selectBoardCount()라는 메소드를 만듦
+        Integer selectBoardCount = boardMapper.selectBoardCount();
+        //타입     변수명          = boardMapper. selectBoardCount()를 호출한 결과 ; >> 호출한 결과를 왼쪽 selectBoardCount에 담은 것
+        return selectBoardCount; //  그리고 이 결과값을 리턴
     }
 
     //게시판 단건 조회웅
@@ -41,6 +49,12 @@ public class BoardService {
         Integer boardUpdate = boardMapper.boardUpdate(boardReq);
         //타입 변수명 = boardMapper.boardUpdate(boardReq)를 저장한 결과 ; >> boardMapper에 있는 boardUpdate(boardReq)를 저장한 결과를 왼쪽 변수명 boardUpdate에 담은 것
         return boardUpdate;  // 그리고 이 결과값을 리턴
+    }
+
+    // 게시판 삭제
+    public Integer boardDelete(Integer boardId) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardDelete(Integer boardId)라는 메소드를 만듦
+        Integer boardDelete = boardMapper.boardDelete(boardId);
+        return boardDelete;
     }
 
 }
