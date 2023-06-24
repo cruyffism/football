@@ -21,9 +21,9 @@
         </div>
     </div>
 </header>
-<!-- Services-->
+<!-- body-->
 <div sec:authorize="isAuthenticated()">
-    <!-- Portfolio Grid-->
+    <!-- League-->
     <section class="page-section bg-light" id="league">
         <div class="container">
             <div class="text-center">
@@ -51,7 +51,7 @@
             </div>
         </div>
     </section>
-    <!-- About-->
+    <!-- Team -->
     <section class="page-section" id="team">
         <div class="container">
             <div class="text-center">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </section>
-    <!-- Team-->
+    <!-- Rank-->
     <section class="page-section bg-light" id="rank">
         <div class="container">
             <div class="text-center">
@@ -105,6 +105,15 @@
                     </div>
                 </li>
             </ul>
+        </div>
+    </section>
+    <section id = "board">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Board</h2>
+                <h3 class="section-subheading text-muted">자유롭게 의견을 나누어 보세요.</h3>
+                <img class="img-fluid" src="../static/images/board/게시판.jpg" th:onclick="|location.href='@{/board/list}'|" alt="…" style="cursor: pointer;"/>
+            </div>
         </div>
     </section>
 </div>

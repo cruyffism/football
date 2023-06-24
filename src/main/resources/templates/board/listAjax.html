@@ -1,0 +1,64 @@
+<form id="form1">
+  <input type="hidden" id="page" name="page" value="1">
+  <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
+  <input type="hidden" name="sortType" id="sortType" value=""/>
+  <input type="hidden" name="idx" id="idx" value=""/>
+<table class="table">
+  <thead>
+  <tr style="text-align: center">
+    <th scope="col">번호</th>
+    <th scope="col">제목</th>
+    <th scope="col">작성자</th>
+    <th scope="col">조회수 <img id="sort1" class="click"
+                            src="../../static/images/rank/sortUp.svg"
+                            onclick="sortUpDown(1);"></th>
+    <th scope="col">작성일자 <img id="sort2" class="create_date"
+                            src="../../static/images/rank/sortUp.svg"
+                            onclick="sortUpDown(2);"></th>
+    <th scope="col">수정일자</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="board : ${boardList}" style="text-align: center">
+    <td th:text="${(PageMaker.criteria.page - 1) * 10 + boardStat.index + 1}"></td>
+    <td th:text="${board.title}"  th:onclick="|location.href='@{/board/info/{boardId}(boardId=${board.board_id})}'|"></td>
+    <td th:text="${board.nickname}"></td>
+    <td th:text="${board.click}"></td>
+    <td th:text="${board.create_date}"></td>
+    <td th:text="${board.update_date}"></td>
+  </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:boardListAjax(${PageMaker.startPage - PageMaker.displayPageNum},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:boardListAjax(${PageMaker.criteria.page - 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&lsaquo;</span>
+      </a>
+    </li>
+    <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
+      <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+                                                                                                   th:onclick="|javascript:boardListAjax(${num},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" th:text="${num}"></a></li>
+    </th:block>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:boardListAjax(${PageMaker.criteria.page + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&rsaquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:boardListAjax(${PageMaker.endPage + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</form>

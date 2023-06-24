@@ -11,7 +11,8 @@
                update_date
         from board
     </select>
-
+<!--order by ${sort}
+            LIMIT #{pageStart}, #{perPageNum}-->
     <select id = "selectBoardCount" resultType = "Integer">
         select count(*)
         from board
@@ -27,8 +28,6 @@
                create_date,
                update_date
         from board
-        order by ${sort}
-            LIMIT #{pageStart}, #{perPageNum}
         where board_id = #{boardId}
     </select>
 <!-- where은 조건문!  실제로 디비버에 쓴 변수명 = #{우리가 보내줄 변수명}, resultType은 추출 시에 사용

@@ -20,9 +20,16 @@ public class BoardController { // 기본 클래스 이름
     @Autowired
     private BoardService boardService;  // BoardService를  boardService라고 지정함.
 
+    @GetMapping("/list") // 게시판 없는 기본 화면
+    public String boardList(Model model, @ModelAttribute("criteria") Criteria criteria) {
+        model.addAttribute("criteria", criteria);
+        return "board/list";
+    }
+
+
     //게시판 리스트 조회
-    @GetMapping("/list")  // 우리가 임의로 지정한 경로
-    public String boardList(Model model, @ModelAttribute Criteria criteria) { //접근제한자 리턴값 메소드명(매개변수) >> 이게 하나의 메소드다.
+    @GetMapping("/listAjax")  // 우리가 임의로 지정한 경로
+    public String boardListAjax(Model model, @ModelAttribute Criteria criteria) { //접근제한자 리턴값 메소드명(매개변수) >> 이게 하나의 메소드다.
        List<BoardRes> boardList = boardService.boardList(criteria); // boardService 파일 안에 있는 boardList(criteria)라는 메소드를 호출한 결과값이 왼쪽 List<BoardRes>타입의 boardList라는 변수명으로 담긴다.
         PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
         pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
@@ -31,7 +38,7 @@ public class BoardController { // 기본 클래스 이름
 
        model.addAttribute("boardList", boardList); //  "/board/list"경로에다가 boardList를  "boardList" 여기 변수명에 담아서 프론트로 보냄
         System.out.println("게시판 조회 : " + boardList);
-        return "/board/list"; // 프론트엔드로 가는 경로 (템플릿 밑에 경로)
+        return "board/listAjax"; // 프론트엔드로 가는 경로 (템플릿 밑에 경로)
 
     }
 
@@ -52,7 +59,7 @@ public class BoardController { // 기본 클래스 이름
         // 게시글 작성하려고 내용을 쓰고 저장 버튼 누르는 순간  그 값들을 @ModelAttribute BoardReq boardReq 여기다가 넣어줌 그리고 이게 xml로 보내진다
         Integer boardRegister = boardService.boardRegister(boardReq); //boardService파일 안에 있는 boardRegister(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
         model.addAttribute("boardRegister",boardRegister); // "/board/boardRegister"라는 경로에다가 boardRegister를 "boardRegister"라는 변수명에 담아서 프론트로 보냄
-        return "/board/boardRegister"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardRegister.html)
+        return "board/boardRegister"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardRegister.html)
 
         //결론적으로 프론트에서 저장버튼 누르면  @ModelAttribute가 매개변수 boardReq를 보내고 그 변수들(타이틀,컨탠트 등등)이 #으로 치환되고 그 내용들이 dbeaver에 들어간다.
         // @ModelAttribute : 프론트가 보낸 변수들을 받을때 사용
@@ -66,7 +73,7 @@ public class BoardController { // 기본 클래스 이름
     boardReq.setBoardId(boardId);
     Integer boardUpdate = boardService.boardUpdate(boardReq); //boardService파일 안에 있는 boardUpdate(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
     model.addAttribute("boardUpdate",boardUpdate); //  "/board/boardUpdate"라는 경로에다가 boardUpdate를 "boardUpdate"라는 변수명에 담아서 프론트로 보냄
-    return "/board/boardUpdate"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardUpdate.html)
+    return "board/boardUpdate"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardUpdate.html)
     }
 
     // 게시판 삭제
@@ -74,7 +81,7 @@ public class BoardController { // 기본 클래스 이름
     public String boardDelete (Model model, @ModelAttribute Integer boardId) {
     Integer boardDelete =boardService.boardDelete(boardId);
     model.addAttribute("boardDelete", boardDelete);
-    return "/board/boardDelete";
+    return "board/boardDelete";
     }
 
 }
