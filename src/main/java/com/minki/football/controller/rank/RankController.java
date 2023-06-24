@@ -57,6 +57,7 @@ public class RankController {
         return "rank/rankList";
     }
 
+    //선수 상세순위
     @GetMapping("/player/podium")
     public String podium(Model model) {
         List<TeamRes> playerGoal = rankService.goal();

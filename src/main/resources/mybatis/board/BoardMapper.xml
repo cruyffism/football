@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.minki.football.mapper.board.BoardMapper">
-    <select id="boardList" resultType="com.minki.football.dto.board.BoardRes">
+    <select id="boardList" resultType="com.minki.football.dto.board.BoardRes" parameterType="com.minki.football.dto.page.Criteria">
         select board_id,
                title,
                content,
@@ -11,6 +11,12 @@
                update_date
         from board
     </select>
+
+    <select id = "selectBoardCount" resultType = "Integer">
+        select count(*)
+        from board
+    </select>
+    <!--board 테이블에 총 게시글 개수를 가져온다.-->
 
     <select id="boardInfo" resultType="com.minki.football.dto.board.BoardRes">
         select board_id,
@@ -21,11 +27,13 @@
                create_date,
                update_date
         from board
+        order by ${sort}
+            LIMIT #{pageStart}, #{perPageNum}
         where board_id = #{boardId}
     </select>
 <!-- where은 조건문!  실제로 디비버에 쓴 변수명 = #{우리가 보내줄 변수명}, resultType은 추출 시에 사용
 resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
-
+<!--내림차순(sort)기준으로 정렬(order by)하는데 pageStart 1이고 perPageNum가 15면 1페이지~15페이지까지 이렇게 15개씩 보여달라는 의미 -->
     <insert id="boardRegister" parameterType="com.minki.football.dto.board.BoardReq">
         insert into board
               (board_id,
