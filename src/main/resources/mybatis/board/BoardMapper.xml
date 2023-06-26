@@ -35,13 +35,12 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 <!--내림차순(sort)기준으로 정렬(order by)하는데 pageStart 1이고 perPageNum가 15면 1페이지~15페이지까지 이렇게 15개씩 보여달라는 의미 -->
     <insert id="boardRegister" parameterType="com.minki.football.dto.board.BoardReq">
         insert into board
-              (board_id,
-               title,
+              (title,
                content,
                nickname,
                click,
                create_date)
-        values (#{boardId}, #{title}, #{content}, #{nickname}, #{click}, now())
+        values (#{title}, #{content}, #{nickname}, #{click}, now())
     </insert>
 <!--  parameterTyp에 boardReq라고 설정했으니 boardReq 안에 있는 content라는 변수가 #{content}에 들어가져서 결과적으로는 insert into board(content) values("음바페는 바보") 이렇게 변한다.
 그리고 "음바페는 바보" 이 값이 dbeaver에 들어가진다.
