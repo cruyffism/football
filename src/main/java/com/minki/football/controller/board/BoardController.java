@@ -6,6 +6,7 @@ import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.page.PageMaker;
 import com.minki.football.service.board.BoardService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller //얘가 컨트롤러다 라고 별명을 지어줌
@@ -80,7 +83,9 @@ public class BoardController { // 기본 클래스 이름
 
     //게시판 수정폼
     @GetMapping("/boardUpdate/{boardId}") // 우리가 임의로 지정한 경로
-    public String boardUpdateForm() {
+    public String boardUpdateForm(Model model, @PathVariable Integer boardId) {
+        BoardRes boardInfo = boardService.boardInfo(boardId); // boardService 파일 안에 있는 boardInfo(boardId) 메소드를 호출한 결과값이 BoardRes 타입의 boardInfo라는 변수명으로 담긴다!
+        model.addAttribute("info", boardInfo);
         return "board/boardUpdate";
     }
 
@@ -95,11 +100,15 @@ public class BoardController { // 기본 클래스 이름
     }
 
     // 게시판 삭제
-    @DeleteMapping ("/boardDelete") // 우리가 임의로 지정한 경로
-    public String boardDelete (Model model, @ModelAttribute Integer boardId) {
+    @DeleteMapping ("/boardDelete/{boardId}") // 우리가 임의로 지정한 경로
+    public String boardDelete (Model model, @PathVariable Integer boardId, HttpServletResponse response) throws IOException {
     Integer boardDelete =boardService.boardDelete(boardId);
     model.addAttribute("boardDelete", boardDelete);
-    return "board/boardDelete";
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('게시글이 삭제되었습니다.');</script>");
+        writer.flush();
+    return "board/list";
     }
 
 }
