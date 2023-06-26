@@ -20,14 +20,17 @@
         <div class="text-center">
             <h2 class="section-heading text-uppercase">게시판</h2>
         </div>
-    </div>
     <form id="form1">
         <input type="hidden" id="page" name="page" value="1">
         <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
         <input type="hidden" name="sortType" id="sortType" value=""/>
         <input type="hidden" name="idx" id="idx" value=""/>
         <div id="boardListAjax"></div> <!-- listAjax.html의 전체 소스가 들어감 -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="button">글 작성</button>
+        </div>
     </form>
+    </div>
 </section>
 <!-- Clients: 구글/페이스북 등등 ~ -->
 <div class="py-5" th:replace="fragments/common::clients">
