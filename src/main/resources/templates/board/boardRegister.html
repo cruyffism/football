@@ -20,7 +20,7 @@
 <section class="page-section bg-light" id="boardInfo">
     <form id="form1" th:action="@{/board/boardRegister}" method="post"> <!-- 다시 설명 듣기 -->
         <input type="hidden" id="click" name="click" value="0"> <!-- 조회수 기본값 0인 상태로 백엔드에 보낸다 -->
-        <input type="hidden" id="nickname" name="nickname" sec:authentication="name"> <!-- 로그인한 정보에서 아이디만 가져와서 백엔드에 보내주기 -->
+<!--        <input type="hidden" id="nickname" name="nickname" sec:authentication="name"> &lt;!&ndash; 로그인한 정보에서 아이디만 가져와서 백엔드에 보내주기 &ndash;&gt;-->
     <div class="container">  <!-- container는 꾸며주는 틀 -->
         <div class="text-center"> <!-- text-center는 가운데 정렬 -->
             <h2 style="margin-bottom:50px" class="section-heading text-uppercase">게시글 작성</h2>  <!-- 제목 태그 -->
@@ -40,7 +40,7 @@
         <div class="mb-3 row">
             <label for="boardContent" class="col-sm-2 col-form-label">내용</label>
             <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="boardContent" name="title"></textarea>
+                <textarea type="text" class="form-control" id="boardContent" name="content"></textarea>
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

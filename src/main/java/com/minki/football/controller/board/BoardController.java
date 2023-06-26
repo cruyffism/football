@@ -7,6 +7,8 @@ import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.page.PageMaker;
 import com.minki.football.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,6 +68,9 @@ public class BoardController { // 기본 클래스 이름
         // 게시글 작성하려고 내용을 쓰고 저장 버튼 누르는 순간  그 값들을 @ModelAttribute BoardReq boardReq 여기다가 넣어줌 그리고 이게 xml로 보내진다
         Integer boardRegister = boardService.boardRegister(boardReq); //boardService파일 안에 있는 boardRegister(boardReq)라는 메소드를 호출해서 왼쪽 boardRegister에 담아준 것.
         model.addAttribute("boardRegister",boardRegister); // "/board/boardRegister"라는 경로에다가 boardRegister를 "boardRegister"라는 변수명에 담아서 프론트로 보냄
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); //71~73 : 백엔드에서 그 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String username = auth.getName();
+        boardReq.setNickname(username);
         return "board/list"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardRegister.html)
 
         //결론적으로 프론트에서 저장버튼 누르면  @ModelAttribute가 매개변수 boardReq를 보내고 그 변수들(타이틀,컨탠트 등등)이 #으로 치환되고 그 내용들이 dbeaver에 들어간다.
