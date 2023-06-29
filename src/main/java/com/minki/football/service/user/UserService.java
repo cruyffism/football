@@ -24,12 +24,20 @@ public class UserService {
 
 //   <!-- 회원정보조회 -->
     public UserReq getUserById(String username) {
+
         return userMapper.getUserById(username);
     }
 
     // 회원정보수정
     public Integer updateUser(UserRes userRes) {
+
         return userMapper.updateUser(userRes);
+    }
+
+    // 회원정보삭제
+    public Integer deleteUser(String username) {
+
+        return userMapper.deleteUser(username);
     }
 
 //    public UserVo getUserByNickname(String nickname) {

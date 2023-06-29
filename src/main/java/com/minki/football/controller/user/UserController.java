@@ -107,12 +107,29 @@ public class UserController {
     @PostMapping("/updateInfo") //백엔드 경로
     public String updateUser(Model model, @ModelAttribute UserRes userRes) {
         userRes.setPassword(passwordEncoder.encode(userRes.getPassword()));
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
-        String username = auth.getName();
+        //@ModelAttribute에서 받은 userRes에서 담겨온 패스워드를 암호화해서 다시 패스워드라는 변수에 넣어서 저장
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String username = auth.getName(); // auth애서 아이디값만 가져와서 좌측 username에 넣어준거
         Integer result = userService.updateUser(userRes);
         UserReq userReq = userService.getUserById(username);
         model.addAttribute("info",userReq );
         return "user/mypage"; //프론트 경로
+    }
+
+    //회원정보 삭제
+    @GetMapping("/deleteInfo") // 조회,삭제가 get
+    public String deleteUser(Model model, @RequestParam String username, HttpServletResponse response) throws IOException {
+        Integer deleteUser = userService.deleteUser(username);
+        model.addAttribute("deleteUser",username);
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('탈퇴되었습니다.');</script>");
+        writer.flush();
+
+
+        return "index";
     }
 
     //    @GetMapping("/userList")

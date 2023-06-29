@@ -15,6 +15,8 @@ public interface UserMapper {
 
     Integer updateUser(UserRes userRes); //회원 정보 수정
     // 타입 메소드 매개변수(파라미터타입 변수명지정)
+
+    Integer deleteUser(String username);  //회원 정보 삭제
     void insertUserRole(UserRoleReq userRoleReq);
 //    void updateUser(UserVo userVo); // 회원 정보 수정
 //    void deleteUser(Long id); // 회원 탈퇴
