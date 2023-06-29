@@ -19,15 +19,25 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">게시판</h2>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardRegister}'|">글 작성</button>
+            </div>
         </div>
     <form id="form1">
         <input type="hidden" id="page" name="page" value="1">
         <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
         <input type="hidden" name="sortType" id="sortType" value=""/>
         <input type="hidden" name="idx" id="idx" value=""/>
+        <input type="hidden" name="noticeSearchText" id="noticeSearchText" value=""/>
+        <input type="hidden" name="noticeSearchType" id="noticeSearchType" value=""/>
         <div id="boardListAjax"></div> <!-- listAjax.html의 전체 소스가 들어감 -->
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardRegister}'|">글 작성</button>
+        <div class="text-center">
+            <select id = "searchType" class="form-select form-select-sm"  style="display:inline-block; width:12%" aria-label="Default select example">
+                <option value="title" selected>제목</option>
+                <option value="nickname">작성자</option>
+            </select>
+            <input id="searchText" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
+            <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|boardListAjax(1,'create_date','DESC',2)|">검색</button>
         </div>
     </form>
     </div>

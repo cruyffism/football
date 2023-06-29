@@ -1,12 +1,17 @@
 package com.minki.football.controller.user;
 
 import com.minki.football.dto.league.LeagueRes;
+import com.minki.football.dto.user.UserRes;
 import com.minki.football.service.league.LeagueService;
 import com.minki.football.service.user.UserService;
 import com.minki.football.dto.user.UserReq;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +28,8 @@ public class UserController {
 
     @Autowired
     private LeagueService leagueService; // LeagueService를  leagueService라고 지정함.
+
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // 메인 페이지
     @GetMapping("/index") // GET(조회), POST(생성, 자장), PUT(수정), DELETE(삭제) 뒤에다가 경로 설정하기! ex) "/index"
@@ -73,6 +80,39 @@ public class UserController {
         writer.flush();
 
         return "user/login";
+    }
+
+    //회원정보 조회
+    @GetMapping("/info")  //백엔드 경로
+    public String getUserById(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String username = auth.getName();
+        UserReq userReq = userService.getUserById(username);
+        model.addAttribute("info",userReq );
+        return "user/mypage"; //프론트 경로
+
+    }
+
+    //회원정보 수정폼
+    @GetMapping("/updateInfoForm")
+    public String updateInfoForm(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String username = auth.getName();
+        UserReq userReq = userService.getUserById(username);
+        model.addAttribute("info",userReq );
+        return "user/updateInfoForm";
+    }
+
+    //회원정보 수정
+    @PostMapping("/updateInfo") //백엔드 경로
+    public String updateUser(Model model, @ModelAttribute UserRes userRes) {
+        userRes.setPassword(passwordEncoder.encode(userRes.getPassword()));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String username = auth.getName();
+        Integer result = userService.updateUser(userRes);
+        UserReq userReq = userService.getUserById(username);
+        model.addAttribute("info",userReq );
+        return "user/mypage"; //프론트 경로
     }
 
     //    @GetMapping("/userList")

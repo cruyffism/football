@@ -30,16 +30,28 @@
 <!--        WHERE nickname = #{nickname}-->
 <!--    </select>-->
 
+    <!-- 회원정보조회 -->
     <select id="getUserById" resultType="com.minki.football.dto.user.UserReq">
         SELECT *
         FROM member
         WHERE username = #{username}
     </select>
 
+    <!-- 회원정보수정 -->
+    <update id="updateUser" parameterType="com.minki.football.dto.user.UserRes">
+        update member
+        set name = #{name},
+            nickname = #{nickname},
+            password = #{password},
+            phone = #{phone}
+        where username = #{username}
+    </update>
+
+
 <!--    &lt;!&ndash; 회원정보 수정 &ndash;&gt;-->
 <!--    <update id="updateUser">-->
 <!--        UPDATE member-->
-<!--        SET name = #{name},-->
+<!--        SET name = #{name}, db이름 = #보내줄 변수 이름-->
 <!--            username = #{username},-->
 <!--            email = #{email},-->
 <!--            password = #{password},-->

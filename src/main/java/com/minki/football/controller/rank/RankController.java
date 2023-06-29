@@ -36,6 +36,7 @@ public class RankController {
     //선수 순위 조회
     @GetMapping("/player")
     public String info(Model model, @ModelAttribute("criteria") Criteria criteria) {
+        System.out.println("criteria : "+criteria);
         List<PlayerRes> playerRes = rankService.player(criteria);
 
         PageMaker pageMaker = new PageMaker();

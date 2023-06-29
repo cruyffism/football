@@ -17,7 +17,6 @@
     </div>
 </header>
 <section class="page-section bg-light" id="boardInfo">
-    <form id="form1" th:action="@{/board/boardDelete/{boardId}(boardId=${info.board_id})}" method="delete">
     <div class="container">  <!-- container는 꾸며주는 틀 -->
         <div class="text-center"> <!-- text-center는 가운데 정렬 -->
             <h2 style="margin-bottom:50px" class="section-heading text-uppercase">게시글 조회</h2>  <!-- 제목 태그 -->
@@ -43,7 +42,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardUpdate/{boardId}(boardId=${info.board_id})}'|">수정</button>
 <!--        <!—        이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴—>-->
-        <button class="btn btn-primary" type="submit">삭제</button>
+        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardDelete/{boardId}(boardId=${info.board_id})}'|">삭제</button>
         <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/list}'|">목록</button>
     </div>
     </div>

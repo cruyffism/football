@@ -10,9 +10,10 @@
                create_date,
                update_date
         from board
+        order by ${sort}
+            LIMIT #{pageStart}, #{perPageNum}
     </select>
-<!--order by ${sort}
-            LIMIT #{pageStart}, #{perPageNum}-->
+
     <select id = "selectBoardCount" resultType = "Integer">
         select count(*)
         from board

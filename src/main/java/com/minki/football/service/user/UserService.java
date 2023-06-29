@@ -1,5 +1,6 @@
 package com.minki.football.service.user;
 
+import com.minki.football.dto.user.UserRes;
 import com.minki.football.mapper.user.UserMapper;
 import com.minki.football.dto.user.UserReq;
 import com.minki.football.dto.user.UserRoleReq;
@@ -21,8 +22,14 @@ public class UserService {
 //        return userMapper.getUserList();
 //    }
 
+//   <!-- 회원정보조회 -->
     public UserReq getUserById(String username) {
         return userMapper.getUserById(username);
+    }
+
+    // 회원정보수정
+    public Integer updateUser(UserRes userRes) {
+        return userMapper.updateUser(userRes);
     }
 
 //    public UserVo getUserByNickname(String nickname) {

@@ -35,7 +35,8 @@ public class BoardController { // 기본 클래스 이름
     //게시판 리스트 조회
     @GetMapping("/listAjax")  // 우리가 임의로 지정한 경로
     public String boardListAjax(Model model, @ModelAttribute Criteria criteria) { //접근제한자 리턴값 메소드명(매개변수) >> 이게 하나의 메소드다.
-       List<BoardRes> boardList = boardService.boardList(criteria); // boardService 파일 안에 있는 boardList(criteria)라는 메소드를 호출한 결과값이 왼쪽 List<BoardRes>타입의 boardList라는 변수명으로 담긴다.
+        System.out.println("criteria : "+criteria);
+        List<BoardRes> boardList = boardService.boardList(criteria); // boardService 파일 안에 있는 boardList(criteria)라는 메소드를 호출한 결과값이 왼쪽 List<BoardRes>타입의 boardList라는 변수명으로 담긴다.
         PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
         pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
         pageMaker.setTotalCount(boardService.selectBoardCount());// pageMaker에 있는 totalcount라는 변수에다가 ㅇ우리가 아까만든 게시ㅋ물 총개수 결과값을 넣은거야
@@ -100,7 +101,7 @@ public class BoardController { // 기본 클래스 이름
     }
 
     // 게시판 삭제
-    @DeleteMapping ("/boardDelete/{boardId}") // 우리가 임의로 지정한 경로
+    @GetMapping ("/boardDelete/{boardId}") // 우리가 임의로 지정한 경로
     public String boardDelete (Model model, @PathVariable Integer boardId, HttpServletResponse response) throws IOException {
     Integer boardDelete =boardService.boardDelete(boardId);
     model.addAttribute("boardDelete", boardDelete);

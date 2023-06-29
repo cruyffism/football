@@ -1,6 +1,6 @@
 $(document).ready(function () { // 페이지가 로딩되는 순간 바로 실행
     console.log("ready!");
-    boardListAjax(1,"creat_date","DESC",2); // 1,"creat_date","DESC",2
+    boardListAjax(1,"create_date","DESC",2); // 1,"creat_date","DESC",2
 });
 
 function boardListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, sortType, idx
@@ -14,12 +14,21 @@ function boardListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, s
     f.sortColumn.value = sortColumn;
     f.sortType.value = sortType;
     f.idx.value = idx;
-    console.log("page : " + f.page.value)
 
+    const searchText = document.getElementById('searchText').value;
+    f.noticeSearchText.value = searchText;
+
+    // const searchType1 = document.getElementById('searchType').value;
+    // const searchType2 = searchType1.options[searchType1.selectedIndex].value;
+    // f.noticeSearchType.value = searchType2;
+    //
+    // console.log("searchType1 : ",searchType1)
+    // console.log("searchType2 : ",searchType2)
     $.ajax({
         url: "/board/listAjax",
         type: 'GET',
         cache: false,
+        data: $('#form1').serialize(),
         dataType: "html",
         async: false,
         success: function (data) {

@@ -21,6 +21,8 @@ public class Criteria {
 
     private String idx;
 
+    private String noticeSearchType;
+
     public Criteria() {
         this.page = 1;
         this.perPageNum = 10;
