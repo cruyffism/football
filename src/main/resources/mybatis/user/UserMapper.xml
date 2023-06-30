@@ -53,6 +53,15 @@
         from member
         where username = #{username}
     </delete>
+
+<!-- 아이디 중복 체크 -->
+    <select id="idCheck" parameterType="String" resultType="Integer">>
+        SELECT count(*)
+        FROM member
+        WHERE username = #{username}
+    </select>
+
+
 <!-- 조건에서 #의 값이 하나일때는 그 값에 맞는 데이터 타입을 parameterType에 넣는다.-->
 
 <!--    &lt;!&ndash; 회원정보 수정 &ndash;&gt;-->

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -124,14 +126,29 @@ public class UserController {
         Integer deleteUser = userService.deleteUser(username);
         model.addAttribute("deleteUser",username);
 
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter writer = response.getWriter();
-        writer.println("<script>alert('탈퇴되었습니다.');</script>");
-        writer.flush();
+//        response.setContentType("text/html; charset=UTF-8");
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<script>alert('탈퇴되었습니다.');</script>");
+//        writer.flush();
         session.invalidate();
 
-        return "index";
+        return "redirect:/";
     }
+
+    // 아이디 중복 체크
+    @GetMapping("/idCheckAjax")
+    @ResponseBody  // dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
+
+    public Map<Object, Object> idCheck(Model model, @RequestBody String username) { // Map<키, 값>
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();  // int라는 타입의 변수명이 count 라고 선언해주고 0이라고 값을 넣어준겨
+        count = userService.idCheck(username);
+        map.put("cnt", count);
+        return map;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
+    }
+
+
+
 
     //    @GetMapping("/userList")
 //    public String getUserList(Model model) { // User 테이블의 전체 정보를 보여줌

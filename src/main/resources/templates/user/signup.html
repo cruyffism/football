@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('SignUp page!')">
 </head>
+<script src="../../static/js/signup.js"></script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -16,6 +17,7 @@
 <!--        </div>-->
         <div class="mb-3 ">
             <input type="text" class="form-control2" id="username" name="username" placeholder="Id"/>
+            <button type="button" class="btn btn-primary btn-lg text-uppercase" onclick="idCheckAjax()">중복체크</button>
         </div>
         <div class="mb-3">
             <input type="text" class="form-control2" id="name" name="name" placeholder="Name"/>

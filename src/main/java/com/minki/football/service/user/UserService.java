@@ -40,6 +40,12 @@ public class UserService {
         return userMapper.deleteUser(username);
     }
 
+    // 아이디 중복 체크
+    public Integer idCheck(String username) {
+
+        return userMapper.idCheck(username);
+    }
+
 //    public UserVo getUserByNickname(String nickname) {
 //        return userMapper.getUserByNickname(nickname);
 //    }
