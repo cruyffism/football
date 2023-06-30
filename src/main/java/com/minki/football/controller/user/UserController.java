@@ -137,7 +137,7 @@ public class UserController {
 
     // 아이디 중복 체크
     @GetMapping("/idCheckAjax")
-    @ResponseBody  // dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
+    @ResponseBody  // 리스폰스바디와 json은 한 쌍 !! dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
     public Integer idCheck(@RequestParam String username) {
         int cnt = userService.idCheck(username);
         return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
