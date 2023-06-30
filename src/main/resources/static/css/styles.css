@@ -15,6 +15,12 @@
 /*    !*content: attr(data-placeholder);*!*/
 /*    width: 100%;*/
 /*}*/
+
+#signUpForm{
+    width: 20%;
+    display: inline-block;
+}
+
 #teamLogo{
     width: 90px;
     height: 90px;

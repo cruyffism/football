@@ -10,29 +10,29 @@
 </nav>
 <header class="masthead">
     <h2>회원가입</h2>
-    <form th:action="@{/user/signup}" method="post">
+    <form th:action="@{/user/signup}" method="post" id="signUpForm">
 <!--        <div class="mb-3">-->
 <!--            <label for="inputPassword">Password</label>-->
 <!--                <input type="password" class="form-control2" id="inputPassword">-->
 <!--        </div>-->
-        <div class="mb-3 ">
-            <input type="text" class="form-control2" id="username" name="username" placeholder="Id"/>
+        <div class="mb-3 " id="divInputId">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Id"/>
             <button type="button" class="btn btn-primary btn-lg text-uppercase" onclick="idCheckAjax()">중복체크</button>
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control2" id="name" name="name" placeholder="Name"/>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control2" id="nickname" name="nickname" placeholder="Nickname"/>
+            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname"/>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control2" id="password" name="password" placeholder="Password"/>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
         </div>
         <div class="mb-3">
-            <input type="date" style="width: 223.5px;" class="form-control2" id="birthday" name="birthday" placeholder="Birthday"/>
+            <input type="date" style="width: 223.5px;" class="form-control" id="birthday" name="birthday" placeholder="Birthday"/>
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control2" id="phone" name="phone" placeholder="Phone"/>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone"/>
         </div>
         <div class="mb-3">
             <div class="form-check form-check-inline">

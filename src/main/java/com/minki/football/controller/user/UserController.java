@@ -138,13 +138,9 @@ public class UserController {
     // 아이디 중복 체크
     @GetMapping("/idCheckAjax")
     @ResponseBody  // dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
-
-    public Map<Object, Object> idCheck(Model model, @RequestBody String username) { // Map<키, 값>
-        int count = 0;
-        Map<Object, Object> map = new HashMap<Object, Object>();  // int라는 타입의 변수명이 count 라고 선언해주고 0이라고 값을 넣어준겨
-        count = userService.idCheck(username);
-        map.put("cnt", count);
-        return map;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
+    public Integer idCheck(@RequestParam String username) {
+        int cnt = userService.idCheck(username);
+        return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
     }
 
 

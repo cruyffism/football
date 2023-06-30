@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/user/login", "/user/signup", "/league/**", "/team/**", "/player/**","/board/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
+                                        .requestMatchers("/", "/user/**", "/league/**", "/team/**", "/player/**","/board/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .anyRequest().authenticated()
                 );
