@@ -6,6 +6,7 @@ import com.minki.football.service.league.LeagueService;
 import com.minki.football.service.user.UserService;
 import com.minki.football.dto.user.UserReq;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.Authentication;
@@ -119,7 +120,7 @@ public class UserController {
 
     //회원정보 삭제
     @GetMapping("/deleteInfo") // 조회,삭제가 get
-    public String deleteUser(Model model, @RequestParam String username, HttpServletResponse response) throws IOException {
+    public String deleteUser(Model model, @RequestParam String username, HttpServletResponse response,  HttpSession session) throws IOException {
         Integer deleteUser = userService.deleteUser(username);
         model.addAttribute("deleteUser",username);
 
@@ -127,7 +128,7 @@ public class UserController {
         PrintWriter writer = response.getWriter();
         writer.println("<script>alert('탈퇴되었습니다.');</script>");
         writer.flush();
-
+        session.invalidate();
 
         return "index";
     }
