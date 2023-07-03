@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/user/**", "/league/**", "/team/**", "/player/**","/board/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
+                                        .requestMatchers("/","/admin/**", "/user/**", "/league/**", "/team/**", "/player/**","/board/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .anyRequest().authenticated()
                 );
@@ -73,7 +73,6 @@ public class SecurityConfig {
     // Authentication 로그인 , Authorization 권한
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("왓다");
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
