@@ -23,8 +23,8 @@ public class BoardService {
     }
 
     //  게시판 총 게시글 개수 가져오기
-    public Integer selectBoardCount() { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 selectBoardCount()라는 메소드를 만듦
-        Integer selectBoardCount = boardMapper.selectBoardCount();
+    public Integer selectBoardCount(Criteria criteria) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 selectBoardCount()라는 메소드를 만듦
+        Integer selectBoardCount = boardMapper.selectBoardCount(criteria);
         //타입     변수명          = boardMapper. selectBoardCount()를 호출한 결과 ; >> 호출한 결과를 왼쪽 selectBoardCount에 담은 것
         return selectBoardCount; //  그리고 이 결과값을 리턴
     }

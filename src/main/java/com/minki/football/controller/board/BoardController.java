@@ -39,7 +39,7 @@ public class BoardController { // 기본 클래스 이름
         List<BoardRes> boardList = boardService.boardList(criteria); // boardService 파일 안에 있는 boardList(criteria)라는 메소드를 호출한 결과값이 왼쪽 List<BoardRes>타입의 boardList라는 변수명으로 담긴다.
         PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
         pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
-        pageMaker.setTotalCount(boardService.selectBoardCount());// pageMaker에 있는 totalcount라는 변수에다가 ㅇ우리가 아까만든 게시ㅋ물 총개수 결과값을 넣은거야
+        pageMaker.setTotalCount(boardService.selectBoardCount(criteria));// pageMaker에 있는 totalcount라는 변수에다가 ㅇ우리가 아까만든 게시ㅋ물 총개수 결과값을 넣은거야
         model.addAttribute("PageMaker", pageMaker);
 
        model.addAttribute("boardList", boardList); //  "/board/list"경로에다가 boardList를  "boardList" 여기 변수명에 담아서 프론트로 보냄

@@ -15,7 +15,7 @@ public interface BoardMapper {
                                 // 타입은 List<BoardRes>
 
     //  게시판 총 게시글 개수 가져오기
-    Integer selectBoardCount();// 타입   메소드명    매개변수
+    Integer selectBoardCount(Criteria criteria);// 타입   메소드명    매개변수
     // Integer라는 타입을 selectBoardCount로 변수 선언
 
     //게시판 단건 조회

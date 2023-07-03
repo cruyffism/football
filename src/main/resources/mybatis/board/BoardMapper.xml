@@ -19,9 +19,14 @@
             LIMIT #{pageStart}, #{perPageNum}
     </select>
 
-    <select id = "selectBoardCount" resultType = "Integer">
+    <select id = "selectBoardCount" resultType = "Integer" parameterType = "com.minki.football.dto.page.Criteria">
         select count(*)
         from board
+        <where>
+            <if test="noticeSearchText != null and noticeSearchText != ''">
+                AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
+            </if>
+        </where>
     </select>
     <!--board 테이블에 총 게시글 개수를 가져온다.-->
 
@@ -53,7 +58,7 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 ( boardReq에 담겨져 있는  "음바페는 바보"라는 내용을 꺼내서 #{content}에 저장) -->
 
 <!--    BoardReq에서 xml을 부르는 과정-->
-<!--    parameterType : 비즈니스 로직으로부터 전달 받은, SQL 구문에 사용될 매개변수의 자료형-->
+<!--    parameterType : 비즈니스 로직으로부터 전달 받은, SQL 구문에 사용될 매개변수의 자료형 // 매개변수 넘겨주는 역할-->
 
     <update id="boardUpdate" parameterType="com.minki.football.dto.board.BoardReq">
         update board set
