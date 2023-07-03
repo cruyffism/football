@@ -34,6 +34,7 @@
 </header>
 <!-- 회원가입 모달 부분-->
 <div class="portfolio-modal modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- class: 외부 디자인 가져옴 // aria-hidden="true" : 회원가입 눌러야만 모달이 보이게 한 거   -->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -61,6 +62,7 @@
                                 <div class="mb-3">
                                     <input type="password" class="form-control" onkeyup="passwordCheck(this.value)" id="password"
                                            name="password" placeholder="Password" required/>
+  <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
                                     <div id="password-error" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
                                 </div>
                                 <div class="mb-3">

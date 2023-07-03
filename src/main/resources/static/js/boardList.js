@@ -4,26 +4,20 @@ $(document).ready(function () { // 페이지가 로딩되는 순간 바로 실�
 });
 
 function boardListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, sortType, idx
-    // console.log("page : " + page)
-    // console.log("sortColumn : " + sortColumn)
-    // console.log("sortType : " + sortType)
-    // console.log("idx : " + idx)
     const innerHtml = $("#boardListAjax")
     const f = document.getElementById("form1");
     f.page.value = page;
     f.sortColumn.value = sortColumn;
     f.sortType.value = sortType;
     f.idx.value = idx;
+    f.noticeSearchText.value = $('#searchText').val();
+    // id가 searchtext인 애의 값(list.html의 39라인)을 list.html의 31라인의 value="" 에다가 값을 넣어주는 것.
 
-    const searchText = document.getElementById('searchText').value;
-    f.noticeSearchText.value = searchText;
+    const select_value = document.getElementById('searchType');
+    //list.html 에서 id가 searchType인 애의 값을 가져와서 변수 select_value에 넣는다.
+    f.noticeSearchType.value = select_value.options[select_value.selectedIndex].value;
+    // select_value 변수에서 option이 선택된 값을 list.htmldml 32라인의 value=""에 넣는거!
 
-    // const searchType1 = document.getElementById('searchType').value;
-    // const searchType2 = searchType1.options[searchType1.selectedIndex].value;
-    // f.noticeSearchType.value = searchType2;
-    //
-    // console.log("searchType1 : ",searchType1)
-    // console.log("searchType2 : ",searchType2)
     $.ajax({
         url: "/board/listAjax",
         type: 'GET',

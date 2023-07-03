@@ -10,6 +10,11 @@
                create_date,
                update_date
         from board
+        <where>
+            <if test="noticeSearchText != null and noticeSearchText != ''">
+                AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
+            </if>
+        </where>
         order by ${sort}
             LIMIT #{pageStart}, #{perPageNum}
     </select>

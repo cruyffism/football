@@ -95,7 +95,7 @@ function passwordCheck(pwd){
 function phoneCheck(number){
     const regExp = /^[0-9]{11}$/; // 0-9로 이루어진 11자
     if(!regExp.test(number)){ // regExp 조건에 맞지 않으면
-        $('#phone-error').show(); // 에러문구 보여줘
+        $('#phone-error').show(); // 에러문구 보여줘  : login.html의 id 가 password-error인  애꺼를 보여줘라!
     }else { // regExp 조건에 맞으면
         $('#phone-error').hide(); // 에러문구 없애줘
     }
