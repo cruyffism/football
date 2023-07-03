@@ -30,13 +30,15 @@
             <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname" required/>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required/>
+            <input type="password" class="form-control" onkeyup="passwordCheck(this.value)" id="password" name="password" placeholder="Password" required/>
+            <div id="password-error" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
         </div>
         <div class="mb-3">
             <input type="date"  class="form-control" id="birthday" name="birthday" placeholder="Birthday" required/>
         </div>
         <div class="mb-3">
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required/>
+            <input type="text" class="form-control" onkeyup="phoneCheck(this.value)" id="phone" name="phone" placeholder="Phone" required/>
+            <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
         </div>
         <div class="mb-3">
             <div class="form-check form-check-inline">

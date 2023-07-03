@@ -1,4 +1,6 @@
-let isCheck = -1; //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1 , 아이디 중복 체크 안한 경우 = -1 )
+let isCheck = -1; //아이디 체크 여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1 , 아이디 중복 체크 안한 경우 = -1 )
+
+// 아이디 중복 체크하는 function
 function idCheckAjax() {
     const username = $("#username").val();  // 내가 회원가입한 아이디 alsrl가 username으로 들어감
     if(username !== ''){ // username이 빈값이 아닐때 아작스 호출하라는 의미
@@ -41,8 +43,11 @@ function idCheckAjax() {
 }
 
 $(document).ready(function () {
-    const forms = document.querySelectorAll('.needs-validation')
-    Array.from(forms).forEach(form => {
+    $('#password-error').hide(); // 비밀번호 에러문구 숨기기
+    $('#phone-error').hide(); // 폰번호 에러문구 숨기기
+    // 회원가입 폼 null 체크 및 아이디 중복체크 문구 나오게
+    const signUpForm = document.querySelectorAll('#signUpForm')
+    Array.from(signUpForm).forEach(form => {
         form.addEventListener('submit', event => {
             // event.preventDefault()랑 event.stopPropagation() 는 회원가입 저장이 안되게 막는 기능
             if (!form.checkValidity()) { // input에 값을 안 넣었을 때
@@ -62,4 +67,36 @@ $(document).ready(function () {
             form.classList.add('was-validated') // input창에 디자인 넣는곳 에러인지 성공인지
         }, false)
     })
+    // 로그인 폼 null 체크 문구 나오게
+    const loginForm = document.querySelectorAll('#loginForm')
+    Array.from(loginForm).forEach(form => {
+        form.addEventListener('submit', event => {
+            // event.preventDefault()랑 event.stopPropagation() 는 로그인 실행이 안되게 막는 기능
+            if (!form.checkValidity()) { // input에 값을 안 넣었을 때
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated') // input창에 디자인 넣는곳 에러인지 성공인지
+        }, false)
+    })
 })
+
+// 비밀번호 유효성 체크하는 function
+function passwordCheck(pwd){
+    const regExp = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[~?!@#$%^&*_-]).{8,}$/; // A-Z, a-z, 0-9 특수문자가 포함되어 있는지, 8자 이상
+    if(!regExp.test(pwd)){ // regExp 조건에 맞지 않으면
+        $('#password-error').show(); // 에러문구 보여줘
+    }else { // regExp 조건에 맞으면
+        $('#password-error').hide(); // 에러문구 없애줘
+    }
+}
+
+// 폰번호 유효성 체크하는 function
+function phoneCheck(number){
+    const regExp = /^[0-9]{11}$/; // 0-9로 이루어진 11자
+    if(!regExp.test(number)){ // regExp 조건에 맞지 않으면
+        $('#phone-error').show(); // 에러문구 보여줘
+    }else { // regExp 조건에 맞으면
+        $('#phone-error').hide(); // 에러문구 없애줘
+    }
+}

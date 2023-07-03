@@ -59,11 +59,11 @@ public class UserController {
         return "user/login";
     }
 
-    // 회원가입 페이지
-    @GetMapping("/signup")
-    public String signupPage() {  // 회원 가입 페이지
-        return "user/signup";
-    }
+//    // 회원가입 페이지
+//    @GetMapping("/signup")
+//    public String signupPage() {  // 회원 가입 페이지
+//        return "user/signup";
+//    }
 
     // 회원가입 진행
     @PostMapping("/signup")
