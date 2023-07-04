@@ -21,12 +21,17 @@ public class AdminService {
         return list;
     }
 
-    //     <!--// 수정폼 조회-->
+    // 팀 정보 수정폼 조회
     public TeamRes teamInfo(Integer teamId) {
         TeamRes teamInfo = adminMapper.teamInfo(teamId);
         return teamInfo;
     }
 
+    // 팀 정보 수정
+    public Integer teamUpdate(TeamRes teamRes){
+        Integer teamUpdate = adminMapper.teamUpdate(teamRes);
+        return teamUpdate;
+    }
     //     <!--// 수정 및 저장-->
     
 
