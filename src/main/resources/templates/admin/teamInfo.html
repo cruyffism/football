@@ -17,8 +17,8 @@
 </header>
 
 <section class="page-section bg-light" id="boardInfo">
-  <form id="form1"th:action="@{/admin/teamUpdate/{teamId}(teamId=${teamInfo.team_id})}" method="post">
-    <input type="hidden" id="click" name="click" value="0">
+  <form id="form1" th:action="@{/admin/teamUpdate}" method="post">
+    <input type="hidden" id="team_id" name="team_id" th:value="${teamInfo.team_id}">
     <div class="container">  <!-- container는 꾸며주는 틀 -->
       <div class="text-center"> <!-- text-center는 가운데 정렬 -->
         <h2 style="margin-bottom:50px" class="section-heading text-uppercase">팀 정보 수정</h2>  <!-- 제목 태그 -->
