@@ -27,10 +27,19 @@ public class AdminController {
     }
 
     // 2. 팀 관리 리스트 조회
-    @GetMapping(" /listAjax/{leagueId} ")
+    @GetMapping("/listAjax/{leagueId}")
     public String listAjax(Model model, @PathVariable Integer leagueId) {
         List<TeamRes> list = adminService.list(leagueId);
         model.addAttribute("list", list);
         return "admin/listAjax";
     }
+
+    //<!--// 수정폼 조회-->
+    @GetMapping("/teamInfo/{teamId}")
+    public String teamInfo(Model model, @PathVariable Integer teamId) {
+        TeamRes teamInfo = adminService.teamInfo(teamId);
+        model.addAttribute("teamInfo", teamInfo);
+        return "admin/teamInfo";
+    }
+
 }

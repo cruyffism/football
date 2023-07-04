@@ -20,4 +20,11 @@ public class AdminService {
         List<TeamRes> list = adminMapper.list(leagueId);
         return list;
     }
+
+    //     <!--// 수정폼 조회-->
+    public TeamRes teamInfo(Integer teamId) {
+        TeamRes teamInfo = adminMapper.teamInfo(teamId);
+        return teamInfo;
+    }
+
 }

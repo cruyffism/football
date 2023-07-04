@@ -9,5 +9,12 @@
         where league_id = #{leagueId}
     </select>
 
+    <!--// 수정폼 조회-->
+    <select id="teamInfo" resultType="com.minki.football.dto.team.TeamRes">
+        select *
+        from team
+        where team_id = #{teamId}
+    </select>
+
 
 </mapper>
