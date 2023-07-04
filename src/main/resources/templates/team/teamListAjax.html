@@ -1,7 +1,7 @@
 <div class="col-lg-4" th:each="team : ${teamList}">
     <div class="team-member">
         <img th:onclick="|location.href='@{/team/info/{teamId}(teamId=${team.team_id})}'|"
-             class="mx-auto rounded-circle" th:src="${team.logo_image_path}" alt="..."/>
+             class="mx-auto rounded-circle" th:src="${team.logo_image_path}" alt="..." style="cursor: pointer;"/>
         <h4 th:text="${team.team_name}"></h4>
     </div>
 </div>

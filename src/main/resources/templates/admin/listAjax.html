@@ -1,25 +1,27 @@
-<table class="table">
+<table class="table" style="table-layout: fixed">
     <thead>
     <tr style="text-align: center">
-        <th scope="col">순위</th>
-        <th scope="col">팀</th>
-        <th scope="col">경기수</th>
-        <th scope="col">승점</th>
-        <th scope="col">승</th>
-        <th scope="col">무</th>
-        <th scope="col">패</th>
-        <th scope="col">득점</th>
-        <th scope="col">실점</th>
-        <th scope="col">득실차</th>
-        <th scope="col">팀 스타일</th>
-        <th scope="col">로고 이미지</th>
-        <th scope="col">베스트 이미지</th>
+        <th scope="col" width="4%">번호</th>
+        <th scope="col" width="4%">순위</th>
+        <th scope="col" width="17%">팀</th>
+        <th scope="col" width="5%">경기수</th>
+        <th scope="col" width="5%">승점</th>
+        <th scope="col" width="5%">승</th>
+        <th scope="col" width="5%">무</th>
+        <th scope="col" width="5%">패</th>
+        <th scope="col" width="5%">득점</th>
+        <th scope="col" width="5%">실점</th>
+        <th scope="col" width="5%">득실차</th>
+        <th scope="col" width="15%">팀 스타일</th>
+        <th scope="col" width="10%">로고 이미지</th>
+        <th scope="col" width="10%">베스트 이미지</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="team: ${list}" style="text-align: center">
+    <tr th:each="team: ${list}" style="text-align: center; vertical-align: middle;">
+        <td th:text="${teamStat.index + 1}"></td>
         <td th:text="${team.game_rank}"></td>
-        <td th:text="${team.team_name}" th:onclick="|location.href='@{/admin/teamInfo/{teamId}(teamId=${team.team_id})}'|"></td>
+        <td th:text="${team.team_name}" th:onclick="|location.href='@{/admin/teamInfo/{teamId}(teamId=${team.team_id})}'|" style="cursor: pointer;"></td>
         <td th:text="${team.game_match}"></td>
         <td th:text="${team.point}"></td>
         <td th:text="${team.win}"></td>
@@ -28,7 +30,7 @@
         <td th:text="${team.plus_goal}"></td>
         <td th:text="${team.minus_goal}"></td>
         <td th:text="${team.diff_goal}"></td>
-        <td th:text="${team.team_style}"></td>
+        <td th:text="${team.team_style}" style="white-space:nowrap;  text-overflow:ellipsis; overflow:hidden;"></td>
         <td><img th:src="${team.logo_image_path}" style="width: 100px; height: 100px"></td>
         <td><img th:src="${team.best_image_path}" style="width: 100px; height: 100px"></td>
     </tr>

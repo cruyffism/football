@@ -17,7 +17,7 @@
   <th:block th:if="${PageMaker.totalCount != 0}">
   <tr th:each="board : ${boardList}" style="text-align: center">
     <td th:text="${(PageMaker.criteria.page - 1) * 10 + boardStat.index + 1}"></td>
-    <td th:text="${board.title}"  th:onclick="|location.href='@{/board/info/{boardId}(boardId=${board.board_id})}'|"></td>
+    <td th:text="${board.title}"  th:onclick="|location.href='@{/board/info/{boardId}(boardId=${board.board_id})}'|" style="cursor: pointer;"></td>
     <td th:text="${board.nickname}"></td>
     <td th:text="${board.click}"></td>
     <td th:text="${board.create_date}"></td>
