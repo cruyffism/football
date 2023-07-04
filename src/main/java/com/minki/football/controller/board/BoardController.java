@@ -30,6 +30,9 @@ public class BoardController { // 기본 클래스 이름
         model.addAttribute("criteria", criteria);
         return "board/list";
     }
+    // Model이란 애를 model 이름으로 선언하고  model.addAttribute으로 사용한다!
+    //매개변수 "criteria"를 @ModelAttribut를 이용해서 프론트엔드에서 백엔드로 보내는 값(criteria 안에 값들)을 받음
+    //그리고  model.addAttribute을 이용해서 "board/list"경로에다가 criteria를 "criteria" 변수로 담아서 보낸다.(백엔드 >> 프론트엔드)
 
 
     //게시판 리스트 조회
@@ -78,7 +81,7 @@ public class BoardController { // 기본 클래스 이름
         return "board/list"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardRegister.html)
 
         //결론적으로 프론트에서 저장버튼 누르면  @ModelAttribute가 매개변수 boardReq를 보내고 그 변수들(타이틀,컨탠트 등등)이 #으로 치환되고 그 내용들이 dbeaver에 들어간다.
-        // @ModelAttribute : 프론트가 보낸 변수들을 받을때 사용
+        // @ModelAttribute : 프론트가 보낸 하나의 클래스를(클래스 안에 여러개의 변수들을) 받을때 사용
         // model.addattribute : 메소드를 실행하고 난 결과를 담아서 프론트에 보내주는 역할
     }
 
@@ -89,6 +92,7 @@ public class BoardController { // 기본 클래스 이름
         model.addAttribute("info", boardInfo);
         return "board/boardUpdate";
     }
+    // @PathVariable : path에 변수를 받을때 사용한다. 여기선  /{boardId} 이 경로..
 
     // 게시판 업데이트
     @PostMapping("/boardUpdate/{boardId}") // 우리가 임의로 지정한 경로
