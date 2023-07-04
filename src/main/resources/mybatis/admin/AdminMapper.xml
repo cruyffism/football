@@ -16,5 +16,24 @@
         where team_id = #{teamId}
     </select>
 
+    <!--// 수정 및 저장-->
+    <update id="teamUpdate" parameterType="com.minki.football.dto.team.TeamRes">
+        update team set
+        game_rank = #{game_rank},
+        team_name = #{team_name},
+        game_match = #{game_match},
+        point = #{point},
+        win = #{win},
+        draw = #{draw},
+        lose = #{lose},
+        plus_goal = #{plus_goal},
+        minus_goal = #{minus_goal},
+        diff_goal = #{diff_goal},
+        team_style = #{team_style},
+        logo_image_path = #{logo_image_path},
+        best_image_path = #{best_image_path}
+        where team_id = #{teamId}
+    </update>
+
 
 </mapper>

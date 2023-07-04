@@ -17,7 +17,7 @@
 </header>
 
 <section class="page-section bg-light" id="boardInfo">
-  <form id="form1" th:action="@{/board/boardUpdate/{boardId}(boardId=${info.board_id})}" method="post">
+  <form id="form1"th:action="@{/admin/teamUpdate/{teamId}(teamId=${teamInfo.team_id})}" method="post">
     <input type="hidden" id="click" name="click" value="0">
     <div class="container">  <!-- container는 꾸며주는 틀 -->
       <div class="text-center"> <!-- text-center는 가운데 정렬 -->
@@ -38,49 +38,49 @@
       <div class="mb-3 row">
         <label for="game_match" class="col-sm-2 col-form-label">경기수</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="game_match" name="game_match" th:text="${teamInfo.game_match}"></textarea>
+          <input type="text" class="form-control" id="game_match" name="game_match" th:value="${teamInfo.game_match}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="point" class="col-sm-2 col-form-label">승점</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="point" name="point" th:text="${teamInfo.point}"></textarea>
+          <input type="text" class="form-control" id="point" name="point" th:value="${teamInfo.point}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="win" class="col-sm-2 col-form-label">승</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="win" name="win" th:text="${teamInfo.win}"></textarea>
+          <input type="text" class="form-control" id="win" name="win" th:value="${teamInfo.win}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="draw" class="col-sm-2 col-form-label">무</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="draw" name="draw" th:text="${teamInfo.draw}"></textarea>
+          <input type="text" class="form-control" id="draw" name="draw" th:value="${teamInfo.draw}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="lose" class="col-sm-2 col-form-label">패</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="lose" name="lose" th:text="${teamInfo.lose}"></textarea>
+          <input type="text" class="form-control" id="lose" name="lose" th:value="${teamInfo.lose}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="plus_goal" class="col-sm-2 col-form-label">득점</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="plus_goal" name="plus_goal" th:text="${teamInfo.plus_goal}"></textarea>
+          <input type="text" class="form-control" id="plus_goal" name="plus_goal" th:value="${teamInfo.plus_goal}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="minus_goal" class="col-sm-2 col-form-label">실점</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="minus_goal" name="minus_goal" th:text="${teamInfo.minus_goal}"></textarea>
+          <input type="text" class="form-control" id="minus_goal" name="minus_goal" th:value="${teamInfo.minus_goal}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="diff_goal" class="col-sm-2 col-form-label">득실차</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="diff_goal" name="diff_goal" th:text="${teamInfo.diff_goal}"></textarea>
+          <input type="text" class="form-control" id="diff_goal" name="diff_goal" th:value="${teamInfo.diff_goal}">
         </div>
       </div>
       <div class="mb-3 row">
@@ -92,13 +92,13 @@
       <div class="mb-3 row">
         <label for="logo_image_path" class="col-sm-2 col-form-label">로고</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="logo_image_path" name="logo_image_path" th:text="${teamInfo.logo_image_path}"></textarea>
+          <input type="text" class="form-control" id="logo_image_path" name="logo_image_path" th:value="${teamInfo.logo_image_path}">
         </div>
       </div>
       <div class="mb-3 row">
         <label for="best_image_path" class="col-sm-2 col-form-label">베스트11</label>
         <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="best_image_path" name="best_image_path" th:text="${teamInfo.best_image_path}"></textarea>
+          <input type="text" class="form-control" id="best_image_path" name="best_image_path" th:value="${teamInfo.best_image_path}">
         </div>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -15,4 +15,7 @@ public interface AdminMapper {
 //     <!--// 수정폼 조회-->
     TeamRes teamInfo(Integer teamId);
 
+//     <!--// 수정 및 저장-->
+    Integer teamUpdate(TeamRes);
+
 }
