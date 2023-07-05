@@ -40,5 +40,10 @@ public class AdminService {
         return playerList;
     }
 
+    //<!--    //전체 플레이어수 조회-->
+    public  Integer playerCount(Criteria criteria) {
+        Integer playerCount = adminMapper.playerCount(criteria);
+        return playerCount;
+    }
 
 }

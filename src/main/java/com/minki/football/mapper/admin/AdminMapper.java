@@ -23,4 +23,6 @@ public interface AdminMapper {
     // <!-- //선수 관리 리스트 조회-->
     List<PlayerRes> playerList(Criteria criteria); //리절트타입 id(매개변수)
 
+    // <!--//전체 플레이어수 조회-->
+    Integer playerCount(Criteria criteria);
 }

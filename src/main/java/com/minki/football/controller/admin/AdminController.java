@@ -71,6 +71,7 @@ public class AdminController {
         List<PlayerRes> playerList = adminService.playerList(criteria);
         PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
         pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
+        pageMaker.setTotalCount(adminService.playerCount(criteria));
         model.addAttribute("PageMaker", pageMaker);
         model.addAttribute("playerList", playerList);
         return"admin/playerListAjax";

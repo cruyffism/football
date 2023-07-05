@@ -1,6 +1,6 @@
 $(document).ready(function () { // 페이지가 로딩되는 순간 바로 실행
     console.log("ready!");
-    playerListAjax(1,"create_date","DESC",1); // 1,"creat_date","DESC",2
+    playerListAjax(1,"name","DESC",1); // 1,"creat_date","DESC",2
 });
 
 function playerListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, sortType, idx
