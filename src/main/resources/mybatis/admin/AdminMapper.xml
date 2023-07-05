@@ -57,7 +57,6 @@
                 AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
             </if>
         </where>
-        LIMIT #{pageStart}, #{perPageNum}
     </select>
 
 </mapper>

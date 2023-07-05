@@ -33,7 +33,7 @@
           <option value="name" selected>선수이름</option>
         </select>
         <input id="searchText" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
-        <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|playerListAjax(1,'player_id','DESC',2)|">검색</button>
+        <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|playerListAjax(1,'name','DESC',1)|">검색</button>
       </div>
     </form>
   </div>
