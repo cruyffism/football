@@ -1,38 +1,38 @@
-<table class="table">
+<table class="table" style="table-layout: fixed">
   <thead>
   <tr style="text-align: center">
-    <th scope="col">번호</th>
-    <th scope="col">이름<img id="sort1" class="name"
+    <th scope="col" width="5%">번호</th>
+    <th scope="col" width="5%">이름<img id="sort1" class="name"
                                 src="../../static/images/rank/sortUp.svg"
                                 onclick="sortUpDown(1);"></th>
-    <th scope="col">소속팀</th>
-    <th scope="col">키</th>
-    <th scope="col">몸무게</th>
-    <th scope="col">나이</th>
-    <th scope="col">포지션</th>
-    <th scope="col">경기수</th>
-    <th scope="col">출전시간(분)</th>
-    <th scope="col">골</th>
-    <th scope="col">도움</th>
-    <th scope="col">공격포인트</th>
-    <th scope="col">옐로우카드</th>
-    <th scope="col">레드카드</th>
-    <th scope="col">평점</th>
-    <th scope="col">mvp</th>
-    <th scope="col">국가</th>
-    <th scope="col">플레이스타일</th>
-    <th scope="col">강점</th>
-    <th scope="col">약점</th>
-    <th scope="col">등번호</th>
+<!--    <th scope="col">소속팀</th>-->
+    <th scope="col" width="5%">키</th>
+    <th scope="col" width="5%">몸무게</th>
+    <th scope="col" width="5%">나이</th>
+    <th scope="col" width="5%">포지션</th>
+    <th scope="col" width="5%">경기수</th>
+    <th scope="col" width="5%">출전시간(분)</th>
+    <th scope="col" width="5%">골</th>
+    <th scope="col" width="5%">도움</th>
+    <th scope="col" width="5%">공격포인트</th>
+    <th scope="col" width="5%">옐로우카드</th>
+    <th scope="col" width="5%">레드카드</th>
+    <th scope="col" width="5%">평점</th>
+    <th scope="col" width="5%">mvp</th>
+    <th scope="col" width="5%">국가</th>
+    <th scope="col" width="5%">플레이스타일</th>
+    <th scope="col" width="5%">강점</th>
+    <th scope="col" width="5%">약점</th>
+    <th scope="col" width="5%">등번호</th>
   </tr>
   </thead>
   <tbody>
   <th:block th:if="${PageMaker.totalCount != 0}">
-    <tr th:each="player : ${playerList}" style="text-align: center">
+    <tr th:each="player : ${playerList}" style="text-align: center; vertical-align: middle;">
 <!--   playerList 요 결과값들(메시, 음바페 등등)을 player라는 변수에  한건씩 넣는다는거! -->
       <td th:text="${(PageMaker.criteria.page - 1) * 10 + playerStat.index + 1}"></td>
       <td th:text="${player.name}" th:onclick="|location.href='@{/admin/playerInfo/{playerId}(playerId=${player.player_id})}'|" style="cursor: pointer;"></td>
-      <td th:text="${player.team_id}"></td>
+<!--      <td th:text="${player.team_id}"></td>-->
       <td th:text="${player.height}"></td>
       <td th:text="${player.weight}"></td>
       <td th:text="${player.age}"></td>
@@ -47,8 +47,8 @@
       <td th:text="${player.rating}"></td>
       <td th:text="${player.mvp}"></td>
       <td th:text="${player.nationality}"></td>
-      <td th:text="${player.play_style}"></td>
-      <td th:text="${player.strength}"></td>
+      <td th:text="${player.play_style}" style="white-space:nowrap;  text-overflow:ellipsis; overflow:hidden;"></td>
+      <td th:text="${player.strength}" style="white-space:nowrap;  text-overflow:ellipsis; overflow:hidden;"></td>
       <td th:text="${player.weakness}"></td>
       <td th:text="${player.back_number}"></td>
     </tr>
