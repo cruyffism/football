@@ -35,5 +35,17 @@
         where team_id = #{team_id}
     </update>
 
+    <!--    //선수 관리 리스트 조회-->
+    <select id="playerList" resultType="com.minki.football.dto.team.PlayerRes" parameterType="com.minki.football.dto.page.Criteria">
+        select *
+        from player
+        <where>
+            <if test="noticeSearchText != null and noticeSearchText != ''">
+                AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
+            </if>
+        </where>
+        order by ${sort}
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
 
 </mapper>

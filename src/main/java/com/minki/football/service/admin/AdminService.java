@@ -1,6 +1,8 @@
 package com.minki.football.service.admin;
 
 
+import com.minki.football.dto.page.Criteria;
+import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
 import com.minki.football.mapper.admin.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,11 @@ public class AdminService {
         Integer teamUpdate = adminMapper.teamUpdate(teamRes);
         return teamUpdate;
     }
-    //     <!--// 수정 및 저장-->
-    
+    //<!--    //  선수 관리 리스트 조회-->
+    public List<PlayerRes> playerList(Criteria criteria) {
+        List<PlayerRes> playerList = adminMapper.playerList(criteria);
+        return playerList;
+    }
 
 
 }

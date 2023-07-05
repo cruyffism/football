@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/common :: head('Hello, Football Homepage!')">
+</head>
+<script src="../../static/js/adminTeamList.js"></script>
+<body id="page-top">
+<!-- Navigation: 내부바 = 토탈풋볼 -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
+     th:replace="fragments/common2 :: menu"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
+</nav>
+<!-- Masthead: 챔스 배경 화면 >> 이건 직접 넣은 코드 -->
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-subheading">Welcome To Our FootBall!</div>
+    <a class="btn btn-primary btn-xl text-uppercase" href="#teamListMain">Here to Go</a>
+  </div>
+</header>
+
+<section class="page-section bg-light" id="teamListMain">
+  <div class="container">
+    <form id="form1">
+      <input type="hidden" id="page" name="page" value="1">
+      <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
+      <input type="hidden" name="sortType" id="sortType" value=""/>
+      <input type="hidden" name="idx" id="idx" value=""/>
+      <input type="hidden" name="noticeSearchText" id="noticeSearchText" value=""/>
+      <!--    noticeSearchText >> 게시판에 칠 검색어    -->
+      <input type="hidden" name="noticeSearchType" id="noticeSearchType" value=""/>
+      <!--    noticeSearchText >> 검색하기 전 선택할 타입 : 작성자, 제목 등..   -->
+      <div id="playerListAjax"></div> <!-- playerlistAjax.html의 전체 소스가 들어감 -->
+      <div class="text-center">
+        <select id = "searchType" class="form-select form-select-sm"  style="display:inline-block; width:12%" aria-label="Default select example">
+          <option value="name" selected>선수이름</option>
+        </select>
+        <input id="searchText" class="form-control form-control-sm" style="display:inline-block; width:30%" type="text" placeholder="검색어를 입력하세요" aria-label=".form-control-sm example">
+        <button class="btn btn-primary btn-sm" style="width:10%" type="button" th:onclick="|playerListAjax(1,'player_id','DESC',2)|">검색</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Clients: 구글/페이스북 등등 ~ -->
+<div class="py-5" th:replace="fragments/common::clients">
+</div>
+<!-- Footer: 카피라이터 등등 ~ -->
+<footer class="footer py-4" th:replace="fragments/common::footer">
+</footer>
+</body>
+</html>
