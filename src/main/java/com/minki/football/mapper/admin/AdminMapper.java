@@ -28,4 +28,7 @@ public interface AdminMapper {
 
     //<!--// 플레이어 수정폼 조회-->
     PlayerRes playerInfo(Integer playerId);
+
+    // 플레이어 정보 수정 및 저장
+    Integer playerUpdate(PlayerRes playerRes);
 }

@@ -52,4 +52,9 @@ public class AdminService {
         return playerInfo;
     }
 
+    //플레이어 정보 수정 및 저장
+    public Integer  playerUpdate(PlayerRes playerRes) {
+        Integer playerUpdate = adminMapper.playerUpdate(playerRes);
+        return playerUpdate;
+    }
 }

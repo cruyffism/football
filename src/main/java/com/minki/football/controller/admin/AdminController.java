@@ -158,4 +158,71 @@ public class AdminController {
         model.addAttribute("playerInfo", playerInfo);
         return "admin/playerInfo";
     }
+
+    //플레이어 정보 수정 및 저장
+    @PostMapping("/playerUpdate")
+   public String playerUpdate(Model model, @RequestParam(value = "image", required = false) MultipartFile img,
+                              @RequestParam(value = "player_id", required = false) Integer playerId,
+                             @RequestParam(value = "name", required = false) String name,
+                             @RequestParam(value = "height", required = false) Integer height,
+                           @RequestParam(value = "weight", required = false) Integer weight,
+                             @RequestParam(value = "age", required = false) Integer age,
+                             @RequestParam(value = "position", required = false) String position,
+                             @RequestParam(value = "game_match", required = false) Integer gameMatch,
+                            @RequestParam(value = "playing_time", required = false) Integer playingTime,
+                            @RequestParam(value = "goal", required = false) Integer goal,
+                            @RequestParam(value = "assist", required = false) Integer assist,
+                             @RequestParam(value = "total_point", required = false) Integer totalPoint,
+                            @RequestParam(value = "yellow_card", required = false) Integer yellowCard,
+                             @RequestParam(value = "red_card", required = false) Integer redCard,
+                            @RequestParam(value = "rating", required = false) Integer rating,
+                            @RequestParam(value = "mvp", required = false) Integer mvp,
+                            @RequestParam(value = "nationality", required = false) String nationality,
+                            @RequestParam(value = "play_style", required = false) String playStyle,
+                            @RequestParam(value = "strength", required = false) String strength,
+                            @RequestParam(value = "weakness", required = false) String weakness,
+                            @RequestParam(value = "back_number", required = false) Integer backNumber
+           , HttpServletResponse response) throws IOException {
+       PlayerRes playerRes = new PlayerRes();
+       playerRes.setPlayer_id(playerId);
+       playerRes.setName(name);
+       playerRes.setHeight(height);
+       playerRes.setWeight(weight);
+       playerRes.setAge(age);
+       playerRes.setPosition(position);
+       playerRes.setGame_match(gameMatch);
+       playerRes.setPlaying_time(playingTime);
+       playerRes.setGoal(goal);
+       playerRes.setAssist(assist);
+       playerRes.setTotal_point(totalPoint);
+       playerRes.setYellow_card(yellowCard);
+       playerRes.setRed_card(redCard);
+       playerRes.setRating(rating);
+       playerRes.setMvp(mvp);
+       playerRes.setNationality(nationality);
+       playerRes.setPlay_style(playStyle);
+       playerRes.setStrength(strength);
+       playerRes.setWeakness(weakness);
+       playerRes.setBack_number(backNumber);
+        System.out.println("img : " + img);
+        if(img !=null && !img.isEmpty()){
+            System.out.println("name : " + img.getName());
+            playerRes.setFile_bytes(img.getBytes());
+            playerRes.setFile_name(img.getOriginalFilename());
+            playerRes.setFile_size(img.getSize());
+            playerRes.setMime_type(img.getContentType());
+        }
+        System.out.println("playerRes : " + playerRes);
+
+        // 선수 정보 수정
+        Integer playerUpdate = adminService.playerUpdate(playerRes);
+        model.addAttribute("playerUpdate",playerUpdate);
+        // 수정 후 alert 창 띄우기
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('선수 정보가 수정되었습니다.');</script>");
+        writer.flush();
+        // 수정이 다 됬으면 선수 관리 리스트 화면으로!
+        return "admin/playerList";
+    }
 }

@@ -65,4 +65,42 @@
         from player
         where player_id = #{playerId}
     </select>
+
+    <!--// 플레이어 정보 수정 및 저장-->
+    <update id="playerUpdate" parameterType="com.minki.football.dto.team.PlayerRes">
+        update player <trim prefix="SET" suffixOverrides=",">
+                          name = #{name},
+                          height = #{height},
+                          weight = #{weight},
+                          age  = #{age},
+                          position = #{position},
+                          game_match = #{game_match},
+                          playing_time = #{playing_time},
+                          goal = #{goal},
+                          assist = #{assist},
+                          total_point = #{total_point},
+                          yellow_card = #{yellow_card},
+                          red_card = #{red_card},
+                          rating = #{rating},
+                          mvp = #{mvp},
+                          nationality = #{nationality},
+                          play_style = #{play_style},
+                          strength = #{strength},
+                          weakness = #{weakness},
+                          back_number = #{back_number},
+        <if test="file_name != null and file_name != ''">
+            file_name = #{file_name},
+        </if>
+        <if test="file_size != null and file_size != ''">
+            file_size = #{file_size},
+        </if>
+        <if test="file_bytes != null and file_bytes != ''">
+            file_bytes = #{file_bytes},
+        </if>
+        <if test="mime_type != null and mime_type != ''">
+            mime_type = #{mime_type}
+        </if>
+    </trim>
+        where player_id = #{player_id}
+    </update>
 </mapper>
