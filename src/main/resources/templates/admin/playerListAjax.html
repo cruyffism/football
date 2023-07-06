@@ -1,17 +1,17 @@
 <table class="table" style="table-layout: fixed">
   <thead>
   <tr style="text-align: center">
-    <th scope="col" width="5%">번호</th>
-    <th scope="col" width="5%">이름<img id="sort1" class="name"
+    <th scope="col" width="10%">번호</th>
+    <th scope="col" width="20%">이름<img id="sort1" class="name"
                                 src="../../static/images/rank/sortUp.svg"
                                 onclick="sortUpDown(1);"></th>
 <!--    <th scope="col">소속팀</th>-->
-    <th scope="col" width="5%">키</th>
-    <th scope="col" width="5%">몸무게</th>
-    <th scope="col" width="5%">나이</th>
-    <th scope="col" width="5%">포지션</th>
-    <th scope="col" width="5%">등번호</th>
-    <th scope="col" width="5%">선수 이미지</th>
+    <th scope="col" width="10%">키</th>
+    <th scope="col" width="10%">몸무게</th>
+    <th scope="col" width="10%">나이</th>
+    <th scope="col" width="10%">포지션</th>
+    <th scope="col" width="10%">등번호</th>
+    <th scope="col" width="20%">선수 이미지</th>
   </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
       <td th:text="${player.age}"></td>
       <td th:text="${player.position}"></td>
       <td th:text="${player.back_number}"></td>
-        <td><img th:src="|@{/admin/playerImage/{playerId(playerId=${player.player_id})}}|" style="width: 100px; height: 100px"></td>
+        <td><img th:src="@{/admin/playerImage/{playerId}(playerId=${player.player_id})}" style="width: 100px; height: 100px"></td>
     </tr>
   </th:block>
   <th:block th:if="${PageMaker.totalCount == 0}">
