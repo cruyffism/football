@@ -46,4 +46,10 @@ public class AdminService {
         return playerCount;
     }
 
+    //<!--    //플레이어 수정폼 조회-->
+    public PlayerRes playerInfo(Integer playerId) {
+        PlayerRes playerInfo = adminMapper.playerInfo(playerId);
+        return playerInfo;
+    }
+
 }

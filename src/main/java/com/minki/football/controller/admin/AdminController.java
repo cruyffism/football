@@ -76,4 +76,12 @@ public class AdminController {
         model.addAttribute("playerList", playerList);
         return"admin/playerListAjax";
     }
+
+    // 플레이어 수정폼 조회
+    @GetMapping("/playerInfo/{playerId}")
+    public String playerInfo(Model model, @PathVariable Integer playerId) {
+        PlayerRes playerInfo = adminService.playerInfo(playerId);
+        model.addAttribute("playerInfo", playerInfo);
+        return "admin/playerInfo";
+    }
 }
