@@ -59,4 +59,10 @@
         </where>
     </select>
 
+    <!--// 플레이어 수정폼 조회-->
+    <select id="playerInfo" resultType="com.minki.football.dto.team.PlayerRes">
+        select *
+        from player
+        where player_id = #{playerId}
+    </select>
 </mapper>

@@ -25,4 +25,7 @@ public interface AdminMapper {
 
     // <!--//전체 플레이어수 조회-->
     Integer playerCount(Criteria criteria);
+
+    //<!--// 플레이어 수정폼 조회-->
+    PlayerRes playerInfo(Integer playerId);
 }
