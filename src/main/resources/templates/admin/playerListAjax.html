@@ -10,20 +10,8 @@
     <th scope="col" width="5%">몸무게</th>
     <th scope="col" width="5%">나이</th>
     <th scope="col" width="5%">포지션</th>
-    <th scope="col" width="5%">경기수</th>
-    <th scope="col" width="5%">출전시간(분)</th>
-    <th scope="col" width="5%">골</th>
-    <th scope="col" width="5%">도움</th>
-    <th scope="col" width="5%">공격포인트</th>
-    <th scope="col" width="5%">옐로우카드</th>
-    <th scope="col" width="5%">레드카드</th>
-    <th scope="col" width="5%">평점</th>
-    <th scope="col" width="5%">mvp</th>
-    <th scope="col" width="5%">국가</th>
-    <th scope="col" width="5%">플레이스타일</th>
-    <th scope="col" width="5%">강점</th>
-    <th scope="col" width="5%">약점</th>
     <th scope="col" width="5%">등번호</th>
+    <th scope="col" width="5%">선수 이미지</th>
   </tr>
   </thead>
   <tbody>
@@ -37,20 +25,8 @@
       <td th:text="${player.weight}"></td>
       <td th:text="${player.age}"></td>
       <td th:text="${player.position}"></td>
-      <td th:text="${player.game_match}"></td>
-      <td th:text="${player.playing_time}"></td>
-      <td th:text="${player.goal}"></td>
-      <td th:text="${player.assist}"></td>
-      <td th:text="${player.total_point}"></td>
-      <td th:text="${player.yellow_card}"></td>
-      <td th:text="${player.red_card}"></td>
-      <td th:text="${player.rating}"></td>
-      <td th:text="${player.mvp}"></td>
-      <td th:text="${player.nationality}"></td>
-      <td th:text="${player.play_style}" style="white-space:nowrap;  text-overflow:ellipsis; overflow:hidden;"></td>
-      <td th:text="${player.strength}" style="white-space:nowrap;  text-overflow:ellipsis; overflow:hidden;"></td>
-      <td th:text="${player.weakness}"></td>
       <td th:text="${player.back_number}"></td>
+        <td><img th:src="|@{/admin/playerImage/{playerId(playerId=${player.player_id})}}|" style="width: 100px; height: 100px"></td>
     </tr>
   </th:block>
   <th:block th:if="${PageMaker.totalCount == 0}">

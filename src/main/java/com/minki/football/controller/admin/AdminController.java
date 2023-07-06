@@ -175,7 +175,7 @@ public class AdminController {
                              @RequestParam(value = "total_point", required = false) Integer totalPoint,
                             @RequestParam(value = "yellow_card", required = false) Integer yellowCard,
                              @RequestParam(value = "red_card", required = false) Integer redCard,
-                            @RequestParam(value = "rating", required = false) Integer rating,
+                            @RequestParam(value = "rating", required = false) double rating,
                             @RequestParam(value = "mvp", required = false) Integer mvp,
                             @RequestParam(value = "nationality", required = false) String nationality,
                             @RequestParam(value = "play_style", required = false) String playStyle,
