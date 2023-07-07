@@ -1,0 +1,69 @@
+<table class="table" style="table-layout: fixed">
+  <thead>
+  <tr style="text-align: center">
+    <th scope="col" width="10%">번호</th>
+    <th scope="col" width="20%">아이디<img id="sort1" class="username"
+                                src="../../static/images/rank/sortUp.svg"
+                                onclick="sortUpDown(1);"></th>
+<!--    <th scope="col">소속팀</th>-->
+    <th scope="col" width="10%">이름</th>
+    <th scope="col" width="10%">닉네임</th>
+    <th scope="col" width="10%">생일</th>
+    <th scope="col" width="10%">성별</th>
+    <th scope="col" width="20%">핸드폰 번호</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:if="${PageMaker.totalCount != 0}">
+    <tr th:each="member : ${memberList}" style="text-align: center; vertical-align: middle;">
+<!--   playerList 요 결과값들(메시, 음바페 등등)을 player라는 변수에  한건씩 넣는다는거! -->
+      <td th:text="${(PageMaker.criteria.page - 1) * 10 + memberStat.index + 1}"></td>
+      <td th:text="${member.username}"></td>
+<!--      <td th:text="${player.team_id}"></td>-->
+      <td th:text="${member.name}"></td>
+      <td th:text="${member.nickname}"></td>
+      <td th:text="${member.birthday}"></td>
+      <td th:text="${member.gender}"></td>
+      <td th:text="${member.phone}"></td>
+    </tr>
+  </th:block>
+  <th:block th:if="${PageMaker.totalCount == 0}">
+    <tr style="text-align: center">
+      <td  class="text-center" colspan="6">아직 작성된 게시글이 없습니다.</td>
+    </tr>
+  </th:block>
+  <!-- colspan="6" : 한줄로 보이게끔 하는 셀병합 기능   -->
+  </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:playerListAjax(${PageMaker.startPage - PageMaker.displayPageNum},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.startPage == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:playerListAjax(${PageMaker.criteria.page - 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Previous" th:classappend="${PageMaker.criteria.page == 1} ? ' disabled' : ''">
+        <span aria-hidden="true">&lsaquo;</span>
+      </a>
+    </li>
+    <th:block  th:each="num : ${#numbers.sequence(PageMaker.startPage,PageMaker.endPage)}">
+      <li class="page-item" th:classappend="${PageMaker.criteria.page == num} ? ' active' : ''"><a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+                                                                                                   th:onclick="|javascript:playerListAjax(${num},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" th:text="${num}"></a></li>
+    </th:block>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:playerListAjax(${PageMaker.criteria.page + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.criteria.page == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&rsaquo;</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" th:sortColumn="${PageMaker.criteria.sortColumn}" th:sortType="${PageMaker.criteria.sortType}" th:idx="${PageMaker.criteria.idx}"
+         th:onclick="|javascript:playerListAjax(${PageMaker.endPage + 1},this.getAttribute('sortColumn'),this.getAttribute('sortType'),this.getAttribute('idx'))|" aria-label="Next" th:classappend="${PageMaker.endPage == PageMaker.maxPage} ? ' disabled' : ''">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

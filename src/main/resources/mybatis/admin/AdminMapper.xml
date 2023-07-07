@@ -103,4 +103,29 @@
     </trim>
         where player_id = #{player_id}
     </update>
+
+    <!--// 회원 정보 리스트 조회-->
+    <select id="memberList" resultType="com.minki.football.dto.user.UserRes" parameterType="com.minki.football.dto.page.Criteria">
+        select *
+        from member
+        <where>
+            <if test="noticeSearchText != null and noticeSearchText != ''">
+                AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
+            </if>
+        </where>
+        order by ${sort}
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+
+    <!--//전체 회원수 조회-->
+    <select id="memberCount" resultType="Integer" parameterType="com.minki.football.dto.page.Criteria">
+        select count(*)
+        from member
+        <where>
+            <if test="noticeSearchText != null and noticeSearchText != ''">
+                AND ${noticeSearchType} like concat('%',#{noticeSearchText},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

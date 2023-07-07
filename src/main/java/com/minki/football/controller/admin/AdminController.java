@@ -4,6 +4,7 @@ import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.page.PageMaker;
 import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
+import com.minki.football.dto.user.UserRes;
 import com.minki.football.service.admin.AdminService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,7 +140,7 @@ public class AdminController {
         return "admin/playerList";
     }
 
-    // 선수 관리 리스트 조회
+    // 선수 관리 리스트 조회 and 전체 플레이어수 조회
     @GetMapping("/playerListAjax")
     public String playerListAjax(Model model, @ModelAttribute Criteria criteria) {
         List<PlayerRes> playerList = adminService.playerList(criteria);
@@ -225,4 +226,24 @@ public class AdminController {
         // 수정이 다 됬으면 선수 관리 리스트 화면으로!
         return "admin/playerList";
     }
+
+    // 회원 정보 기본 화면
+    @GetMapping("/memberList")
+    public String memberList() {
+        return "admin/memberList";
+    }
+
+
+    // <!--// 회원 정보 리스트 조회 and 전체 회원수 조회-->
+    @GetMapping("/memberListAjax")
+    public String memberList(Model model, @ModelAttribute Criteria criteria) {
+        List<UserRes> memberList = adminService.memberList(criteria);
+        PageMaker pageMaker = new PageMaker(); //PageMaker 클래스파일을 사용하기위해 선언한 것 >> 선언해주면 PageMaker 클래스파일의 변수들을 get, set해서 사용가능하다.
+        pageMaker.setCriteria(criteria); // criteria라는 변수에다가 우리가 @ModelAttribute를 통해 매개변수로 받은 criteria 값을 저장
+        pageMaker.setTotalCount(adminService.memberCount(criteria));
+        model.addAttribute("PageMaker", pageMaker);
+        model.addAttribute("memberList", memberList);
+        return "admin/memberListAjax";
+    }
+
 }

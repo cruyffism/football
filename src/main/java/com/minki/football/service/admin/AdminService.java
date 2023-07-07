@@ -4,6 +4,7 @@ package com.minki.football.service.admin;
 import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
+import com.minki.football.dto.user.UserRes;
 import com.minki.football.mapper.admin.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,17 @@ public class AdminService {
     public Integer  playerUpdate(PlayerRes playerRes) {
         Integer playerUpdate = adminMapper.playerUpdate(playerRes);
         return playerUpdate;
+    }
+
+    // <!--// 회원 정보 조회-->
+    public List<UserRes> memberList(Criteria criteria) {
+       List<UserRes> memberList = adminMapper.memberList(criteria);
+       return memberList;
+    }
+
+    //<!--    //전체 회원수 조회-->
+    public  Integer memberCount(Criteria criteria) {
+        Integer memberCount = adminMapper.memberCount(criteria);
+        return memberCount;
     }
 }

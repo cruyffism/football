@@ -4,6 +4,7 @@ package com.minki.football.mapper.admin;
 import com.minki.football.dto.page.Criteria;
 import com.minki.football.dto.team.PlayerRes;
 import com.minki.football.dto.team.TeamRes;
+import com.minki.football.dto.user.UserRes;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -31,4 +32,10 @@ public interface AdminMapper {
 
     // 플레이어 정보 수정 및 저장
     Integer playerUpdate(PlayerRes playerRes);
+
+   //<!--// 회원 정보 조회-->
+    List<UserRes> memberList(Criteria criteria);
+
+  // <!--//전체 회원수 조회-->
+    Integer memberCount(Criteria criteria);
 }
