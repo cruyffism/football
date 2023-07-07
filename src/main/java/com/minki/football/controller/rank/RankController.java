@@ -26,9 +26,7 @@ public class RankController {
     @GetMapping("/team/{leagueId}")
     public String list(Model model, @PathVariable Integer leagueId) {
         List<TeamRes> rankList = rankService.list(leagueId);
-
-        model.addAttribute("list",rankList);
-        System.out.println("순위정보 : " + rankList);
+        model.addAttribute("list", rankList);
         return "rank/teamAjax";
     }
 
@@ -36,17 +34,13 @@ public class RankController {
     //선수 순위 조회
     @GetMapping("/player")
     public String info(Model model, @ModelAttribute("criteria") Criteria criteria) {
-        System.out.println("criteria : "+criteria);
         List<PlayerRes> playerRes = rankService.player(criteria);
 
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCriteria(criteria);
         pageMaker.setTotalCount(rankService.selectPlayerTotalCount(criteria));
         model.addAttribute("PageMaker", pageMaker);
-
         model.addAttribute("player", playerRes);
-        System.out.println("선수순위 : " + playerRes);
-        System.out.println("pageMaker : " + pageMaker);
         return "rank/playerAjax"; //league 폴더안에 info.html로 보낸다.
     }
 
@@ -54,7 +48,6 @@ public class RankController {
     @GetMapping
     public String rank(Model model, @ModelAttribute("criteria") Criteria criteria) {
         model.addAttribute("criteria", criteria);
-        System.out.println("순위페이지" );
         return "rank/rankList";
     }
 
@@ -69,10 +62,6 @@ public class RankController {
         model.addAttribute("playerAssist", playerAssist);
         model.addAttribute("playerTotalPoint", playerTotalPoint);
         model.addAttribute("playerMvp", playerMvp);
-        System.out.println("득점 : " + playerGoal);
-        System.out.println("어시 : " + playerAssist);
-        System.out.println("총스탯 :  " + playerTotalPoint);
-        System.out.println("엠비피 : " + playerMvp);
         return "rank/podiumAjax";
     }
 

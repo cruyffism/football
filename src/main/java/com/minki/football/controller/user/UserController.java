@@ -39,22 +39,20 @@ public class UserController {
     public String home(Model model) { // 접근제한자 리턴값 메소드명(매개변수){}  >> 이게 하나의 메소드이다.
         List<LeagueRes> leagueList = leagueService.list(); // leagueService.list()라는 메소드를 호출해서  leagueList(좌측값)에 담았다.
         // 데이터 타입     변수명       호출메소드
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
+        String role = auth.getAuthorities().toString();
         model.addAttribute("leagueList", leagueList); //leagueList를 "leagueList"란 변수로 담은 후에 프론트엔드, 즉 아래에 있는 "index" 여기다가 보내줌.
+        model.addAttribute("role", role); //leagueList를 "leagueList"란 변수로 담은 후에 프론트엔드, 즉 아래에 있는 "index" 여기다가 보내줌.
 
         return "index"; // 리턴값은 프론트엔드로 가는 경로 (템플릿 밑에 경로), index.html로 보낸다.
     }
 
     // 로그인 페이지
     @GetMapping("/login")
-    public String loginPage(
-            @RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "exception", required = false) String exception,
-                            Model model) {
+    public String loginPage(@RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "exception", required = false) String exception, Model model) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-
-        System.out.println("error : " + error);
-        System.out.println("exception : " + exception);
 
         return "user/login";
     }
@@ -91,7 +89,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName();
         UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info",userReq );
+        model.addAttribute("info", userReq);
         return "user/mypage"; //프론트 경로
 
     }
@@ -102,7 +100,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName();
         UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info",userReq );
+        model.addAttribute("info", userReq);
         return "user/updateInfoForm";
     }
 
@@ -116,20 +114,15 @@ public class UserController {
         String username = auth.getName(); // auth애서 아이디값만 가져와서 좌측 username에 넣어준거
         Integer result = userService.updateUser(userRes);
         UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info",userReq );
+        model.addAttribute("info", userReq);
         return "user/mypage"; //프론트 경로
     }
 
     //회원정보 삭제
     @GetMapping("/deleteInfo") // 조회,삭제가 get
-    public String deleteUser(Model model, @RequestParam String username, HttpServletResponse response,  HttpSession session) throws IOException {
+    public String deleteUser(Model model, @RequestParam String username, HttpSession session) throws IOException {
         Integer deleteUser = userService.deleteUser(username);
-        model.addAttribute("deleteUser",username);
-
-//        response.setContentType("text/html; charset=UTF-8");
-//        PrintWriter writer = response.getWriter();
-//        writer.println("<script>alert('탈퇴되었습니다.');</script>");
-//        writer.flush();
+        model.addAttribute("deleteUser", username);
         session.invalidate();
 
         return "redirect:/";
@@ -143,39 +136,4 @@ public class UserController {
         return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
     }
 
-
-
-
-    //    @GetMapping("/userList")
-//    public String getUserList(Model model) { // User 테이블의 전체 정보를 보여줌
-//        List<UserVo> userList = userService.getUserList();
-//        model.addAttribute("list", userList);
-//        return "userListPage";
-//    }
-
-//    @GetMapping("/update")
-//    public String editPage(Model model) { // 회원 정보 수정 페이지
-//        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        UserVo userVo = userService.getUserById(id);
-//        model.addAttribute("user", userVo);
-//        return "editPage";
-//    }
-//
-//    @PostMapping("/update")
-//    public String edit(UserVo userVo) { // 회원 정보 수정
-//        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        userVo.setId(id);
-//        userService.edit(userVo);
-//        return "redirect:/";
-//    }
-//
-//    @PostMapping("/delete")
-//    public String withdraw(HttpSession session) { // 회원 탈퇴
-//        Long id = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (id != null) {
-//            userService.withdraw(id);
-//        }
-//        SecurityContextHolder.clearContext(); // SecurityContextHolder에 남아있는 token 삭제
-//        return "redirect:/";
-//    }
 }

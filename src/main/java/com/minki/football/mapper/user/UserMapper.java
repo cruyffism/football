@@ -7,9 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
-//    List<UserVo> getUserList();  // User 테이블 가져오기
+    //    List<UserVo> getUserList();  // User 테이블 가져오기
     void insertUser(UserReq userReq); // 회원 가입
-//    UserVo getUserByNickname(String nickname); // 회원 정보 가져오기
+
+    //    UserVo getUserByNickname(String nickname); // 회원 정보 가져오기
     UserReq getUserById(String username); // 회원 정보 가져오기
     // 타입 메소드 매개변수
 
@@ -19,7 +20,7 @@ public interface UserMapper {
     Integer deleteUser(String username);  //회원 정보 삭제
 
     Integer idCheck(String username);               //아이디 중복 체크
+
     void insertUserRole(UserRoleReq userRoleReq);
-//    void updateUser(UserVo userVo); // 회원 정보 수정
-//    void deleteUser(Long id); // 회원 탈퇴
+
 }

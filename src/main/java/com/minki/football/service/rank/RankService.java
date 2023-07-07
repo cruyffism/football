@@ -16,13 +16,11 @@ public class RankService {
     private RankMapper rankMapper;
 
     public List<TeamRes> list(Integer leagueId) {
-
         List<TeamRes> rankList = rankMapper.list(leagueId);
-
         return rankList;
     }
 
-    public List<PlayerRes> player(Criteria criteria){
+    public List<PlayerRes> player(Criteria criteria) {
         List<PlayerRes> playerRes = rankMapper.rank(criteria);
         return playerRes;
     }

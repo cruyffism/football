@@ -18,13 +18,8 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-//    public List<UserVo> getUserList() {
-//        return userMapper.getUserList();
-//    }
-
-//   <!-- 회원정보조회 -->
+//  회원정보조회
     public UserReq getUserById(String username) {
-
         return userMapper.getUserById(username);
     }
 
@@ -46,10 +41,6 @@ public class UserService {
         return userMapper.idCheck(username);
     }
 
-//    public UserVo getUserByNickname(String nickname) {
-//        return userMapper.getUserByNickname(nickname);
-//    }
-
     public void signup(UserReq userReq) { // 회원 가입
         if (!userReq.getName().equals("") && !userReq.getUsername().equals("")) {
             // password는 암호화해서 DB에 저장
@@ -61,15 +52,5 @@ public class UserService {
             userMapper.insertUserRole(userRoleReq); // 권한정보 저장
         }
     }
-
-//    public void edit(UserVo userVo) { // 회원 정보 수정
-//        // password는 암호화해서 DB에 저장
-//        userVo.setPassword(passwordEncoder.encode(userVo.getPassword()));
-//        userMapper.updateUser(userVo);
-//    }
-//
-//    public void withdraw(Long id) { // 회원 탈퇴
-//        userMapper.deleteUser(id);
-//    }
 
 }

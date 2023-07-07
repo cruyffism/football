@@ -7,17 +7,17 @@
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/common2 :: menu"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
+     th:replace="fragments/common2 :: menu('[user]')"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
 </nav>
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
         <div class="masthead-subheading">Welcome To Our FootBall!</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#teamListMain">Here to Go</a>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#boardRegister">Here to Go</a>
     </div>
 </header>
 
-<section class="page-section bg-light" id="boardInfo">
+<section class="page-section bg-light" id="boardRegister">
     <form id="form1" th:action="@{/board/boardRegister}" method="post"> <!-- 다시 설명 듣기 -->
         <input type="hidden" id="click" name="click" value="0"> <!-- 조회수 기본값 0인 상태로 백엔드에 보낸다 -->
 <!--        <input type="hidden" id="nickname" name="nickname" sec:authentication="name"> &lt;!&ndash; 로그인한 정보에서 아이디만 가져와서 백엔드에 보내주기 &ndash;&gt;-->

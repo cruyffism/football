@@ -28,18 +28,18 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    // 1.기본 화면
-    @GetMapping("/list")
-    public String list() {
-        return "admin/list";
+    // 팀 관리 리스트 기본 화면
+    @GetMapping("/teamList")
+    public String teamList() {
+        return "admin/teamList";
     }
 
     //  팀 관리 리스트 조회
-    @GetMapping("/listAjax/{leagueId}")
-    public String listAjax(Model model, @PathVariable Integer leagueId) {
-        List<TeamRes> list = adminService.list(leagueId);
+    @GetMapping("/teamListAjax/{leagueId}")
+    public String teamListAjax(Model model, @PathVariable Integer leagueId) {
+        List<TeamRes> list = adminService.teamList(leagueId);
         model.addAttribute("list", list);
-        return "admin/listAjax";
+        return "admin/teamListAjax";
     }
 
     // 팀 정보 수정폼 조회
@@ -55,84 +55,27 @@ public class AdminController {
     public String teamUpdate(Model model, @ModelAttribute TeamRes teamRes, HttpServletResponse response) throws IOException {
         // 팀정보 수정
         Integer teamUpdate = adminService.teamUpdate(teamRes);
-        model.addAttribute("teamUpdate",teamUpdate);
+        model.addAttribute("teamUpdate", teamUpdate);
         // 수정 후 alert 창 띄우기
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();
         writer.println("<script>alert('팀 정보가 수정되었습니다.');</script>");
         writer.flush();
         // 수정이 다 됬으면 팀 관리 리스트 화면으로 되돌아감!
-        return "admin/list";
+        return "admin/teamList";
     }
 
-//    // 팀 정보 수정
-//    @PostMapping("/teamUpdate")
-//    public String teamUpdate(Model model, @RequestParam(value = "new_best_image_path", required = false) MultipartFile img,
-//                             @RequestParam(value = "team_id", required = false) Integer teamId,
-//                             @RequestParam(value = "game_rank", required = false) Integer gameRank,
-//                             @RequestParam(value = "team_name", required = false) String teamName,
-//                             @RequestParam(value = "team_style", required = false) String teamStyle,
-//                             @RequestParam(value = "game_match", required = false) Integer gameMatch,
-//                             @RequestParam(value = "point", required = false) Integer point,
-//                             @RequestParam(value = "win", required = false) Integer win,
-//                             @RequestParam(value = "draw", required = false) Integer draw,
-//                             @RequestParam(value = "lose", required = false) Integer lose,
-//                             @RequestParam(value = "plus_goal", required = false) Integer plusGoal,
-//                             @RequestParam(value = "minus_goal", required = false) Integer minusGoal,
-//                             @RequestParam(value = "diff_goal", required = false) Integer diffGoal,
-//                             @RequestParam(value = "logo_image_path", required = false) String logoImagePath,
-//                             @RequestParam(value = "best_image_path", required = false) String bestImagePath
-//            , HttpServletResponse response) throws IOException {
-//        TeamRes teamRes = new TeamRes();
-//        teamRes.setTeam_id(teamId);
-//        teamRes.setGame_rank(gameRank);
-//        teamRes.setTeam_name(teamName);
-//        teamRes.setTeam_style(teamStyle);
-//        teamRes.setGame_match(gameMatch);
-//        teamRes.setPoint(point);
-//        teamRes.setWin(win);
-//        teamRes.setDraw(draw);
-//        teamRes.setLose(lose);
-//        teamRes.setPlus_goal(plusGoal);
-//        teamRes.setMinus_goal(minusGoal);
-//        teamRes.setDiff_goal(diffGoal);
-//        teamRes.setLogo_image_path(logoImagePath);
-//        teamRes.setBest_image_path(bestImagePath);
-//        System.out.println("img : " + img);
-//        if(img !=null && !img.isEmpty()){
-//            System.out.println("name : " + img.getName());
-//            teamRes.setFile_bytes(img.getBytes());
-//            teamRes.setFile_name(img.getOriginalFilename());
-//            teamRes.setFile_size(img.getSize());
-//            teamRes.setMime_type(img.getContentType());
-//        }
-//        System.out.println("teamRes : " + teamRes);
-//
-//        // 팀정보 수정
-//        Integer teamUpdate = adminService.teamUpdate(teamRes);
-//        model.addAttribute("teamUpdate",teamUpdate);
-//        // 수정 후 alert 창 띄우기
-//        response.setContentType("text/html; charset=UTF-8");
-//        PrintWriter writer = response.getWriter();
-//        writer.println("<script>alert('팀 정보가 수정되었습니다.');</script>");
-//        writer.flush();
-//        // 수정이 다 됬으면 팀 관리 리스트 화면으로!
-//        return "admin/list";
-//    }
-
-   // 이미지 조회 >> 플레이어리스트 화면에 선수 이미지를 전부 뿌려주는것
-   @GetMapping("/playerImage/{playerId}")
+    // 이미지 조회 >> 플레이어리스트 화면에 선수 이미지를 전부 뿌려주는것
+    @GetMapping("/playerImage/{playerId}")
     @ResponseBody
     public ResponseEntity<byte[]> getLogoImage(@PathVariable Integer playerId) {
-       PlayerRes playerInfo = adminService.playerInfo(playerId);
+        PlayerRes playerInfo = adminService.playerInfo(playerId);
         byte[] imageContent = playerInfo.getFile_bytes();
         MediaType mediaType = MediaType.valueOf(playerInfo.getMime_type());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(mediaType);
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
     }
-
-
 
     // 2.플레이어쪽 기본 화면
     @GetMapping("/playerList")
@@ -149,7 +92,7 @@ public class AdminController {
         pageMaker.setTotalCount(adminService.playerCount(criteria));
         model.addAttribute("PageMaker", pageMaker);
         model.addAttribute("playerList", playerList);
-        return"admin/playerListAjax";
+        return "admin/playerListAjax";
     }
 
     // 플레이어 수정폼 조회
@@ -162,62 +105,61 @@ public class AdminController {
 
     //플레이어 정보 수정 및 저장
     @PostMapping("/playerUpdate")
-   public String playerUpdate(Model model, @RequestParam(value = "image", required = false) MultipartFile img,
-                              @RequestParam(value = "player_id", required = false) Integer playerId,
-                             @RequestParam(value = "name", required = false) String name,
-                             @RequestParam(value = "height", required = false) Integer height,
-                           @RequestParam(value = "weight", required = false) Integer weight,
-                             @RequestParam(value = "age", required = false) Integer age,
-                             @RequestParam(value = "position", required = false) String position,
-                             @RequestParam(value = "game_match", required = false) Integer gameMatch,
-                            @RequestParam(value = "playing_time", required = false) Integer playingTime,
-                            @RequestParam(value = "goal", required = false) Integer goal,
-                            @RequestParam(value = "assist", required = false) Integer assist,
-                             @RequestParam(value = "total_point", required = false) Integer totalPoint,
-                            @RequestParam(value = "yellow_card", required = false) Integer yellowCard,
-                             @RequestParam(value = "red_card", required = false) Integer redCard,
-                            @RequestParam(value = "rating", required = false) double rating,
-                            @RequestParam(value = "mvp", required = false) Integer mvp,
-                            @RequestParam(value = "nationality", required = false) String nationality,
-                            @RequestParam(value = "play_style", required = false) String playStyle,
-                            @RequestParam(value = "strength", required = false) String strength,
-                            @RequestParam(value = "weakness", required = false) String weakness,
-                            @RequestParam(value = "back_number", required = false) Integer backNumber
-           , HttpServletResponse response) throws IOException {
-       PlayerRes playerRes = new PlayerRes();
-       playerRes.setPlayer_id(playerId);
-       playerRes.setName(name);
-       playerRes.setHeight(height);
-       playerRes.setWeight(weight);
-       playerRes.setAge(age);
-       playerRes.setPosition(position);
-       playerRes.setGame_match(gameMatch);
-       playerRes.setPlaying_time(playingTime);
-       playerRes.setGoal(goal);
-       playerRes.setAssist(assist);
-       playerRes.setTotal_point(totalPoint);
-       playerRes.setYellow_card(yellowCard);
-       playerRes.setRed_card(redCard);
-       playerRes.setRating(rating);
-       playerRes.setMvp(mvp);
-       playerRes.setNationality(nationality);
-       playerRes.setPlay_style(playStyle);
-       playerRes.setStrength(strength);
-       playerRes.setWeakness(weakness);
-       playerRes.setBack_number(backNumber);
-        System.out.println("img : " + img);
-        if(img !=null && !img.isEmpty()){
+    public String playerUpdate(Model model, @RequestParam(value = "image", required = false) MultipartFile img,
+                               @RequestParam(value = "player_id", required = false) Integer playerId,
+                               @RequestParam(value = "name", required = false) String name,
+                               @RequestParam(value = "height", required = false) Integer height,
+                               @RequestParam(value = "weight", required = false) Integer weight,
+                               @RequestParam(value = "age", required = false) Integer age,
+                               @RequestParam(value = "position", required = false) String position,
+                               @RequestParam(value = "game_match", required = false) Integer gameMatch,
+                               @RequestParam(value = "playing_time", required = false) Integer playingTime,
+                               @RequestParam(value = "goal", required = false) Integer goal,
+                               @RequestParam(value = "assist", required = false) Integer assist,
+                               @RequestParam(value = "total_point", required = false) Integer totalPoint,
+                               @RequestParam(value = "yellow_card", required = false) Integer yellowCard,
+                               @RequestParam(value = "red_card", required = false) Integer redCard,
+                               @RequestParam(value = "rating", required = false) double rating,
+                               @RequestParam(value = "mvp", required = false) Integer mvp,
+                               @RequestParam(value = "nationality", required = false) String nationality,
+                               @RequestParam(value = "play_style", required = false) String playStyle,
+                               @RequestParam(value = "strength", required = false) String strength,
+                               @RequestParam(value = "weakness", required = false) String weakness,
+                               @RequestParam(value = "back_number", required = false) Integer backNumber
+            , HttpServletResponse response) throws IOException {
+        PlayerRes playerRes = new PlayerRes();
+        playerRes.setPlayer_id(playerId);
+        playerRes.setName(name);
+        playerRes.setHeight(height);
+        playerRes.setWeight(weight);
+        playerRes.setAge(age);
+        playerRes.setPosition(position);
+        playerRes.setGame_match(gameMatch);
+        playerRes.setPlaying_time(playingTime);
+        playerRes.setGoal(goal);
+        playerRes.setAssist(assist);
+        playerRes.setTotal_point(totalPoint);
+        playerRes.setYellow_card(yellowCard);
+        playerRes.setRed_card(redCard);
+        playerRes.setRating(rating);
+        playerRes.setMvp(mvp);
+        playerRes.setNationality(nationality);
+        playerRes.setPlay_style(playStyle);
+        playerRes.setStrength(strength);
+        playerRes.setWeakness(weakness);
+        playerRes.setBack_number(backNumber);
+
+        if (img != null && !img.isEmpty()) {
             System.out.println("name : " + img.getName());
             playerRes.setFile_bytes(img.getBytes());
             playerRes.setFile_name(img.getOriginalFilename());
             playerRes.setFile_size(img.getSize());
             playerRes.setMime_type(img.getContentType());
         }
-        System.out.println("playerRes : " + playerRes);
 
         // 선수 정보 수정
         Integer playerUpdate = adminService.playerUpdate(playerRes);
-        model.addAttribute("playerUpdate",playerUpdate);
+        model.addAttribute("playerUpdate", playerUpdate);
         // 수정 후 alert 창 띄우기
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter writer = response.getWriter();

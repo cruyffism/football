@@ -13,7 +13,7 @@ import java.util.List;
 public interface AdminMapper {
 
     // 1. 팀 관리 리스트 조회
-    List<TeamRes> list(Integer leagueId);
+    List<TeamRes> teamList(Integer leagueId);
 
     // 팀 정보 수정폼 조회
     TeamRes teamInfo(Integer teamId);
@@ -33,9 +33,9 @@ public interface AdminMapper {
     // 플레이어 정보 수정 및 저장
     Integer playerUpdate(PlayerRes playerRes);
 
-   //<!--// 회원 정보 조회-->
+    //<!--// 회원 정보 조회-->
     List<UserRes> memberList(Criteria criteria);
 
-  // <!--//전체 회원수 조회-->
+    // <!--//전체 회원수 조회-->
     Integer memberCount(Criteria criteria);
 }

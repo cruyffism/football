@@ -7,17 +7,17 @@
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/common2 :: menu"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
+     th:replace="fragments/common2 :: menu('[user]')"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
 </nav>
 <!-- Masthead-->
 <header class="masthead">
   <div class="container">
     <div class="masthead-subheading">Welcome To Our FootBall!</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="#teamListMain">Here to Go</a>
+    <a class="btn btn-primary btn-xl text-uppercase" href="#boardUpdate">Here to Go</a>
   </div>
 </header>
 
-<section class="page-section bg-light" id="boardInfo">
+<section class="page-section bg-light" id="boardUpdate">
   <form id="form1" th:action="@{/board/boardUpdate/{boardId}(boardId=${info.board_id})}" method="post">
     <input type="hidden" id="click" name="click" value="0">
   <div class="container">  <!-- container는 꾸며주는 틀 -->

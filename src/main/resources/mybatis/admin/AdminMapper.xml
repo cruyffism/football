@@ -3,7 +3,7 @@
 <mapper namespace="com.minki.football.mapper.admin.AdminMapper">
 
 <!--    // 1. 팀 관리 리스트 조회-->
-    <select id="list" resultType="com.minki.football.dto.team.TeamRes">
+    <select id="teamList" resultType="com.minki.football.dto.team.TeamRes">
         select *
         from team
         where league_id = #{leagueId}

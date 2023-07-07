@@ -6,16 +6,16 @@
 <body id="page-top">
 <!-- Navigation: 내부바 = 토탈풋볼 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
-     th:replace="fragments/common2 :: menu"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
+     th:replace="fragments/common2 :: menu('[user]')"> <!-- common2 경로에 있는 th:fragment의 값이 menu인 내용을 가져옴 -->
 </nav>
 <!-- Masthead: 챔스 배경 화면 >> 이건 직접 넣은 코드 -->
 <header class="masthead">
     <div class="container">
         <div class="masthead-subheading">Welcome To Our FootBall!</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#teamListMain">Here to Go</a>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#boardListMain">Here to Go</a>
     </div>
 </header>
-<section class="page-section bg-light" id="teamListMain">
+<section class="page-section bg-light" id="boardListMain">
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">게시판</h2>

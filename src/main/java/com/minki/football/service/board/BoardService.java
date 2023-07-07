@@ -17,8 +17,8 @@ public class BoardService {
 
     //게시판 리스트 조회
     public List<BoardRes> boardList(Criteria criteria) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardList()라는 메소드를 만듦
-      List<BoardRes> boardList  = boardMapper.boardList(criteria);
-      //   타입        변수명 = boardMapper. boardList(criteria)를 호출한 결과 ; >> 호출한 결과를 왼쪽 boardList에 담은 것
+        List<BoardRes> boardList = boardMapper.boardList(criteria);
+        //   타입        변수명 = boardMapper. boardList(criteria)를 호출한 결과 ; >> 호출한 결과를 왼쪽 boardList에 담은 것
         return boardList; // 그리고 이 결과값을 리턴
     }
 
@@ -34,7 +34,7 @@ public class BoardService {
         BoardRes boardInfo = boardMapper.boardInfo(boardId); // 위에 이미 타입을 Integer로 지정했기에 그냥 변수명만 안에 쓰면 됨!
         // 타입    변수명    = boardMapper.boardInfo(boardId)를 호출한 결과 ; >> boardMapper에있는 boardInfo(boardId)를 호출한 결과를 왼쪽 변수명 boardInfo에 담은것
         return boardInfo;  // 그리고 이 결과값을 리턴
-                            // 위에 public BoardRes boardInfo(Integer boardId) >> 접근제한자 리턴값 메소드명  여기서 말하는 리턴값을 리턴해주면 됨
+        // 위에 public BoardRes boardInfo(Integer boardId) >> 접근제한자 리턴값 메소드명  여기서 말하는 리턴값을 리턴해주면 됨
     }
 
     //게시판 글 등록(작성)

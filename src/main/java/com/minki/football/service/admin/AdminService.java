@@ -18,9 +18,9 @@ public class AdminService {
     private AdminMapper adminMapper;
 
 
-    // 1. 팀 관리 리스트 조회
-    public List<TeamRes> list(Integer leagueId) {
-        List<TeamRes> list = adminMapper.list(leagueId);
+    // 팀 관리 리스트 조회
+    public List<TeamRes> teamList(Integer leagueId) {
+        List<TeamRes> list = adminMapper.teamList(leagueId);
         return list;
     }
 
@@ -31,42 +31,43 @@ public class AdminService {
     }
 
     // 팀 정보 수정
-    public Integer teamUpdate(TeamRes teamRes){
+    public Integer teamUpdate(TeamRes teamRes) {
         Integer teamUpdate = adminMapper.teamUpdate(teamRes);
         return teamUpdate;
     }
-    //<!--    //  선수 관리 리스트 조회-->
+
+    //  선수 관리 리스트 조회
     public List<PlayerRes> playerList(Criteria criteria) {
         List<PlayerRes> playerList = adminMapper.playerList(criteria);
         return playerList;
     }
 
-    //<!--    //전체 플레이어수 조회-->
-    public  Integer playerCount(Criteria criteria) {
+    //전체 플레이어수 조회
+    public Integer playerCount(Criteria criteria) {
         Integer playerCount = adminMapper.playerCount(criteria);
         return playerCount;
     }
 
-    //<!--    //플레이어 수정폼 조회-->
+    //플레이어 수정폼 조회
     public PlayerRes playerInfo(Integer playerId) {
         PlayerRes playerInfo = adminMapper.playerInfo(playerId);
         return playerInfo;
     }
 
     //플레이어 정보 수정 및 저장
-    public Integer  playerUpdate(PlayerRes playerRes) {
+    public Integer playerUpdate(PlayerRes playerRes) {
         Integer playerUpdate = adminMapper.playerUpdate(playerRes);
         return playerUpdate;
     }
 
-    // <!--// 회원 정보 조회-->
+    // 회원 정보 조회
     public List<UserRes> memberList(Criteria criteria) {
-       List<UserRes> memberList = adminMapper.memberList(criteria);
-       return memberList;
+        List<UserRes> memberList = adminMapper.memberList(criteria);
+        return memberList;
     }
 
-    //<!--    //전체 회원수 조회-->
-    public  Integer memberCount(Criteria criteria) {
+    //전체 회원수 조회
+    public Integer memberCount(Criteria criteria) {
         Integer memberCount = adminMapper.memberCount(criteria);
         return memberCount;
     }
