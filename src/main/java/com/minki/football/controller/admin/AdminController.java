@@ -119,17 +119,17 @@ public class AdminController {
 //        return "admin/list";
 //    }
 
-    // 이미지 조회
-//    @GetMapping(value = "/teamImage/{teamId}")
-//    @ResponseBody
-//    public ResponseEntity<byte[]> getLogoImage(@PathVariable Integer teamId) {
-//        TeamRes teamInfo = adminService.teamInfo(teamId);
-//        byte[] imageContent = teamInfo.getFile_bytes();
-//        MediaType mediaType = MediaType.valueOf(teamInfo.getMime_type());
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(mediaType);
-//        return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
-//    }
+   // 이미지 조회 >> 플레이어리스트 화면에 선수 이미지를 전부 뿌려주는것
+   @GetMapping("/playerImage/{playerId}")
+    @ResponseBody
+    public ResponseEntity<byte[]> getLogoImage(@PathVariable Integer playerId) {
+       PlayerRes playerInfo = adminService.playerInfo(playerId);
+        byte[] imageContent = playerInfo.getFile_bytes();
+        MediaType mediaType = MediaType.valueOf(playerInfo.getMime_type());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(mediaType);
+        return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+    }
 
 
 

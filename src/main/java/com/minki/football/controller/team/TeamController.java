@@ -72,6 +72,10 @@ public class TeamController {
         PlayerRes playerRes = teamService.playerInfo(playerId); // teamService 파일 안에 있는 playerInfo(playerId) 메소드를 호출한 결과값이 PlayerRes 타입의 playerRes라는 변수명으로 담긴다!
         model.addAttribute("info", playerRes); // "team/playerInfo"라는 경로에다가 playerRes를 "info"라는 변수명에 담아서 프론트로 보냄
         System.out.println("선수정보 : " + playerRes);
+        String st = playerRes.getStrength();
+        st.replaceAll(System.getProperty("line.separator"), "<br>");
+        System.out.println("st : " + st);
+        playerRes.setStrength(st);
         return "team/playerInfo";// 여기서 리턴값은 프론트엔드로 가는 경로 (템플릿 밑에 경로)
         // 즉 모델 어트리뷰트에서 playerRes를 "info"라는 변수명에 담아서 프론트 엔드로 보내고 그 보낸 값이 리턴값 경로를 타서 프론트엔드 html로 간다!
         // 그리고 html에서 ${info}로 연결해서 사용한다.

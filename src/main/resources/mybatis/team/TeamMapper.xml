@@ -35,7 +35,8 @@
     </select>
 
     <select id="playerInfo" resultType="com.minki.football.dto.team.PlayerRes">
-        select name,
+        select player_id,
+               name,
                height,
                weight,
                game_match,
