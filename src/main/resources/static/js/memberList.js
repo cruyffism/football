@@ -4,7 +4,7 @@ $(document).ready(function () { // 페이지가 로딩되는 순간 바로 실�
 });
 
 function memberListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, sortType, idx
-    const innerHtml = $("#memberListAjax")
+    const innerHtml = $("#memberList")
     const f = document.getElementById("form1");
     f.page.value = page;
     f.sortColumn.value = sortColumn;
