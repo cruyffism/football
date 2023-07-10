@@ -8,7 +8,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
      th:replace="fragments/common :: menu('')">
 </nav>
-<header class="masthead">
+<header class="masthead" style="background-image: url('/static/images/back/mainpage.png');">
     <h2 style="margin-bottom: 50px">회원가입</h2>
     <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
 <!--        <div class="mb-3">-->
