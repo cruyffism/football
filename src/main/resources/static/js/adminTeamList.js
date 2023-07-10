@@ -7,7 +7,7 @@ function leagueTabAjax(league_id) {
     console.log("league_id : ", league_id);
     const innerHtml = $("#teamList")
     $.ajax({
-        url: "/admin/listAjax/" + league_id,
+        url: "/admin/teamListAjax/" + league_id,
         type: 'GET',
         cache: false,
         dataType: "html",

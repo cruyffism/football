@@ -46,7 +46,7 @@
         <form name="logout" th:action="@{/logout}" method="post" th:if="${role == '[admin]'}">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="/admin/list">team 관리</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/teamList">team 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="/admin/playerList">player 관리</a></li>
                     <li class="nav-item"><a class="nav-link" href="/admin/memberList">member 관리</a></li>
                     <li class="nav-item"><a class="nav-link" onclick="document.logout.submit();">Logout</a></li>

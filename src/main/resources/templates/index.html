@@ -17,105 +17,145 @@
             <a class="btn btn-primary btn-lg text-uppercase" href="/user/signup">SignUp</a>
         </div>
         <div sec:authorize="isAuthenticated()">
-            <a class="btn btn-primary btn-xl text-uppercase" href="#league">Here to Go</a>
+            <th:block th:if="${role == '[user]'}">
+                <a class="btn btn-primary btn-xl text-uppercase" href="#league">Here to Go</a>
+            </th:block>
+            <th:block th:if="${role == '[admin]'}">
+                <a class="btn btn-primary btn-xl text-uppercase" href="#admin">Here to Go</a>
+            </th:block>
         </div>
     </div>
 </header>
 <!-- body-->
 <div sec:authorize="isAuthenticated()">
-    <!-- League-->
-    <section class="page-section bg-light" id="league">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">League</h2>
-                <h3 class="section-subheading text-muted">5개의 리그가 있습니다.</h3>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4" th:each="league : ${leagueList}">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <!--                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" >-->
-                        <a class="portfolio-link" data-bs-toggle="modal"
-                           th:onclick="'modalAjax('+${league.league_id}+');'">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+    <!-- 일반회원 페이지-->
+    <th:block th:if="${role == '[user]'}">
+        <!-- League-->
+        <section class="page-section bg-light" id="league">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">League</h2>
+                    <h3 class="section-subheading text-muted">5개의 리그가 있습니다.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4" th:each="league : ${leagueList}">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <!--                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" >-->
+                            <a class="portfolio-link" data-bs-toggle="modal"
+                               th:onclick="'modalAjax('+${league.league_id}+');'">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" th:src="${league.logo_image_path}" alt="..."/>
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading" th:text="${league.league_name}">...</div>
+                                <!--                            <div class="portfolio-caption-subheading text-muted">Illustration</div>-->
                             </div>
-                            <img class="img-fluid" th:src="${league.logo_image_path}" alt="..."/>
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading" th:text="${league.league_name}">...</div>
-                            <!--                            <div class="portfolio-caption-subheading text-muted">Illustration</div>-->
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Team -->
-    <section class="page-section" id="team">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Team</h2>
-                <h3 class="section-subheading text-muted">다양한 팀들의 정보를 확인하세요.</h3>
-                <img class="img-fluid" src="../static/images/player/팀메인사진.jpg" th:onclick="|location.href='@{/team/list}'|" alt="…" style="cursor: pointer;"/>
+        </section>
+        <!-- Team -->
+        <section class="page-section" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Team</h2>
+                    <h3 class="section-subheading text-muted">다양한 팀들의 정보를 확인하세요.</h3>
+                    <img class="img-fluid" src="../static/images/player/팀메인사진.jpg"
+                         th:onclick="|location.href='@{/team/list}'|" alt="…" style="cursor: pointer;"/>
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- Rank-->
-    <section class="page-section bg-light" id="rank">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Rank</h2>
-                <h3 class="section-subheading text-muted">여러 팀과 선수들의 기록을 확인하세요.</h3>
-            </div>
-            <ul class="timeline">
-                <li>
-                    <div class="timeline-image"><img class="rounded-circle img-fluid2"
-                                                     src="../static/images/rank/팀1.jpg" alt="..."/></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2022-2023</h4>
-                            <h4 class="subheading">Team Rank</h4>
+        </section>
+        <!-- Rank-->
+        <section class="page-section bg-light" id="rank">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Rank</h2>
+                    <h3 class="section-subheading text-muted">여러 팀과 선수들의 기록을 확인하세요.</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid2"
+                                                         src="../static/images/rank/팀1.jpg" alt="..."/></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2022-2023</h4>
+                                <h4 class="subheading">Team Rank</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">5개의 빅리그에 대표적인 팀들의 다양한 기록을 볼 수 있습니다.
+                                각 리그의 우승 경쟁 결과와 순위를 확인하세요!</p></div>
                         </div>
-                        <div class="timeline-body"><p class="text-muted">5개의 빅리그에 대표적인 팀들의 다양한 기록을 볼 수 있습니다.
-                            각 리그의 우승 경쟁 결과와 순위를 확인하세요!</p></div>
-                    </div>
-                </li>
-                <li class="timeline-inverted">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid2"
-                                                     src="../static/images/rank/개인2.jpg" alt="..."/></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2022-2023</h4>
-                            <h4 class="subheading">Player Rank</h4>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid2"
+                                                         src="../static/images/rank/개인2.jpg" alt="..."/></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2022-2023</h4>
+                                <h4 class="subheading">Player Rank</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">선수들의 득점, 도움 등 중요 개인 스탯을 확인할 수 있습니다.
+                                가장 뛰어난 선수가 누구인지 직접 보고 생각해보세요!</p></div>
                         </div>
-                        <div class="timeline-body"><p class="text-muted">선수들의 득점, 도움 등 중요 개인 스탯을 확인할 수 있습니다.
-                            가장 뛰어난 선수가 누구인지 직접 보고 생각해보세요!</p></div>
-                    </div>
-                </li>
-                <li class="timeline-inverted">
-                    <div onclick="location.href ='/rank'" style="cursor:pointer;" class="timeline-image">
-                        <h4>
-                            Enjoy
-                            <br/>
-                            The
-                            <br/>
-                            Football!
-                        </h4>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <section id = "board">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Board</h2>
-                <h3 class="section-subheading text-muted">자유롭게 의견을 나누어 보세요.</h3>
-                <img class="img-fluid" src="../static/images/board/게시판.jpg" th:onclick="|location.href='@{/board/list}'|" alt="…" style="cursor: pointer;"/>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div onclick="location.href ='/rank'" style="cursor:pointer;" class="timeline-image">
+                            <h4>
+                                Enjoy
+                                <br/>
+                                The
+                                <br/>
+                                Football!
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
+        <section id="board">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Board</h2>
+                    <h3 class="section-subheading text-muted">자유롭게 의견을 나누어 보세요.</h3>
+                    <img class="img-fluid" src="../static/images/board/게시판.jpg"
+                         th:onclick="|location.href='@{/board/list}'|" alt="…" style="cursor: pointer;"/>
+                </div>
+            </div>
+        </section>
+    </th:block>
+    <!-- 관리자 페이지-->
+    <th:block th:if="${role == '[admin]'}">
+<!--    <th:block th:if="${#authentication.authorities}">-->
+        <!-- League-->
+        <section class="page-section bg-light" id="admin">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Admin</h2>
+                    <h3 class="section-subheading text-muted">팀/선수/회원 정보를 관리합니다.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4" style="text-align: center">
+                        <img src="/images/admin/team.png" alt="..." style="margin-bottom: 20px"
+                             onclick="location.href='/admin/teamList'"/>
+                        <h2>Team 관리</h2>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4" style="text-align: center">
+                        <img src="/images/admin/player.png" alt="..." style="margin-bottom: 20px"
+                             onclick="location.href='/admin/playerList'"/>
+                        <h2>Player 관리</h2>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4" style="text-align: center">
+                        <img src="/images/admin/member.png" alt="..." style="margin-bottom: 20px"
+                             onclick="location.href='/admin/memberList'"/>
+                        <h2>Member 관리</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </th:block>
 </div>
 <!-- Clients-->
 <div class="py-5" th:replace="fragments/common::clients">
