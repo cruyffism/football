@@ -63,7 +63,7 @@ public class BoardController { // 기본 클래스 이름
     //게시판 등록폼
     @GetMapping("/boardRegister") // 우리가 임의로 지정한 경로
     public String boardRegisterForm() {
-        return "board/boardRegister";
+        return "board/boardRegister2";
     }
 
 
