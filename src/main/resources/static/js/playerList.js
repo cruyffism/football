@@ -30,9 +30,9 @@ function playerListAjax(page, sortColumn, sortType, idx) { // page, sortColumn, 
             $(innerHtml).html(data)
             if (sortType !== 'undefined') {
                 if (sortType === 'DESC') {
-                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortDown.svg"})
+                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortDown.png"})
                 } else {
-                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortUp.svg"})
+                    $(`#sort`+idx).attr({src:"../../static/images/rank/sortUp.png"})
                 }
             }
             setTimeout(function () {
