@@ -1,6 +1,7 @@
 package com.minki.football.mapper.board;
 
 import com.minki.football.dto.board.BoardCommentsReq;
+import com.minki.football.dto.board.BoardCommentsRes;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -44,4 +45,13 @@ public interface BoardMapper {
 
     // 게시글에 대한 댓글 저장(등록)
     Integer commentsRegister(BoardCommentsReq boardCommentsReq); // 타입 메소드명 매개변수
+
+    // 게시글에 대한 댓글  조회
+    List<BoardCommentsRes> commentList(Integer boardId); //리절트타입 아이디 매개변수
+
+    // 게시글에 대한 댓글 수정
+    Integer commentUpdate(BoardCommentsReq boardCommentsReq);
+
+    //댓글 삭제
+    Integer commentDelete(Integer boardCommentsId);
 }

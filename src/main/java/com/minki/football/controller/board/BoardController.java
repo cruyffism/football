@@ -2,6 +2,7 @@ package com.minki.football.controller.board;
 
 
 import com.minki.football.dto.board.BoardCommentsReq;
+import com.minki.football.dto.board.BoardCommentsRes;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -55,7 +56,9 @@ public class BoardController { // 기본 클래스 이름
     public String info(Model model, @PathVariable Integer boardId) { // @pathvariable을 통해 boardId라는 이름으로 저기 위에 path에 있는 {boardId}를 가져다 쓴다
         // 위 경로에 "/info/1" 이렇게 들어오면 매개변수에 쓴 boardId가 1로 들어가져서 결국 xml에  #{boardId}가 1로 변한다.
         BoardRes boardInfo = boardService.boardInfo(boardId); // boardService 파일 안에 있는 boardInfo(boardId) 메소드를 호출한 결과값이 BoardRes 타입의 boardInfo라는 변수명으로 담긴다!
+        List<BoardCommentsRes> commentList = boardService.commentList(boardId); // 게시글에 대한 댓글  조회
         model.addAttribute("info", boardInfo); // "board/boardInfo"라는 경로에다가 boardInfo를 "info"라는 변수명에 담아서 프론트로 보냄
+        model.addAttribute("commentList", commentList);
         return "board/boardInfo"; //여기서 리턴값은 프론트엔드로 가는 경로(템플릿 밑에 경로 : templates > board > boardInfo.html)
         // 즉 모델 어트리뷰트에서 boardInfo를 "info"라는 변수명에 담아서 프론트 엔드로 보내고 그 보낸 값이 리턴값 경로를 타서 프론트엔드 html로 간다!
         // 그리고 html에서 ${info}로 연결해서 사용한다.
@@ -121,11 +124,33 @@ public class BoardController { // 기본 클래스 이름
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         boardCommentsReq.setNickname(username);
-        Integer commentsRegister = boardService.commentsRegister(boardCommentsReq);
+        Integer commentsRegister = boardService.commentsRegister(boardCommentsReq); // 댓글 저장
+        BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId()); // 게시글 정보
+        List<BoardCommentsRes> commentList = boardService.commentList(boardCommentsReq.getBoardId()); // 댓글 목록
+        Integer commentUpdate = boardService.commentUpdate(boardCommentsReq); // 댓글 수정
+
+        // 프론트에 보내주는 변수들
         model.addAttribute("commentsRegister", commentsRegister);
-        BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId());
         model.addAttribute("info", boardInfo);
+        model.addAttribute("commentList", commentList);
+        model.addAttribute("commentUpdate",commentUpdate);
         return "board/boardInfo";
     }
 
+    //댓글 삭제
+    @GetMapping("/commentDelete/{boardId}/{boardCommentsId}") // 우리가 임의로 지정한 경로
+    public String commentDelete(Model model, @PathVariable Integer boardCommentsId, @PathVariable Integer boardId, HttpServletResponse response) throws IOException {
+        Integer commentDelete = boardService.commentDelete(boardCommentsId);
+        BoardRes boardInfo = boardService.boardInfo(boardId); // 게시글 정보
+        List<BoardCommentsRes> commentList = boardService.commentList(boardId); // 댓글 목록
+        model.addAttribute("commentDelete", commentDelete);
+        model.addAttribute("info", boardInfo);
+        model.addAttribute("commentList", commentList);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('댓글이 삭제되었습니다.');</script>");
+        writer.flush();
+        return "board/boardInfo";
     }
+
+}

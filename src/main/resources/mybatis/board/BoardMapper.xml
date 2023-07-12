@@ -77,14 +77,37 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 <!-- 게시글에 대한 댓글 저장(등록)-->
     <insert id="commentsRegister" parameterType="com.minki.football.dto.board.BoardCommentsReq">
         insert into board_comments
-        (boardI_id,
+        (board_id,
          content,
          nickname,
          create_date)
-        values (#{board_id}, #{content}, #{nickname}, now())
+        values (#{boardId}, #{content}, #{nickname}, now())
     </insert>
 
+    <!-- 게시글에 대한 댓글  조회-->
+    <select id="commentList" resultType="com.minki.football.dto.board.BoardCommentsRes" parameterType="Integer">
+        select board_comments_id,
+        board_id,
+        content,
+        nickname,
+        create_date,
+        update_date
+        from board_comments
+        where board_id = #{boardId}
+    </select>
 
+    <!-- 게시글에 대한 댓글 수정-->
+    <update id="commentUpdate" parameterType="com.minki.football.dto.board.BoardCommentsReq">
+        update board_comments set
+                         content = #{content},
+                         nickname = #{nickname},
+                         update_date = now()
+        where board_comments_id = #{boardCommentsId}
+    </update>
+    <!-- 댓글 삭제-->
+    <delete id="commentDelete" parameterType="Integer" >
+        delete from board_comments  where board_comments_id = #{boardCommentsId}
+    </delete>
 
 </mapper>
 

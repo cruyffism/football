@@ -1,6 +1,7 @@
 package com.minki.football.service.board;
 
 import com.minki.football.dto.board.BoardCommentsReq;
+import com.minki.football.dto.board.BoardCommentsRes;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -17,7 +18,7 @@ public class BoardService {
     private BoardMapper boardMapper; // (접근제한자 파일이름 변수명) BoardMapper라는 파일을 오른쪽 변수명(boardMapper)으로 정의한다.
 
     //게시판 리스트 조회
-    public List<BoardRes> boardList(Criteria criteria) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardList()라는 메소드를 만듦
+    public List<BoardRes> boardList(Criteria criteria) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardList()라는 메소드를 만듦(메소드는 호출을 하기 위해서 만든다!)
         List<BoardRes> boardList = boardMapper.boardList(criteria);
         //   타입        변수명 = boardMapper. boardList(criteria)를 호출한 결과 ; >> 호출한 결과를 왼쪽 boardList에 담은 것
         return boardList; // 그리고 이 결과값을 리턴
@@ -64,4 +65,21 @@ public class BoardService {
         return commentsRegister;
     }
 
+    // 게시글에 대한 댓글  조회
+    public List<BoardCommentsRes> commentList(Integer boardId) {
+        List<BoardCommentsRes> commentList = boardMapper.commentList(boardId);
+        return commentList;
+    }
+
+    // 게시글에 대한 댓글 수정
+    public Integer commentUpdate(BoardCommentsReq boardCommentsReq) {
+        Integer commentUpdate = boardMapper.commentUpdate(boardCommentsReq);
+        return commentUpdate;
+    }
+
+    //댓글 삭제
+    public Integer commentDelete(Integer boardCommentsId) {
+        Integer commentDelete = boardMapper.commentDelete(boardCommentsId);
+        return commentDelete;
+    }
 }
