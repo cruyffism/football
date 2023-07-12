@@ -24,7 +24,8 @@
         <div class="mb-3 row">
             <label for="boardNickname" class="col-sm-2 col-form-label">작성자</label>
             <div class="col-sm-10">
-                <input style="width:20%" type="text" readonly class="form-control" id="boardNickname" th:value="${info.nickname}">
+                <input style="width:20%" type="text" readonly class="form-control" id="boardNickname"
+                       th:value="${info.nickname}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -36,29 +37,34 @@
         <div class="mb-3 row">
             <label for="boardContent" class="col-sm-2 col-form-label">내용</label>
             <div class="col-sm-10">
-                <textarea type="text" readonly class="form-control" id="boardContent" th:text="${info.content}"></textarea>
+                <textarea type="text" readonly class="form-control" id="boardContent"
+                          th:text="${info.content}"></textarea>
             </div>
         </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <th:block th:if="${#strings.equals(info.nickname, #authentication.name)}">
-<!--            info.nickname(작성자 이름) , #authentication.name(로그인 계정의 정보에서 아이디값 가져옴) 이 값들을 비교해서 동등하면 버튼을 보여준다-->
-        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardUpdate/{boardId}(boardId=${info.board_id})}'|">수정</button>
-<!--        <!—        이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴—>-->
-        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/boardDelete/{boardId}(boardId=${info.board_id})}'|">삭제</button>
-        </th:block>
-        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/list}'|">목록</button>
-    </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <th:block th:if="${#strings.equals(info.nickname, #authentication.name)}">
+                <!--            info.nickname(작성자 이름) , #authentication.name(로그인 계정의 정보에서 아이디값 가져옴) 이 값들을 비교해서 동등하면 버튼을 보여준다-->
+                <button class="btn btn-primary" type="button"
+                        th:onclick="|location.href='@{/board/boardUpdate/{boardId}(boardId=${info.board_id})}'|">수정
+                </button>
+                <!--        <!—        이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴—>-->
+                <button class="btn btn-primary" type="button"
+                        th:onclick="|location.href='@{/board/boardDelete/{boardId}(boardId=${info.board_id})}'|">삭제
+                </button>
+            </th:block>
+            <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/list}'|">목록</button>
+        </div>
         <form th:action="@{/board/saveComments}" method="post">
-            <input type="hidden" name="boardId" id="boardId" th:value="${info.boardId}"/>
-        <div class="mb-3 row"  style="margin-top : 30px">
-            <label for="content" class="col-sm-2 col-form-label">댓글</label>
-            <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="content" name="content"></textarea>
+            <input type="hidden" name="boardId" id="boardId" th:value="${info.board_id}"/>
+            <div class="mb-3 row" style="margin-top : 30px">
+                <label for="content" class="col-sm-2 col-form-label">댓글</label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" id="content" name="content"></textarea>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top : 30px">
+                    <button class="btn btn-primary" type="submit">댓글 저장</button>
+                </div>
             </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top : 30px">
-            <button class="btn btn-primary" type="submit">댓글 저장</button>
-            </div>
-        </div>
         </form>
     </div>
 
