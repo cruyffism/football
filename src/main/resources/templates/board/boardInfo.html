@@ -75,12 +75,13 @@
                         </div>
                         <div class="col-sm-2" th:if="${#strings.equals(comment.nickname, #authentication.name)}">
                             <img src="/static/images/board/edit.png">
-                            <img src="/static/images/board/delete.png" th:onclick="|location.href='@{/board/commentDelete/{boardId}/{boardCommentsId}(boardId=${comment.board_id},boardCommentsId=${comment.board_comments_id})}'|">
+                            <img src="/static/images/board/delete.png" th:onclick="|location.href='@{/board/commentDelete/{boardCommentsId}(boardId=${comment.board_id},boardCommentsId=${comment.board_comments_id})}'|">
                         </div>
                     </div>
+                    <!-- 실선 긋기 -->
+                    <hr/>
                 </th:block>
-                <!-- 실선 긋기 -->
-                <hr/>
+
                 <!-- 댓글 저장 부분 -->
                 <form th:action="@{/board/saveComments}" method="post">
                     <input type="hidden" name="boardId" id="boardId" th:value="${info.board_id}"/>

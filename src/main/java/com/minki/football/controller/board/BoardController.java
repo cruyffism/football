@@ -127,19 +127,30 @@ public class BoardController { // 기본 클래스 이름
         Integer commentsRegister = boardService.commentsRegister(boardCommentsReq); // 댓글 저장
         BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId()); // 게시글 정보
         List<BoardCommentsRes> commentList = boardService.commentList(boardCommentsReq.getBoardId()); // 댓글 목록
-        Integer commentUpdate = boardService.commentUpdate(boardCommentsReq); // 댓글 수정
 
         // 프론트에 보내주는 변수들
         model.addAttribute("commentsRegister", commentsRegister);
         model.addAttribute("info", boardInfo);
         model.addAttribute("commentList", commentList);
+
+        return "board/boardInfo";
+    }
+
+    //댓글 수정
+    @PostMapping("commentUpdate")
+    public String commentUpdate(Model model,@ModelAttribute BoardCommentsReq boardCommentsReq){
+        Integer commentUpdate = boardService.commentUpdate(boardCommentsReq); // 댓글 수정
+        BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId()); // 게시글 정보
+        List<BoardCommentsRes> commentList = boardService.commentList(boardCommentsReq.getBoardId()); // 댓글 목록
         model.addAttribute("commentUpdate",commentUpdate);
+        model.addAttribute("info", boardInfo);
+        model.addAttribute("commentList", commentList);
         return "board/boardInfo";
     }
 
     //댓글 삭제
-    @GetMapping("/commentDelete/{boardId}/{boardCommentsId}") // 우리가 임의로 지정한 경로
-    public String commentDelete(Model model, @PathVariable Integer boardCommentsId, @PathVariable Integer boardId, HttpServletResponse response) throws IOException {
+    @GetMapping("/commentDelete/{boardCommentsId}") // 우리가 임의로 지정한 경로
+    public String commentDelete(Model model, @PathVariable Integer boardCommentsId, @RequestParam Integer boardId, HttpServletResponse response) throws IOException {
         Integer commentDelete = boardService.commentDelete(boardCommentsId);
         BoardRes boardInfo = boardService.boardInfo(boardId); // 게시글 정보
         List<BoardCommentsRes> commentList = boardService.commentList(boardId); // 댓글 목록
