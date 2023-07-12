@@ -1,5 +1,6 @@
 package com.minki.football.mapper.board;
 
+import com.minki.football.dto.board.BoardCommentsReq;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -39,4 +40,8 @@ public interface BoardMapper {
     //Integer라는 타입을 boardId로 변수 선언
     // boardDelete라는 메소드를 실행한 후 나온 값들을  Integer에 넣는다
     // BoardService에서 이 메소도를 호출하면서 boardId라는 변수를 사용할 예정
+
+
+    // 게시글에 대한 댓글 저장(등록)
+    Integer commentsRegister(BoardCommentsReq boardCommentsReq); // 타입 메소드명 매개변수
 }

@@ -1,5 +1,6 @@
 package com.minki.football.service.board;
 
+import com.minki.football.dto.board.BoardCommentsReq;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -55,6 +56,12 @@ public class BoardService {
     public Integer boardDelete(Integer boardId) { // 접근제한자 리턴값 변수명(){}, BoardService 파일 안에다가 boardDelete(Integer boardId)라는 메소드를 만듦
         Integer boardDelete = boardMapper.boardDelete(boardId);
         return boardDelete;
+    }
+
+    // 게시글에 대한 댓글 저장(등록)
+    public Integer commentsRegister(BoardCommentsReq boardCommentsReq) {
+        Integer commentsRegister = boardMapper.commentsRegister(boardCommentsReq);
+        return commentsRegister;
     }
 
 }

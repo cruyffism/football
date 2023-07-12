@@ -48,8 +48,20 @@
         </th:block>
         <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/board/list}'|">목록</button>
     </div>
+        <form th:action="@{/board/saveComments}" method="post">
+            <input type="hidden" name="boardId" id="boardId" th:value="${info.boardId}"/>
+        <div class="mb-3 row"  style="margin-top : 30px">
+            <label for="content" class="col-sm-2 col-form-label">댓글</label>
+            <div class="col-sm-10">
+                <textarea type="text" class="form-control" id="content" name="content"></textarea>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top : 30px">
+            <button class="btn btn-primary" type="submit">댓글 저장</button>
+            </div>
+        </div>
+        </form>
     </div>
-    </form>
+
 </section>
 
 <!-- Clients-->

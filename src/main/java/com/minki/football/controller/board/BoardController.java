@@ -1,6 +1,7 @@
 package com.minki.football.controller.board;
 
 
+import com.minki.football.dto.board.BoardCommentsReq;
 import com.minki.football.dto.board.BoardReq;
 import com.minki.football.dto.board.BoardRes;
 import com.minki.football.dto.page.Criteria;
@@ -114,4 +115,15 @@ public class BoardController { // 기본 클래스 이름
         return "board/boardList";
     }
 
-}
+    //게시글에 대한 댓글 저장(등록)
+    @PostMapping("/saveComments") // 우리가 임의로 지정한 경로
+    public String commentsRegister(Model model, @ModelAttribute BoardCommentsReq boardCommentsReq) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        boardCommentsReq.setNickname(username);
+        Integer commentsRegister = boardService.commentsRegister(boardCommentsReq);
+        model.addAttribute("commentsRegister", commentsRegister);
+        return "board/boardInfo";
+    }
+
+    }
