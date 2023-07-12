@@ -77,11 +77,11 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
 <!-- 게시글에 대한 댓글 저장(등록)-->
     <insert id="commentsRegister" parameterType="com.minki.football.dto.board.BoardCommentsReq">
         insert into board_comments
-        (boardId,
+        (boardI_id,
          content,
          nickname,
          create_date)
-        values (#{boardId}, #{content}, #{nickname}, now())
+        values (#{board_id}, #{content}, #{nickname}, now())
     </insert>
 
 

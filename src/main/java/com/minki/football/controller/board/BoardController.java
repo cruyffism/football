@@ -123,6 +123,8 @@ public class BoardController { // 기본 클래스 이름
         boardCommentsReq.setNickname(username);
         Integer commentsRegister = boardService.commentsRegister(boardCommentsReq);
         model.addAttribute("commentsRegister", commentsRegister);
+        BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId());
+        model.addAttribute("info", boardInfo);
         return "board/boardInfo";
     }
 
