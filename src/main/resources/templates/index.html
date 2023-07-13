@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
+<script src="../static/js/signup.js"></script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -9,12 +10,129 @@
 </nav>
 <!-- Masthead-->
 <header class="masthead" style="background-image: url('/static/images/back/mainpage.png');">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </symbol>
+    </svg>
     <div class="container">
         <div class="masthead-subheading">Welcome To Our FootBall!</div>
         <!--        <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>-->
         <div sec:authorize="!isAuthenticated()" class="mainBtn">
-            <a class="btn btn-primary btn-lg text-uppercase" href="/user/login">Login</a>
-            <a class="btn btn-primary btn-lg text-uppercase" href="/user/signup">SignUp</a>
+            <!--    로그인 폼 부분-->
+            <form th:action="@{/user/loginProc}" method="post" id="loginForm" class="needs-validation" novalidate>
+                <h2>로그인</h2>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name=username placeholder="Id" required/>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required/>
+                </div>
+                <div th:if="${error != null}" class="alert alert-danger d-flex align-items-center alert-size"
+                     role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill"/>
+                    </svg>
+                    <div th:text="${exception}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg text-uppercase">로그인</button>
+                <a class="btn btn-primary btn-lg text-uppercase portfolio-link" data-bs-toggle="modal"
+                   href="#signUpModal">회원가입</a> <!--회원가입 버튼 누르면 id="signUpModal" 인 회원가입 모달창이 나옴-->
+                <div style="margin-top:20px">
+                    <a href="/user/findIdForm" style="margin-right:10px">아이디 찾기</a>
+                    <a href="/user/findPwForm">비밀번호 찾기</a>
+                </div>
+            </form>
+            <!-- 회원가입 모달 부분-->
+            <div class="portfolio-modal modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <!-- class: 외부 디자인 가져옴 // aria-hidden="true" : 회원가입 눌러야만 모달이 보이게 한 거   -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg"
+                                                                              alt="Close modal"/></div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="modal-body">
+                                        <!-- Project details-->
+                                        <h2 class="text-uppercase" style="margin-bottom: 40px; color:black">회원가입</h2>
+                                        <form th:action="@{/user/signup}" method="post" id="signUpForm"
+                                              class="needs-validation" novalidate>
+                                            <div class="mb-3 row">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="username"
+                                                           name="username" placeholder="Id" required/>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-primary text-uppercase" id="idCheck" onclick="idCheckAjax()">중복체크
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                       placeholder="Name" required/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" id="nickname" name="nickname"
+                                                       placeholder="Nickname" required/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="password" class="form-control"
+                                                       onkeyup="passwordCheck(this.value)" id="password"
+                                                       name="password" placeholder="Password" required/>
+                                                <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
+                                                <div id="password-error" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리
+                                                    이상을 입력하세요.
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="date" class="form-control" id="birthday" name="birthday"
+                                                       placeholder="Birthday" required/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
+                                                       id="phone" name="phone"
+                                                       placeholder="Phone" required/>
+                                                <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <div class="col">
+                                                    <input type="email" class="form-control" id="email" name="email"
+                                                           placeholder="email" required/>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-primary text-uppercase"
+                                                            onclick="idCheckAjax()">중복체크
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="gender" value="남" required>
+                                                    <label class="form-check-label" style="color:black">남자</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="gender" value="여" required >
+                                                    <label class="form-check-label" style="color:black">여자</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-lg text-uppercase">가입
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-lg text-uppercase"
+                                                    onclick="location.href='index'">
+                                                취소
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div sec:authorize="isAuthenticated()">
             <th:block th:if="${role == '[user]'}">
@@ -128,7 +246,7 @@
     </th:block>
     <!-- 관리자 페이지-->
     <th:block th:if="${role == '[admin]'}">
-<!--    <th:block th:if="${#authentication.authorities}">-->
+        <!--    <th:block th:if="${#authentication.authorities}">-->
         <!-- League-->
         <section class="page-section bg-light" id="admin">
             <div class="container">

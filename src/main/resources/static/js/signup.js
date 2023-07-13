@@ -1,4 +1,4 @@
-let isCheck = -1; //아이디 체크 여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1 , 아이디 중복 체크 안한 경우 = -1 )
+let isCheck = 0; //아이디 체크 여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐 경우 = 1)
 
 // 아이디 중복 체크하는 function
 function idCheckAjax() {
@@ -19,6 +19,8 @@ function idCheckAjax() {
                     //아이디가 존재할 경우 빨깡으로 , 아니면 초록으로 처리하는 디자인
                     $("#username").addClass("is-invalid")
                     $("#username").removeClass("is-valid")
+                    $("#username").attr("readonly",false)
+                    $("#idCheck").attr("disabled",false)
                     $("#username").focus();
                     isCheck = 0;
                 } else { // 아이디 사용 가능
@@ -26,6 +28,8 @@ function idCheckAjax() {
                     //아이디가 존재할 경우 빨깡으로 , 아니면 초록으로 처리하는 디자인
                     $("#username").addClass("is-valid")
                     $("#username").removeClass("is-invalid")
+                    $("#username").attr("readonly",true)
+                    $("#idCheck").attr("disabled",true)
                     $("#name").focus();
                     isCheck = 1;
                 }
@@ -54,13 +58,8 @@ $(document).ready(function () {
                 event.preventDefault()
                 event.stopPropagation()
             }
-            if(isCheck === -1){ // 아이디 중복 체크를 안했을 경우
+            if(isCheck === 0){ // 아이디 중복 체크를 안했을 경우
                 alert("아이디 중복체크를 해주세요.")
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            if(isCheck === 0){ // 아이디 중복 체크는 했지만 중복된 아이디로 회원가입하려고 할때
-                alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.")
                 event.preventDefault()
                 event.stopPropagation()
             }

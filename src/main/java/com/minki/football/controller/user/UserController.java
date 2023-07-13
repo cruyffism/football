@@ -54,7 +54,7 @@ public class UserController {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
 
-        return "user/login";
+        return "index";
     }
 
 //    // 회원가입 페이지
@@ -80,7 +80,7 @@ public class UserController {
         writer.println("<script>alert('회원가입되었습니다.');</script>");
         writer.flush();
 
-        return "user/login";
+        return "index";
     }
 
     //회원정보 조회
@@ -178,6 +178,6 @@ public class UserController {
         PrintWriter writer = response.getWriter();
         writer.println("<script>alert('가입 된 이메일로 임시 비밀번호가 전송되었습니다.');</script>");
         writer.flush();
-        return "user/login";
+        return "index";
     }
 }
