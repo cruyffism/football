@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/common :: head('Hello, Football Homepage!')">
+</head>
+<script src="../../static/js/boardList.js"></script>
+<body id="page-top">
+<!-- Navigation: 내부바 = 토탈풋볼 -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
+     th:replace="fragments/common2 :: menu('[user]')">
+</nav>
+<!-- Masthead: 챔스 배경 화면 >> 이건 직접 넣은 코드 -->
+<header class="masthead" style="background-image: url('/static/images/back/mainpage.png');">
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our FootBall!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#boardInfo">Here to Go</a>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h2 style="margin-bottom:50px" class="section-heading text-uppercase">아이디 찾기</h2></div>
+        <div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="name" required/>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" required/>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email " required/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients: 구글/페이스북 등등 ~ -->
+<div class="py-5" th:replace="fragments/common::clients">
+</div>
+<!-- Footer: 카피라이터 등등 ~ -->
+<footer class="footer py-4" th:replace="fragments/common::footer">
+</footer>
+</body>
+</html>

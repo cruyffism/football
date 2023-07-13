@@ -136,4 +136,15 @@ public class UserController {
         return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
     }
 
+    // 아이디 찾기 폼
+    @GetMapping("/findIdForm")
+    public String findIdForm() {
+        return "user/findIdForm";
+    }
+
+    // 비번 찾기 폼
+    @GetMapping("/findPwForm")
+    public String findPwForm() {
+        return "user/findPwForm";
+    }
 }
