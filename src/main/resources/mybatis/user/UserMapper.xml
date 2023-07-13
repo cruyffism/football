@@ -42,13 +42,22 @@
         where username = #{username}
     </delete>
 
-<!-- 아이디 중복 체크 -->
+    <!-- 아이디 중복 체크 -->
     <select id="idCheck" parameterType="String" resultType="Integer">
         SELECT count(*)
         FROM member
         WHERE username = #{username}
     </select>
 
+    <!-- 조건(이름/전번/비번)에 맞는 아이디 출력 -->
+    <select id="findId" resultType="com.minki.football.dto.user.UserRes" parameterType="UserReq">
+        SELECT username
+        FROM member
+        WHERE name = #{name} and phone = #{phone} and email = #{email}
+    </select>
+
+
+</mapper>
 
 <!-- 조건에서 #의 값이 하나일때는 그 값에 맞는 데이터 타입을 parameterType에 넣는다.-->
 
@@ -66,4 +75,3 @@
 <!--        WHERE id = #{id}-->
 <!--    </update>-->
 
-</mapper>

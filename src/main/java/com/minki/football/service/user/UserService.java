@@ -20,6 +20,7 @@ public class UserService {
 
 //  회원정보조회
     public UserReq getUserById(String username) {
+
         return userMapper.getUserById(username);
     }
 
@@ -51,6 +52,11 @@ public class UserService {
             userRoleReq.setRoleId(1);
             userMapper.insertUserRole(userRoleReq); // 권한정보 저장
         }
+    }
+
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    public UserRes findId(UserReq userReq) {
+        return userMapper.findId(userReq);
     }
 
 }

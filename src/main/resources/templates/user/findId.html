@@ -17,27 +17,14 @@
 </header>
 
 <section>
-    <div class="container" style="width:40%">
+    <div class="container">
         <div class="text-center">
-            <h2 style="margin-bottom:50px" class="section-heading text-uppercase">아이디 찾기</h2></div>
-        <div>
-            <form action="/user/findId" method="post">
-            <div class="mb-3">
-                <input type="text" class="form-control" id="name" name="name" placeholder="name" required/>
+            <h2 style="margin-bottom:50px" class="section-heading text-uppercase">아이디 찾기</h2>
+            <div>
+                <div class="mb-3">
+                    <p th:text="${id.username}"></p>
+                </div>
             </div>
-            <div class="mb-3" style="margin-top:30px">
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" required/>
-            </div>
-            <div class="mb-3" style="margin-top:30px">
-                <input type="email" class="form-control" id="email" name="email" placeholder="email " required/>
-            </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top : 30px">
-                <button class="btn btn-primary" type="submit">확인</button>
-                <button class="btn btn-primary" type="button">취소</button>
-            </div>
-            </form>
-        </div>
-    </div>
 </section>
 
 <!-- Clients: 구글/페이스북 등등 ~ -->

@@ -147,4 +147,12 @@ public class UserController {
     public String findPwForm() {
         return "user/findPwForm";
     }
+
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    @PostMapping("/findId")
+    public String findId(Model model, @ModelAttribute UserReq userReq) {
+        UserRes userRes = userService.findId(userReq);
+        model.addAttribute("id", userRes);
+        return "user/findId";
+    }
 }
