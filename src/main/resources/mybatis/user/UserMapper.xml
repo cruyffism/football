@@ -5,9 +5,9 @@
     <insert id="insertUser" parameterType="com.minki.football.dto.user.UserReq"
             useGeneratedKeys="true" keyColumn="member_id" keyProperty="memberId">
         INSERT INTO member
-            (username, name, nickname, password, birthday, gender, phone)
+            (username, name, nickname, password, birthday, gender, phone, email)
         VALUES
-            (#{username}, #{name}, #{nickname}, #{password},#{birthday}, #{gender}, #{phone})
+            (#{username}, #{name}, #{nickname}, #{password},#{birthday}, #{gender}, #{phone}, #{email} )
     </insert>
 
     <insert id="insertUserRole">
@@ -30,7 +30,8 @@
         set name = #{name},
             nickname = #{nickname},
             password = #{password},
-            phone = #{phone}
+            phone = #{phone},
+            email = #{email}
         where username = #{username}
     </update>
 

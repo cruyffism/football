@@ -12,6 +12,7 @@ public class UserRes {
     private String birthday;
     private String gender;
     private String phone;
+    private String email;
 
 
 }

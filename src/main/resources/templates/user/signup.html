@@ -50,6 +50,14 @@
                 <label class="form-check-label">여자</label>
             </div>
         </div>
+        <div class="mb-3 row">
+            <div class="col">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email" required/>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary text-uppercase" onclick="idCheckAjax()">중복체크</button>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary btn-lg text-uppercase">회원가입</button>
         <button type="button" class="btn btn-primary btn-lg text-uppercase" onclick="location.href='/user/login'">로그인</button>
     </form>

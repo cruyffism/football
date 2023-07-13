@@ -51,6 +51,12 @@
         <input type="text" readonly class="form-control" id="phone" th:value="${info.phone}">
       </div>
     </div>
+    <div class="mb-3 row">
+      <label for="email" class="col-sm-2 col-form-label">이메일 주소</label>
+      <div class="col-sm-10">
+        <input type="email" readonly class="form-control" id="email" th:value="${info.email}">
+      </div>
+    </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/updateInfoForm}'|">정보수정</button>
       <!--        <!—        이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴—>-->
