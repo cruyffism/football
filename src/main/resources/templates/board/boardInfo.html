@@ -3,7 +3,7 @@
 <!--타임리프를 쓰기 위해 타임리프 문법이 들어있는 url을 선언했다.-->
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
-<script src="../../static/js/teamList.js"></script>
+<script src="../../static/js/boardInfo.js"></script>
 <body id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -62,26 +62,33 @@
             <div class="card card-body">
                 <!-- 댓글 조회 부분 : 여기는 나중에 조회 api 결과값을 th:each로 변경-->
                 <th:block th:each="comment : ${commentList}">
-                    <div class="mb-3 row">
-                        <div class="col-sm-2">
-                            <p type="text" th:text="${comment.nickname}"></p>
+                    <form th:action="@{/board/commentUpdate}" method="POST">
+                        <div class="mb-3 row" th:id="comment + ${comment.board_comments_id}">
+                            <div class="col-sm-2">
+                                <p type="text" th:text="${comment.nickname}"></p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p type="text"  th:text="${comment.content}">
+                            </div>
+                            <div class="col-sm-2">
+                                <p type="text" th:text="${comment.create_date}"
+                                   th:if="${comment.update_date == null}"></p>
+                                <p type="text" th:text="${comment.update_date}"
+                                   th:if="${comment.update_date != null}"></p>
+                            </div>
+                            <div class="col-sm-2" th:if="${#strings.equals(comment.nickname, #authentication.name)}">
+                                <img src="/static/images/board/edit.png"
+                                     th:nickname="${comment.nickname}" th:content="${comment.content}" th:boardId="${comment.board_id}"
+                                     th:createDate="${comment.create_date}" th:updateDate="${comment.update_date}"
+                                     th:onclick="|editForm(${comment.board_comments_id},this.getAttribute('boardId'),this.getAttribute('nickname'),this.getAttribute('content'),this.getAttribute('createDate'),this.getAttribute('updateDate'))|">
+                                <img src="/static/images/board/delete.png"
+                                     th:onclick="|location.href='@{/board/commentDelete/{boardCommentsId}(boardId=${comment.board_id},boardCommentsId=${comment.board_comments_id})}'|">
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <p type="text" th:text="${comment.content}"></p>
-                        </div>
-                        <div class="col-sm-2">
-                            <p type="text" th:text="${comment.create_date}" th:if="${comment.update_date == null}"></p>
-                            <p type="text" th:text="${comment.update_date}" th:if="${comment.update_date != null}"></p>
-                        </div>
-                        <div class="col-sm-2" th:if="${#strings.equals(comment.nickname, #authentication.name)}">
-                            <img src="/static/images/board/edit.png">
-                            <img src="/static/images/board/delete.png" th:onclick="|location.href='@{/board/commentDelete/{boardCommentsId}(boardId=${comment.board_id},boardCommentsId=${comment.board_comments_id})}'|">
-                        </div>
-                    </div>
+                    </form>
                     <!-- 실선 긋기 -->
                     <hr/>
                 </th:block>
-
                 <!-- 댓글 저장 부분 -->
                 <form th:action="@{/board/saveComments}" method="post">
                     <input type="hidden" name="boardId" id="boardId" th:value="${info.board_id}"/>

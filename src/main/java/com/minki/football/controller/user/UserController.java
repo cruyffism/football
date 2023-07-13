@@ -155,7 +155,7 @@ public class UserController {
         if(userRes == null){
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
-            writer.println("<script>alert('헤당정보가 존재하지 않습니다.');</script>");
+            writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
             writer.flush();
             return "user/findIdForm";
         }
