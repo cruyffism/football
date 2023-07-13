@@ -8,7 +8,9 @@ import com.minki.football.dto.user.UserReq;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,9 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -33,6 +33,12 @@ public class UserController {
     private LeagueService leagueService; // LeagueService를  leagueService라고 지정함.
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Value("${spring.mail.username}")
+    private String from;
 
     // 메인 페이지
     @GetMapping("/index") // GET(조회), POST(생성, 자장), PUT(수정), DELETE(삭제) 뒤에다가 경로 설정하기! ex) "/index"
@@ -152,7 +158,7 @@ public class UserController {
     @PostMapping("/findId")
     public String findId(Model model, @ModelAttribute UserReq userReq, HttpServletResponse response) throws IOException {
         UserRes userRes = userService.findId(userReq);
-        if(userRes == null){
+        if (userRes == null) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
@@ -166,18 +172,27 @@ public class UserController {
     // 비밀번호 찾기
     @PostMapping("/findPw")
     public String findPw(Model model, @ModelAttribute UserReq userReq, HttpServletResponse response) throws IOException {
-        UserRes userRes = userService.findPw(userReq);
-        if(userRes == null){
+        UserRes userRes = userService.findPw(userReq); // 1. 아이디, 이메일이 일치하는 회원정보가 있는지 체크
+        if (userRes == null) { // 회원정보가 없다면
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
             writer.flush();
             return "user/findPwForm";
+        } else { // 회원정보가 있다면
+
+            // 2. 임시 비밀번호를 만들어서 이메일로 전송
+            // 2-1. 임시비밀번호 생성
+            // 2-2. 이메일로 임시비밀번호 내용 전송
+            // 3. 임시 비밀번호 db에 수정
+
+
+            // 4. 성공하면 alert창 띄우기
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('가입 된 이메일로 임시 비밀번호가 전송되었습니다.');</script>");
+            writer.flush();
+            return "index";
         }
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter writer = response.getWriter();
-        writer.println("<script>alert('가입 된 이메일로 임시 비밀번호가 전송되었습니다.');</script>");
-        writer.flush();
-        return "index";
     }
 }
