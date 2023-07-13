@@ -66,4 +66,9 @@ public class UserService {
         return userMapper.findPw(userReq);
     }
 
+    //비밀번호 업데이트
+    public  Integer updatePw(UserRes userRes) {
+        return userMapper.updatePw(userRes);
+    }
+
 }

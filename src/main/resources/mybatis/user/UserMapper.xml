@@ -63,6 +63,13 @@
         WHERE username = #{username} and email = #{email}
     </select>
 
+    <!-- 비밀번호 수정 -->
+    <update id="updatePw" parameterType="com.minki.football.dto.user.UserRes">
+        update member
+        set password = #{password}
+        where username = #{username}
+    </update>
+
 </mapper>
 
 <!-- 조건에서 #의 값이 하나일때는 그 값에 맞는 데이터 타입을 parameterType에 넣는다.-->

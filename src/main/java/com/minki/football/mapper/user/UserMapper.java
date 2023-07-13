@@ -29,4 +29,6 @@ public interface UserMapper {
     // 비밀번호 찾기
     UserRes findPw(UserReq userReq);
 
+    //비밀번호 업데이트
+    Integer updatePw(UserRes userRes);
 }

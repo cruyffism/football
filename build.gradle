@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+//  메일 보내기 위해서 추가하는 dependency
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
