@@ -23,4 +23,7 @@ public interface UserMapper {
 
     void insertUserRole(UserRoleReq userRoleReq);
 
+    //조건(이름/전번/비번)에 맞는 아이디 출력
+    UserRes findId(UserReq userReq);
+
 }
