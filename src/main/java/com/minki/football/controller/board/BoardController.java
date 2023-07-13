@@ -137,7 +137,7 @@ public class BoardController { // 기본 클래스 이름
     }
 
     //댓글 수정
-    @PostMapping("commentUpdate")
+    @PostMapping("/commentUpdate")
     public String commentUpdate(Model model,@ModelAttribute BoardCommentsReq boardCommentsReq){
         Integer commentUpdate = boardService.commentUpdate(boardCommentsReq); // 댓글 수정
         BoardRes boardInfo = boardService.boardInfo(boardCommentsReq.getBoardId()); // 게시글 정보

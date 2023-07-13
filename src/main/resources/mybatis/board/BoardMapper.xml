@@ -100,7 +100,6 @@ resultType : 비즈니스 로직으로 반환할, 결과값의 자료형-->
     <update id="commentUpdate" parameterType="com.minki.football.dto.board.BoardCommentsReq">
         update board_comments set
                          content = #{content},
-                         nickname = #{nickname},
                          update_date = now()
         where board_comments_id = #{boardCommentsId}
     </update>
