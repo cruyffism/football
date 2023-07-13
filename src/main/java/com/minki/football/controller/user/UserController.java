@@ -150,8 +150,15 @@ public class UserController {
 
     //조건(이름/전번/비번)에 맞는 아이디 출력
     @PostMapping("/findId")
-    public String findId(Model model, @ModelAttribute UserReq userReq) {
+    public String findId(Model model, @ModelAttribute UserReq userReq, HttpServletResponse response) throws IOException {
         UserRes userRes = userService.findId(userReq);
+        if(userRes == null){
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('헤당정보가 존재하지 않습니다.');</script>");
+            writer.flush();
+            return "user/findIdForm";
+        }
         model.addAttribute("id", userRes);
         return "user/findId";
     }
