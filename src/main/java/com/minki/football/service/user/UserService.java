@@ -56,7 +56,14 @@ public class UserService {
 
     //조건(이름/전번/비번)에 맞는 아이디 출력
     public UserRes findId(UserReq userReq) {
+
         return userMapper.findId(userReq);
+    }
+
+    // 비밀번호 찾기
+    public UserRes findPw(UserReq userReq){
+
+        return userMapper.findPw(userReq);
     }
 
 }

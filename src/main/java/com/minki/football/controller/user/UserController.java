@@ -162,4 +162,22 @@ public class UserController {
         model.addAttribute("id", userRes);
         return "user/findId";
     }
+
+    // 비밀번호 찾기
+    @PostMapping("/findPw")
+    public String findPw(Model model, @ModelAttribute UserReq userReq, HttpServletResponse response) throws IOException {
+        UserRes userRes = userService.findPw(userReq);
+        if(userRes == null){
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('해당정보가 존재하지 않습니다.');</script>");
+            writer.flush();
+            return "user/findPwForm";
+        }
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('가입 된 이메일로 임시 비밀번호가 전송되었습니다.');</script>");
+        writer.flush();
+        return "user/login";
+    }
 }

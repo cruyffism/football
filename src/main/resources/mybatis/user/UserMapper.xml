@@ -56,6 +56,12 @@
         WHERE name = #{name} and phone = #{phone} and email = #{email}
     </select>
 
+    <!-- 비밀번호 찾기 -->
+    <select id="findPw" resultType="com.minki.football.dto.user.UserRes"parameterType="UserReq">
+        SELECT password, username
+        FROM member
+        WHERE username = #{username} and email = #{email}
+    </select>
 
 </mapper>
 
