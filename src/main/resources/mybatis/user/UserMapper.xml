@@ -18,14 +18,14 @@
     </insert>
 
     <!-- 회원정보조회 -->
-    <select id="getUserById" resultType="com.minki.football.dto.user.UserReq">
+    <select id="getUserById" resultType="com.minki.football.dto.user.UserRes">
         SELECT *
         FROM member
         WHERE username = #{username}
     </select>
 
     <!-- 회원정보수정 -->
-    <update id="updateUser" parameterType="com.minki.football.dto.user.UserRes">
+    <update id="updateUser" parameterType="com.minki.football.dto.user.UserReq">
         update member
         set name = #{name},
             nickname = #{nickname},
@@ -37,9 +37,16 @@
 
     <!-- 회원정보삭제 -->
     <delete id="deleteUser" parameterType="String">
-        delete member
+        delete
         from member
         where username = #{username}
+    </delete>
+
+    <!-- 회원권한삭제 -->
+    <delete id="deleteRole" parameterType="Integer">
+        delete
+        from user_role
+        where member_id = #{memberId}
     </delete>
 
     <!-- 아이디 중복 체크 -->
@@ -47,6 +54,13 @@
         SELECT count(*)
         FROM member
         WHERE username = #{username}
+    </select>
+
+    <!-- 이메일 중복 체크 -->
+    <select id="emailCheck" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM member
+        WHERE email = #{email}
     </select>
 
     <!-- 조건(이름/전번/비번)에 맞는 아이디 출력 -->

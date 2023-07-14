@@ -18,22 +18,26 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-//  회원정보조회
-    public UserReq getUserById(String username) {
+    //  회원정보조회
+    public UserRes getUserById(String username) {
 
         return userMapper.getUserById(username);
     }
 
     // 회원정보수정
-    public Integer updateUser(UserRes userRes) {
+    public Integer updateUser(UserReq userReq) {
 
-        return userMapper.updateUser(userRes);
+        return userMapper.updateUser(userReq);
     }
 
     // 회원정보삭제
     public Integer deleteUser(String username) {
-
         return userMapper.deleteUser(username);
+    }
+
+    // 회원권한삭제
+    public Integer deleteRole(Integer memberId) {
+        return userMapper.deleteRole(memberId);
     }
 
     // 아이디 중복 체크
@@ -61,9 +65,12 @@ public class UserService {
     }
 
     // 비밀번호 찾기
-    public UserRes findPw(UserReq userReq){
+    public UserRes findPw(UserReq userReq) {
 
         return userMapper.findPw(userReq);
     }
 
+    public Integer emailCheck(String email) {
+        return userMapper.emailCheck(email);
+    }
 }

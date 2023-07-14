@@ -94,8 +94,10 @@ public class UserController {
     public String getUserById(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName();
-        UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info", userReq);
+        System.out.println("username : " + username);
+        UserRes userRes = userService.getUserById(username);
+        System.out.println("userRes : " + userRes);
+        model.addAttribute("info", userRes);
         return "user/mypage"; //프론트 경로
 
     }
@@ -105,29 +107,30 @@ public class UserController {
     public String updateInfoForm(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName();
-        UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info", userReq);
+        UserRes userRes = userService.getUserById(username);
+        model.addAttribute("info", userRes);
         return "user/updateInfoForm";
     }
 
     //회원정보 수정
     @PostMapping("/updateInfo") //백엔드 경로
-    public String updateUser(Model model, @ModelAttribute UserRes userRes) {
-        userRes.setPassword(passwordEncoder.encode(userRes.getPassword()));
+    public String updateUser(Model model, @ModelAttribute UserReq userReq) {
+        userReq.setPassword(passwordEncoder.encode(userReq.getPassword()));
         //@ModelAttribute에서 받은 userRes에서 담겨온 패스워드를 암호화해서 다시 패스워드라는 변수에 넣어서 저장
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName(); // auth애서 아이디값만 가져와서 좌측 username에 넣어준거
-        Integer result = userService.updateUser(userRes);
-        UserReq userReq = userService.getUserById(username);
-        model.addAttribute("info", userReq);
+        Integer result = userService.updateUser(userReq);
+        UserRes userRes = userService.getUserById(username);
+        model.addAttribute("info", userRes);
         return "user/mypage"; //프론트 경로
     }
 
     //회원정보 삭제
     @GetMapping("/deleteInfo") // 조회,삭제가 get
-    public String deleteUser(Model model, @RequestParam String username, HttpSession session) throws IOException {
+    public String deleteUser(Model model, @RequestParam String username,@RequestParam Integer memberId, HttpSession session) throws IOException {
         Integer deleteUser = userService.deleteUser(username);
+        Integer deleteRole = userService.deleteRole(memberId);
         model.addAttribute("deleteUser", username);
         session.invalidate();
 
@@ -139,6 +142,14 @@ public class UserController {
     @ResponseBody  // 리스폰스바디와 json은 한 쌍 !! dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
     public Integer idCheck(@RequestParam String username) {
         int cnt = userService.idCheck(username);
+        return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
+    }
+
+    // 이메일 중복 체크
+    @GetMapping("/emailCheckAjax")
+    @ResponseBody  // 리스폰스바디와 json은 한 쌍 !! dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
+    public Integer emailCheck(@RequestParam String email) {
+        int cnt = userService.emailCheck(email);
         return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
     }
 
