@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
-<script src="../../static/js/boardList.js"></script>
 <body id="page-top">
 <!-- Navigation: 내부바 = 토탈풋볼 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -17,13 +16,18 @@
 </header>
 
 <section>
-    <div class="container">
-        <div class="text-center">
-            <h2 style="margin-bottom:50px" class="section-heading text-uppercase">아이디 찾기</h2>
-            <div>
-                <div class="mb-3">
-                    <p th:text="${id.username}"></p>
-                    <button class="btn btn-primary" type="button" onclick="location.href='/user/login'">로그인</button>
+    <div class="container" style="width: 70%">
+        <div class="text-center card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="text-center">
+                    <h2 style="margin-bottom:50px" class="section-heading text-uppercase">아이디 찾기</h2>
+                    <div>
+                        <div class="mb-3">
+                            <p th:text="|찾으시는 아이디는  ${id.username} 입니다.|" style="margin-top: 40px"></p>
+                            <button class="btn btn-primary" type="button" onclick="location.href='/user/login'">로그인
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

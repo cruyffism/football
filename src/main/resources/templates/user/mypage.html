@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('Hello, Football Homepage!')">
 </head>
-<script src="../../static/js/boardList.js"></script>
 <body id="page-top">
 <!-- Navigation: 내부바 = 토탈풋볼 -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
@@ -10,61 +9,71 @@
 </nav>
 <!-- Masthead: 챔스 배경 화면 >> 이건 직접 넣은 코드 -->
 <header class="masthead" style="background-image: url('/static/images/back/mainpage.png');">
-  <div class="container">
-    <div class="masthead-subheading">Welcome To Our FootBall!</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="#boardInfo">Here to Go</a>
-  </div>
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our FootBall!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#boardInfo">Here to Go</a>
+    </div>
 </header>
 
 <section class="page-section bg-light" id="boardInfo">
-  <div style = "width:30%" class="container">  <!-- container는 꾸며주는 틀 -->
-    <div class="text-center"> <!-- text-center는 가운데 정렬 -->
-      <h2 style="margin-bottom:50px" class="section-heading text-uppercase">마이페이지</h2>  <!-- 제목 태그 -->
+    <div style="width:70%" class="container">  <!-- container는 꾸며주는 틀 -->
+        <div class="text-center card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="text-center"> <!-- text-center는 가운데 정렬 -->
+                    <h2 style="margin-bottom:50px" class="section-heading text-uppercase">마이페이지</h2>  <!-- 제목 태그 -->
+                </div>
+                <div class="mb-3 row">
+                    <label for="username" class="col-sm-4 col-form-label">id</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" id="username" th:value="${info.username}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="nickname" class="col-sm-4 col-form-label">닉네임</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" id="nickname" th:value="${info.nickname}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="name" class="col-sm-4 col-form-label">이름</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" id="name" th:value="${info.name}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="birthday" class="col-sm-4 col-form-label">생일</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" id="birthday" th:value="${info.birthday}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="phone" class="col-sm-4 col-form-label">핸드폰 번호</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" id="phone" th:value="${info.phone}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-4 col-form-label">이메일 주소</label>
+                    <div class="col-sm-6">
+                        <input type="email" readonly class="form-control" id="email" th:value="${info.email}">
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 40px">
+                    <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/updatePwForm}'|">
+                        비밀번호 변경
+                    </button>
+                    <button class="btn btn-primary" type="button"
+                            th:onclick="|location.href='@{/user/updateInfoForm}'|">정보수정
+                    </button>
+                    <!-- 이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴-->
+                    <button class="btn btn-primary" type="button"
+                            th:onclick="|location.href='@{/user/deleteInfo(username=${info.username},memberId=${info.member_id})}'|">
+                        회원탈퇴
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3 row">
-      <label for="username" class="col-sm-2 col-form-label">id</label>
-      <div class="col-sm-10">
-        <input style="width:20%" type="text" readonly class="form-control" id="username" th:value="${info.username}">
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
-      <div class="col-sm-10">
-        <input type="text" readonly class="form-control" id="nickname" th:value="${info.nickname}">
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="name" class="col-sm-2 col-form-label">이름</label>
-      <div class="col-sm-10">
-        <input type="text" readonly class="form-control" id="name" th:value="${info.name}">
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="birthday" class="col-sm-2 col-form-label">생일</label>
-      <div class="col-sm-10">
-        <input type="text" readonly class="form-control" id="birthday" th:value="${info.birthday}">
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="phone" class="col-sm-2 col-form-label">핸드폰 번호</label>
-      <div class="col-sm-10">
-        <input type="text" readonly class="form-control" id="phone" th:value="${info.phone}">
-      </div>
-    </div>
-    <div class="mb-3 row">
-      <label for="email" class="col-sm-2 col-form-label">이메일 주소</label>
-      <div class="col-sm-10">
-        <input type="email" readonly class="form-control" id="email" th:value="${info.email}">
-      </div>
-    </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/updatePwForm}'|">비밀번호 변경</button>
-      <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/updateInfoForm}'|">정보수정</button>
-      <!--        <!—        이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴—>-->
-      <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/deleteInfo(username=${info.username},memberId=${info.member_id})}'|">회원탈퇴</button>
-    </div>
-  </div>
-  </form>
 </section>
 
 <!-- Clients: 구글/페이스북 등등 ~ -->

@@ -17,30 +17,38 @@
 </header>
 
 <section class="page-section bg-light" id="boardInfo">
-    <div style="width:50%" class="container">  <!-- container는 꾸며주는 틀 -->
-        <div class="text-center"> <!-- text-center는 가운데 정렬 -->
-            <h2 style="margin-bottom:50px" class="section-heading text-uppercase">비밀번호 변경 </h2>  <!-- 제목 태그 -->
+    <div style="width:70%" class="container">  <!-- container는 꾸며주는 틀 -->
+        <div class="text-center card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="text-center"> <!-- text-center는 가운데 정렬 -->
+                    <h2 style="margin-bottom:50px" class="section-heading text-uppercase">비밀번호 변경 </h2>  <!-- 제목 태그 -->
+                </div>
+                <form th:action="@{/user/updatePw}" method="post">
+                    <div class="mb-3 row">
+                        <label for="password" class="col-sm-4 col-form-label">비밀번호</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   onkeyup="passwordCheck(this.value)">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="passwordConfirm" class="col-sm-4 col-form-label">비밀번호 확인</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm"
+                                   onkeyup="passwordCheck(this.value)">
+                        </div>
+                        <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
+                        <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
+                        <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
+                    </div>
+                    <div class="text-center" style="margin-top: 40px">
+                        <button class="btn btn-primary" type="submit" id="passwordChange" disabled>비밀번호 변경</button>
+                        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/user/info}'|">취소
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form th:action="@{/user/updatePw}" method="post">
-            <div class="mb-3 row">
-                <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" onkeyup="passwordCheck(this.value)">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="passwordConfirm" class="col-sm-2 col-form-label">비밀번호 확인</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" onkeyup="passwordCheck(this.value)">
-                </div>
-                <div id="password-error" class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
-                <div id="password-success" class="invalid-feedback">비밀번호가 일치합니다.</div>
-                <div id="password-error2" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리 이상을 입력하세요.</div>
-            </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" type="submit" id="passwordChange" disabled>비밀번호 변경</button>
-            </div>
-        </form>
     </div>
 </section>
 
