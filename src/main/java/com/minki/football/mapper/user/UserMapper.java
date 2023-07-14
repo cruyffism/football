@@ -31,4 +31,6 @@ public interface UserMapper {
     UserRes findPw(UserReq userReq);
 
     Integer emailCheck(String email);
+    //비밀번호 업데이트
+    Integer updatePw(UserRes userRes);
 }

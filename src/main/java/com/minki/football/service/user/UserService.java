@@ -73,4 +73,9 @@ public class UserService {
     public Integer emailCheck(String email) {
         return userMapper.emailCheck(email);
     }
+    //비밀번호 업데이트
+    public  Integer updatePw(UserRes userRes) {
+        return userMapper.updatePw(userRes);
+    }
+
 }

@@ -72,10 +72,17 @@
 
     <!-- 비밀번호 찾기 -->
     <select id="findPw" resultType="com.minki.football.dto.user.UserRes" parameterType="UserReq">
-        SELECT password
+        SELECT password, username
         FROM member
         WHERE username = #{username} and email = #{email}
     </select>
+
+    <!-- 비밀번호 수정 -->
+    <update id="updatePw" parameterType="com.minki.football.dto.user.UserRes">
+        update member
+        set password = #{password}
+        where username = #{username}
+    </update>
 
 </mapper>
 
