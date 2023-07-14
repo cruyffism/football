@@ -2,68 +2,89 @@
         <div class="col-lg-8">
             <div class="modal-body">
                 <!-- Project details-->
-                <h2 class="text-uppercase" style="margin-bottom: 40px; color:black">관리자 회원가입</h2>
+                <h2 class="text-uppercase" style="margin-bottom: 40px; color:black">사용자 회원가입</h2>
                 <form th:action="@{/user/signup}" method="post" id="signUpForm" class="needs-validation" novalidate>
                     <input type="hidden" id="type" name="type" th:value="${type}">
                     <div class="mb-3 row">
-                        <div class="col">
+                        <label for="username" class="col-sm-4 col-form-label" style="color: black">아이디</label>
+                        <div class="col-sm-6">
                             <input type="text" class="form-control" id="username"
                                    name="username" placeholder="Id" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary text-uppercase" id="idCheck"
-                                    onclick="idCheckAjax()">중복체크
+                                    onclick="idCheckAjax()">
+                                중복체크
                             </button>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="name" name="name"
-                               placeholder="Name" required/>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="nickname" name="nickname"
-                               placeholder="Nickname" required/>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control"
-                               onkeyup="passwordCheck(this.value)" id="password"
-                               name="password" placeholder="Password" required/>
-                        <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
-                        <div id="password-error" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리
-                            이상을 입력하세요.
+                    <div class="mb-3 row">
+                        <label for="name" class="col-sm-4 col-form-label" style="color: black">이름</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Name" required/>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <input type="date" class="form-control" id="birthday" name="birthday"
-                               placeholder="Birthday" required/>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
-                               id="phone" name="phone"
-                               placeholder="Phone" required/>
-                        <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
+                    <div class="mb-3 row">
+                        <label for="nickname" class="col-sm-4 col-form-label" style="color: black">닉네임</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nickname" name="nickname"
+                                   placeholder="Nickname" required/>
+                        </div>
                     </div>
                     <div class="mb-3 row">
-                        <div class="col">
+                        <label for="password" class="col-sm-4 col-form-label" style="color: black">비밀번호</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control"
+                                   onkeyup="passwordCheck(this.value)" id="password"
+                                   name="password" placeholder="Password" required/>
+                            <!--&lt;!&ndash;onkeyup을 통해  signup.js 에 있는 passwordCheck function을 호출하여 this.value값을 넘겨주고 이것이 에러인지 검사 후 비번조합이 에러인 순간 에러문구 보여주라고 하고 아래 영문 ~ 조합 8자리 입력 문구가 뜬다 &ndash;&gt;-->
+                            <div id="password-error" class="invalid-feedback">영문,숫자,특수문자를 조합한 8자리
+                                이상을 입력하세요.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="birthday" class="col-sm-4 col-form-label" style="color: black">생년월일</label>
+                        <div class="col-sm-6">
+                            <input type="date" class="form-control" id="birthday" name="birthday"
+                                   placeholder="Birthday" required/>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="phone" class="col-sm-4 col-form-label" style="color: black">핸드폰 번호</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" onkeyup="phoneCheck(this.value)"
+                                   id="phone" name="phone"
+                                   placeholder="Phone" required/>
+                            <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="email" class="col-sm-4 col-form-label" style="color: black">이메일</label>
+                        <div class="col-sm-6">
                             <input type="email" class="form-control" id="email" name="email"
                                    placeholder="email" required/>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-2">
                             <button type="button" class="btn btn-primary text-uppercase" id="emailCheck"
                                     onclick="emailCheckAjax()">중복체크
                             </button>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender"
-                                   id="gender" value="남" required>
-                            <label class="form-check-label" style="color:black">남자</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender"
-                                   id="gender" value="여" required>
-                            <label class="form-check-label" style="color:black">여자</label>
+                    <div class="mb-3 row">
+                        <label for="gender" class="col-sm-4 col-form-label" style="color: black">성별</label>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="gender" value="남" required>
+                                <label class="form-check-label" style="color:black">남자</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender"
+                                       id="gender" value="여" required>
+                                <label class="form-check-label" style="color:black">여자</label>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg text-uppercase">가입
