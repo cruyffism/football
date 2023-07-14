@@ -9,145 +9,168 @@
 </nav>
 <!-- Masthead: 챔스 배경 화면 >> 이건 직접 넣은 코드 -->
 <header class="masthead">
-  <div class="container">
-    <div class="masthead-subheading">Welcome To Our FootBall!</div>
-    <a class="btn btn-primary btn-xl text-uppercase" href="#playerInfo">Here to Go</a>
-  </div>
+    <div class="container">
+        <div class="masthead-subheading">Welcome To Our FootBall!</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="#playerInfo">Here to Go</a>
+    </div>
 </header>
 
 <section class="page-section bg-light" id="playerInfo">
-  <form id="form1" th:action="@{/admin/playerUpdate}" method="post" enctype="multipart/form-data">
-    <input type="hidden" id="player_id" name="player_id" th:value="${playerInfo.player_id}">
-    <div class="container">  <!-- container는 꾸며주는 틀 -->
-      <div class="text-center"> <!-- text-center는 가운데 정렬 -->
-        <h2 style="margin-bottom:50px" class="section-heading text-uppercase">선수 정보 수정</h2>  <!-- 제목 태그 -->
-      </div>
-      <div class="mb-3 row">
-        <label for="name" class="col-sm-2 col-form-label">이름</label>
-        <div class="col-sm-10">
-          <input style="width:20%" type="text" class="form-control" id="name" name="name" th:value="${playerInfo.name}">
+    <form id="form1" th:action="@{/admin/playerUpdate}" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="player_id" name="player_id" th:value="${playerInfo.player_id}">
+        <div class="container" style="width: 80%">  <!-- container는 꾸며주는 틀 -->
+            <div class="text-center card shadow border-0 rounded-4 mb-5">
+                <div class="card-body p-5">
+                    <div class="text-center"> <!-- text-center는 가운데 정렬 -->
+                        <h2 style="margin-bottom:50px" class="section-heading text-uppercase">선수 정보 수정</h2>
+                        <!-- 제목 태그 -->
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="name" class="col-sm-4 col-form-label">이름</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="name" name="name"
+                                   th:value="${playerInfo.name}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="height" class="col-sm-4 col-form-label">키</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="height" name="height"
+                                   th:value="${playerInfo.height}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="weight" class="col-sm-4 col-form-label">몸무게</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="weight" name="weight"
+                                   th:value="${playerInfo.weight}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="age" class="col-sm-4 col-form-label">나이</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="age" name="age" th:value="${playerInfo.age}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="position" class="col-sm-4 col-form-label">포지션</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="position" name="position"
+                                   th:value="${playerInfo.position}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="game_match" class="col-sm-4 col-form-label">경기수</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="game_match" name="game_match"
+                                   th:value="${playerInfo.game_match}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="playing_time" class="col-sm-4 col-form-label">출전시간</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="playing_time" name="playing_time"
+                                   th:value="${playerInfo.playing_time}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="goal" class="col-sm-4 col-form-label">골</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="goal" name="goal" th:value="${playerInfo.goal}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="assist" class="col-sm-4 col-form-label">도움</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="assist" name="assist"
+                                   th:value="${playerInfo.assist}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="total_point" class="col-sm-4 col-form-label">공격포인트</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="total_point" name="total_point"
+                                   th:value="${playerInfo.total_point}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="yellow_card" class="col-sm-4 col-form-label">옐로우카드</label>
+                        <div class="col-sm-6">
+                            <textarea type="number" class="form-control" id="yellow_card" name="yellow_card"
+                                      th:text="${playerInfo.yellow_card}"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="red_card" class="col-sm-4 col-form-label">레드카드</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="red_card" name="red_card"
+                                   th:value="${playerInfo.red_card}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="rating" class="col-sm-4 col-form-label">평점</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="rating" name="rating"
+                                   th:value="${playerInfo.rating}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="mvp" class="col-sm-4 col-form-label">mvp</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="mvp" name="mvp" th:value="${playerInfo.mvp}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="nationality" class="col-sm-4 col-form-label">국가</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="nationality" name="nationality"
+                                   th:value="${playerInfo.nationality}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="play_style" class="col-sm-4 col-form-label">플레이스타일</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" id="play_style" name="play_style"
+                                      th:text="${playerInfo.play_style}"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="strength" class="col-sm-4 col-form-label">강점</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" id="strength" name="strength"
+                                      th:text="${playerInfo.strength}"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="weakness" class="col-sm-4 col-form-label">약점</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" id="weakness" name="weakness"
+                                      th:text="${playerInfo.weakness}"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="back_number" class="col-sm-4 col-form-label">등번호</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="back_number" name="back_number"
+                                   th:value="${playerInfo.back_number}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="image" class="col-sm-4 col-form-label">선수 이미지</label>
+                        <div class="col-sm-6">
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="submit">저장</button>
+                        <button class="btn btn-primary" type="button"
+                                th:onclick="|location.href='@{/admin/playerList}'|">목록
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="height" class="col-sm-2 col-form-label">키</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="height" name="height" th:value="${playerInfo.height}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="weight" class="col-sm-2 col-form-label">몸무게</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="weight" name="weight" th:value="${playerInfo.weight}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="age" class="col-sm-2 col-form-label">나이</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="age" name="age" th:value="${playerInfo.age}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="position" class="col-sm-2 col-form-label">포지션</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="position" name="position" th:value="${playerInfo.position}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="game_match" class="col-sm-2 col-form-label">경기수</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="game_match" name="game_match" th:value="${playerInfo.game_match}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="playing_time" class="col-sm-2 col-form-label">출전시간</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="playing_time" name="playing_time" th:value="${playerInfo.playing_time}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="goal" class="col-sm-2 col-form-label">골</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="goal" name="goal" th:value="${playerInfo.goal}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="assist" class="col-sm-2 col-form-label">도움</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="assist" name="assist" th:value="${playerInfo.assist}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="total_point" class="col-sm-2 col-form-label">공격포인트</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="total_point" name="total_point" th:value="${playerInfo.total_point}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="yellow_card" class="col-sm-2 col-form-label">옐로우카드</label>
-        <div class="col-sm-10">
-          <textarea type="text" class="form-control" id="yellow_card" name="yellow_card" th:text="${playerInfo.yellow_card}"></textarea>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="red_card" class="col-sm-2 col-form-label">레드카드</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="red_card" name="red_card" th:value="${playerInfo.red_card}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="rating" class="col-sm-2 col-form-label">평점</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="rating" name="rating" th:value="${playerInfo.rating}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="mvp" class="col-sm-2 col-form-label">mvp</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="mvp" name="mvp" th:value="${playerInfo.mvp}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="nationality" class="col-sm-2 col-form-label">국가</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="nationality" name="nationality" th:value="${playerInfo.nationality}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="play_style" class="col-sm-2 col-form-label">플레이스타일</label>
-        <div class="col-sm-10">
-          <textarea class="form-control" id="play_style" name="play_style"  th:text="${playerInfo.play_style}"></textarea>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="strength" class="col-sm-2 col-form-label">강점</label>
-        <div class="col-sm-10">
-          <textarea class="form-control" id="strength" name="strength" th:text="${playerInfo.strength}"></textarea>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="weakness" class="col-sm-2 col-form-label">약점</label>
-        <div class="col-sm-10">
-          <textarea class="form-control" id="weakness" name="weakness" th:text="${playerInfo.weakness}"></textarea>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="back_number" class="col-sm-2 col-form-label">등번호</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="back_number" name="back_number" th:value="${playerInfo.back_number}">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="image" class="col-sm-2 col-form-label">선수 이미지</label>
-        <div class="col-sm-10">
-          <input type="file" class="form-control" id="image" name="image">
-        </div>
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary" type="submit">저장</button>
-        <button class="btn btn-primary" type="button" th:onclick="|location.href='@{/admin/playerList}'|">목록</button>
-      </div>
-    </div>
-  </form>
+    </form>
 </section>
 
 <!-- Clients: 구글/페이스북 등등 ~ -->

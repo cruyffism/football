@@ -29,9 +29,7 @@
         plus_goal = #{plus_goal},
         minus_goal = #{minus_goal},
         diff_goal = #{diff_goal},
-        team_style = #{team_style},
-        logo_image_path = #{logo_image_path},
-        best_image_path = #{best_image_path}
+        team_style = #{team_style}
         where team_id = #{team_id}
     </update>
 
