@@ -53,7 +53,11 @@ public class UserService {
             userMapper.insertUser(userReq); // 회원정보 저장
             UserRoleReq userRoleReq = new UserRoleReq();
             userRoleReq.setMemberId(userReq.getMemberId());
-            userRoleReq.setRoleId(1);
+            if (userReq.getType() == 1) { // 일반 회원
+                userRoleReq.setRoleId(1);
+            } else { // 관리자
+                userRoleReq.setRoleId(2);
+            }
             userMapper.insertUserRole(userRoleReq); // 권한정보 저장
         }
     }

@@ -64,11 +64,18 @@ public class UserController {
         return "index";
     }
 
-//    // 회원가입 페이지
-//    @GetMapping("/signup")
-//    public String signupPage() {  // 회원 가입 페이지
-//        return "user/signup";
-//    }
+    // 회원가입 페이지
+    @GetMapping("/signUpAjax/{type}")
+    public String signupAjax(Model model, @PathVariable Integer type) {  // 회원 가입 페이지
+        if (type == 1) {
+            model.addAttribute("type", type);
+            return "user/userSignUpAjax";
+        } else {
+            model.addAttribute("type", type);
+            return "user/adminSignUpAjax";
+        }
+
+    }
 
     // 회원가입 진행
     @PostMapping("/signup")
@@ -129,7 +136,7 @@ public class UserController {
 
     //회원정보 삭제
     @GetMapping("/deleteInfo") // 조회,삭제가 get
-    public String deleteUser(Model model, @RequestParam String username,@RequestParam Integer memberId, HttpSession session) throws IOException {
+    public String deleteUser(Model model, @RequestParam String username, @RequestParam Integer memberId, HttpSession session) throws IOException {
         Integer deleteUser = userService.deleteUser(username);
         Integer deleteRole = userService.deleteRole(memberId);
         model.addAttribute("deleteUser", username);
@@ -204,7 +211,7 @@ public class UserController {
             message.setText("안녕하세요. \n\n" + userReq.getUsername() + "님의 임시비밀번호는 " + tempPw + " 입니다.\n\n 로그인 후에 비밀번호를 변경을 해주세요");
             message.setFrom(from);
             message.setReplyTo(from);
-            System.out.println("message: "+message);
+            System.out.println("message: " + message);
             javaMailSender.send(message);
 
             // 3. 임시 비밀번호 db에 수정
@@ -221,9 +228,9 @@ public class UserController {
     }
 
     // 임시 비밀번호 랜덤으로 만들었음
-    public String getTempPassword(){
-        char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    public String getTempPassword() {
+        char[] charSet = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
         String str = "";
 
@@ -242,7 +249,7 @@ public class UserController {
     }
 
     @PostMapping("/updatePw")
-    public String updatePw(Model model, @ModelAttribute UserRes userRes, HttpSession session, HttpServletResponse response) throws IOException{
+    public String updatePw(Model model, @ModelAttribute UserRes userRes, HttpSession session, HttpServletResponse response) throws IOException {
         System.out.println("userRes : " + userRes);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -251,7 +258,7 @@ public class UserController {
 
         Integer updatePassword = userService.updatePw(userRes);
 
-        if(updatePassword == 0){
+        if (updatePassword == 0) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter writer = response.getWriter();
             writer.println("<script>alert('비밀번호가 변경되지 않았습니다.');</script>");

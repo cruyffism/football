@@ -13,5 +13,6 @@ public class UserReq {
     private String gender;
     private String phone;
     private String email;
+    private Integer type;
 
 }

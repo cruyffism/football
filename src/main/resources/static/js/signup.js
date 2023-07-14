@@ -94,6 +94,7 @@ function emailCheckAjax() {
 }
 
 $(document).ready(function () {
+    signUpTabAjax(1); // 회원가입 창 api
     $('#password-error').hide(); // 비밀번호 에러문구 숨기기
     $('#phone-error').hide(); // 폰번호 에러문구 숨기기
     // 회원가입 폼 null 체크 및 아이디 중복체크 문구 나오게
@@ -151,4 +152,25 @@ function phoneCheck(number){
     }else { // regExp 조건에 맞으면
         $('#phone-error').hide(); // 에러문구 없애줘
     }
+}
+
+function signUpTabAjax(type){
+    const innerHtml = $("#signUpForm")
+    $.ajax({
+        url: "/user/signUpAjax/" + type,
+        type: 'GET',
+        cache: false,
+        dataType: "html",
+        async: false,
+        success: function (data) {
+            $('.nav-link').removeClass('active');
+            document.getElementById("signUpTab" + type).className += " active"
+            $(innerHtml).html(data)
+            setTimeout(function () {
+            }, 1000)
+        },
+        error: function (e) {
+            $(innerHtml).html("")
+        }
+    })
 }
