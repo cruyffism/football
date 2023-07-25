@@ -15,40 +15,38 @@
         <collection property="playerRes" resultMap="playerRes"/>
     </resultMap>
     <select id="list" resultType="com.minki.football.dto.team.TeamRes">
-    select
-        team_id,
-        game_rank,
-        team_name,
-        game_match,
-        point,
-        win,
-        draw,
-        lose,
-        plus_goal,
-        minus_goal,
-        diff_goal
-    from team
-    where league_id = #{leagueId}
-    order by ${criteria.sort}
+        select team_id,
+               game_rank,
+               team_name,
+               game_match,
+               point,
+               win,
+               draw,
+               lose,
+               plus_goal,
+               minus_goal,
+               diff_goal
+        from team
+        where league_id = #{leagueId}
+        order by ${criteria.sort}
     </select>
 
-    <select id="rank" parameterType="com.minki.football.dto.page.Criteria" resultType="com.minki.football.dto.team.PlayerRes">
-    select
-        player_id,
-        name,
-        position,
-        game_match,
-        playing_time,
-        goal,
-        assist,
-        yellow_card,
-        red_card,
-        mvp,
-        rating,
-        total_point
-    from player
-    order by ${sort}
-        LIMIT #{pageStart}, #{perPageNum}
+    <select id="rank" parameterType="com.minki.football.dto.page.Criteria"
+            resultType="com.minki.football.dto.team.PlayerRes">
+        select player_id,
+               name,
+               position,
+               game_match,
+               playing_time,
+               goal,
+               assist,
+               yellow_card,
+               red_card,
+               mvp,
+               rating,
+               total_point
+        from player
+        order by ${sort} LIMIT #{pageStart}, #{perPageNum}
     </select>
 
     <select id="selectPlayerTotalCount" parameterType="com.minki.football.dto.page.Criteria"
@@ -57,18 +55,16 @@
         FROM player
     </select>
 
-    <select  id="podium" parameterType="String" resultMap="teamRes">
-    select
-        p.name,
-        t.team_name,
-        p.goal,
-        p.assist,
-        p.total_point,
-        p.mvp
-    from team t
-        inner join player p on p.team_id = t.team_id
-        order by ${type} DESC
-        limit 3
+    <select id="podium" parameterType="String" resultMap="teamRes">
+        select p.name,
+               t.team_name,
+               p.goal,
+               p.assist,
+               p.total_point,
+               p.mvp
+        from team t
+                 inner join player p on p.team_id = t.team_id
+        order by ${type} DESC limit 3
     </select>
 
 </mapper>

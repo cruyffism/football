@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface RankMapper {
-    List<TeamRes> list(@Param("leagueId")Integer leagueId,@Param("criteria")Criteria criteria);
+    List<TeamRes> list(@Param("leagueId") Integer leagueId, @Param("criteria") Criteria criteria);
 
     List<PlayerRes> rank(Criteria criteria);
 

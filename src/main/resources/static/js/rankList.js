@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    rankTeamAjax(1,"game_match","DESC",2)
+    rankTeamAjax(1,"point","DESC",2)
 });
 
 function rankTeamAjax(league_id , sortColumn, sortType, idx) {
@@ -94,7 +94,7 @@ function podiumAjax() {
 }
 
 function leagueTabAjax(league_id) {
-    rankTeamAjax(league_id,"game_match","DESC",2)
+    rankTeamAjax(league_id,"point","DESC",2)
     $('.nav-link').not(this).removeClass('active');
     // document.getElementById("rankTab2").classList.remove("active");
     document.getElementById("rankTab1").className += " active"
