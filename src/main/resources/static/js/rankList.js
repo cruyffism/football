@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    rankTeamAjax(1,"game_rank","DESC",1)
+    rankTeamAjax(1,"game_match","DESC",2)
 });
 
 function rankTeamAjax(league_id , sortColumn, sortType, idx) {
     const innerHtml = $("#rankList")
-    const f = document.getElementById("form1");
+    const f = document.getElementById("form");
     f.sortColumn.value = sortColumn;
     f.sortType.value = sortType;
     f.idx.value = idx;
@@ -13,7 +13,7 @@ function rankTeamAjax(league_id , sortColumn, sortType, idx) {
         url: "/rank/team/" + league_id,
         type: 'GET',
         cache: false,
-        data: $('#form1').serialize(),
+        data: $('#form').serialize(),
         dataType: "html",
         async: false,
         success: function (data) {
@@ -108,12 +108,13 @@ function sortUpDown(idx) {
     } else {
         rankPlayerAjax('1', imgTag.className, 'DESC', idx);
     }
-    function teamSortUpDown(idx) {
-        const imgTag = document.getElementById("sort" + idx);
-        if ($('#sortType').val() === 'DESC' && imgTag.className === $('#sortColumn').val()) {
-            rankTeamAjax(1, imgTag.className, 'ASC', idx);
-        } else {
-            rankTeamAjax(1, imgTag.className, 'DESC', idx);
-        }
+}
+
+function teamSortUpDown(idx) {
+    const imgTag = document.getElementById("sort" + idx);
+    if ($('#sortType').val() === 'DESC' && imgTag.className === $('#sortColumn').val()) {
+        rankTeamAjax(1, imgTag.className, 'ASC', idx);
+    } else {
+        rankTeamAjax(1, imgTag.className, 'DESC', idx);
     }
 }
