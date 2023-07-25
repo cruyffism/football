@@ -94,7 +94,7 @@ function podiumAjax() {
 }
 
 function leagueTabAjax(league_id) {
-    rankTeamAjax(league_id);
+    rankTeamAjax(league_id,"game_match","DESC",2)
     $('.nav-link').not(this).removeClass('active');
     // document.getElementById("rankTab2").classList.remove("active");
     document.getElementById("rankTab1").className += " active"
