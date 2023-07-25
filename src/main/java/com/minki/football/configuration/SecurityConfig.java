@@ -83,7 +83,7 @@ public class SecurityConfig {
                 // 권한처리
                 .authoritiesByUsernameQuery("select m.username, r.name "
                         + "from user_role ur inner join member m on ur.member_id=m.member_id "
-                        + "inner join role r on ur.role_id=r.id "
+                        + "inner join role r on ur.role_id=r.role_id "
                         + "where m.username = ?");
     }
 

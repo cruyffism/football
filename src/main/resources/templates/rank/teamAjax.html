@@ -16,19 +16,41 @@
     </li>
 </ul>
 <h4 style="text-align: center; margin-bottom: 20px">전체 리그별 팀 순위</h4>
+<form id="form1">
+    <input type="hidden" name="sortColumn" id="sortColumn" value=""/>
+    <input type="hidden" name="sortType" id="sortType" value=""/>
+    <input type="hidden" name="idx" id="idx" value=""/>
 <table>
     <thead>
     <tr style="text-align: center">
-        <th scope="col">순위</th>
+        <th scope="col">순위 <img id="sort1" class="game_match"
+                                src="../../static/images/rank/sortUp.png"
+                                onclick="teamSortUpDown(1);"></th>
         <th scope="col">팀</th>
-        <th scope="col">경기수</th>
-        <th scope="col">승점</th>
-        <th scope="col">승</th>
-        <th scope="col">무</th>
-        <th scope="col">패</th>
-        <th scope="col">득점</th>
-        <th scope="col">실점</th>
-        <th scope="col">득실차</th>
+        <th scope="col">경기수 <img id="sort2" class="game_match"
+                                 src="../../static/images/rank/sortUp.png"
+                                 onclick="teamSortUpDown(2);"></th>
+        <th scope="col">승점 <img id="sort3" class="game_match"
+                                src="../../static/images/rank/sortUp.png"
+                                onclick="teamSortUpDown(3);"></th>
+        <th scope="col">승 <img id="sort4" class="game_match"
+                               src="../../static/images/rank/sortUp.png"
+                               onclick="teamSortUpDown(4);"></th>
+        <th scope="col">무 <img id="sort5" class="game_match"
+                               src="../../static/images/rank/sortUp.png"
+                               onclick="teamSortUpDown(5);"></th>
+        <th scope="col">패 <img id="sort6" class="game_match"
+                               src="../../static/images/rank/sortUp.png"
+                               onclick="teamSortUpDown(6);"></th>
+        <th scope="col">득점 <img id="sort7" class="game_match"
+                                src="../../static/images/rank/sortUp.png"
+                                onclick="teamSortUpDown(7);"></th>
+        <th scope="col">실점 <img id="sort8" class="game_match"
+                                src="../../static/images/rank/sortUp.png"
+                                onclick="teamSortUpDown(8);"></th>
+        <th scope="col">득실차 <img id="sort9" class="game_match"
+                                 src="../../static/images/rank/sortUp.png"
+                                 onclick="teamSortUpDown(9);"></th>
     </tr>
     </thead>
     <tbody>
@@ -46,3 +68,4 @@
     </tr>
     </tbody>
 </table>
+</form>

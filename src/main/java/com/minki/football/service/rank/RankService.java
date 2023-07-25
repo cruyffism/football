@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class RankService {
 
     @Autowired
     private RankMapper rankMapper;
 
-    public List<TeamRes> list(Integer leagueId) {
-        List<TeamRes> rankList = rankMapper.list(leagueId);
+    public List<TeamRes> list(Integer leagueId, Criteria criteria) {
+        List<TeamRes> rankList = rankMapper.list(leagueId, criteria);
         return rankList;
     }
 

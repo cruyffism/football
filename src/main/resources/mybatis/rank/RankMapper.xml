@@ -29,7 +29,7 @@
         diff_goal
     from team
     where league_id = #{leagueId}
-    order by game_rank asc;
+    order by ${criteria.sort}
     </select>
 
     <select id="rank" parameterType="com.minki.football.dto.page.Criteria" resultType="com.minki.football.dto.team.PlayerRes">

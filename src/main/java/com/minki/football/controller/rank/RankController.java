@@ -24,8 +24,8 @@ public class RankController {
 
     //팀 순위 조회
     @GetMapping("/team/{leagueId}")
-    public String list(Model model, @PathVariable Integer leagueId) {
-        List<TeamRes> rankList = rankService.list(leagueId);
+    public String list(Model model, @PathVariable Integer leagueId, @ModelAttribute("criteria") Criteria criteria) {
+        List<TeamRes> rankList = rankService.list(leagueId, criteria);
         model.addAttribute("list", rankList);
         return "rank/teamAjax";
     }
