@@ -161,6 +161,14 @@ public class UserController {
         return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
     }
 
+    // 닉네임 중복 체크
+    @GetMapping("/nicknameCheckAjax")
+    @ResponseBody  // 리스폰스바디와 json은 한 쌍 !! dataType:"json" >> 이쪽으로 결과를 리턴해주는 역할을 하므로 밑에 return에 프론트 경로 안써준다!
+    public Integer nicknameCheck(@RequestParam String nickname) {
+        int cnt = userService.nicknameCheck(nickname);
+        return cnt;   // cnt라는 이름으로 결과값을 ajax로 보냈다!
+    }
+
     // 아이디 찾기 폼
     @GetMapping("/findIdForm")
     public String findIdForm() {

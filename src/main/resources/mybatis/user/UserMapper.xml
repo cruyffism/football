@@ -62,6 +62,13 @@
         WHERE email = #{email}
     </select>
 
+    <!-- 이메일 중복 체크 -->
+    <select id="nicknameCheck" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM member
+        WHERE nickname = #{nickname}
+    </select>
+
     <!-- 조건(이름/전번/비번)에 맞는 아이디 출력 -->
     <select id="findId" resultType="com.minki.football.dto.user.UserRes" parameterType="UserReq">
         SELECT username

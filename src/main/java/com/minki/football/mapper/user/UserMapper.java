@@ -33,4 +33,6 @@ public interface UserMapper {
     Integer emailCheck(String email);
     //비밀번호 업데이트
     Integer updatePw(UserRes userRes);
+
+    Integer nicknameCheck(String nickname);
 }

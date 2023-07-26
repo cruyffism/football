@@ -82,4 +82,7 @@ public class UserService {
         return userMapper.updatePw(userRes);
     }
 
+    public Integer nicknameCheck(String nickname) {
+        return userMapper.nicknameCheck(nickname);
+    }
 }
