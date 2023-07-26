@@ -25,37 +25,37 @@
                 <div class="mb-3 row">
                     <label for="username" class="col-sm-4 col-form-label">id</label>
                     <div class="col-sm-6">
-                        <input type="text" readonly class="form-control" id="username" th:value="${info.username}">
+                        <input type="text" disabled class="form-control" id="username" th:value="${info.username}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="nickname" class="col-sm-4 col-form-label">닉네임</label>
                     <div class="col-sm-6">
-                        <input type="text" readonly class="form-control" id="nickname" th:value="${info.nickname}">
+                        <input type="text" disabled class="form-control" id="nickname" th:value="${info.nickname}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-4 col-form-label">이름</label>
                     <div class="col-sm-6">
-                        <input type="text" readonly class="form-control" id="name" th:value="${info.name}">
+                        <input type="text" disabled class="form-control" id="name" th:value="${info.name}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="birthday" class="col-sm-4 col-form-label">생일</label>
                     <div class="col-sm-6">
-                        <input type="text" readonly class="form-control" id="birthday" th:value="${info.birthday}">
+                        <input type="text" disabled class="form-control" id="birthday" th:value="${info.birthday}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="phone" class="col-sm-4 col-form-label">핸드폰 번호</label>
                     <div class="col-sm-6">
-                        <input type="text" readonly class="form-control" id="phone" th:value="${info.phone}">
+                        <input type="text" disabled class="form-control" id="phone" th:value="${info.phone}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">이메일 주소</label>
                     <div class="col-sm-6">
-                        <input type="email" readonly class="form-control" id="email" th:value="${info.email}">
+                        <input type="email" disabled class="form-control" id="email" th:value="${info.email}">
                     </div>
                 </div>
                 <div class="text-center" style="margin-top: 40px">
@@ -67,7 +67,7 @@
                     </button>
                     <!-- 이렇게 온클릭해주면 수정폼으로 가는 api가 호출이되어서 보드컨트롤러의 보드업데이트로 가고 여기서 저장버튼을 누르면 다시 "board/list"로 리턴-->
                     <button class="btn btn-primary" type="button"
-                            th:onclick="|location.href='@{/user/deleteInfo(username=${info.username},memberId=${info.member_id})}'|">
+                            th:onclick="|location.href='@{/user/deleteInfoForm}'|">
                         회원탈퇴
                     </button>
                 </div>

@@ -102,9 +102,7 @@ public class UserController {
     public String getUserById(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName();
-        System.out.println("username : " + username);
         UserRes userRes = userService.getUserById(username);
-        System.out.println("userRes : " + userRes);
         model.addAttribute("info", userRes);
         return "user/mypage"; //프론트 경로
 
@@ -122,27 +120,49 @@ public class UserController {
 
     //회원정보 수정
     @PostMapping("/updateInfo") //백엔드 경로
-    public String updateUser(Model model, @ModelAttribute UserReq userReq) {
-        userReq.setPassword(passwordEncoder.encode(userReq.getPassword()));
-        //@ModelAttribute에서 받은 userRes에서 담겨온 패스워드를 암호화해서 다시 패스워드라는 변수에 넣어서 저장
+    public String updateUser(Model model, @ModelAttribute UserReq userReq, HttpServletResponse response) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // 백엔드에서  글 저장하려할ㅈ때 로그인 정보 가져와서 아이디 값을 디비에 넣어주는거!
         String username = auth.getName(); // auth애서 아이디값만 가져와서 좌측 username에 넣어준거
+        userReq.setUsername(username);
         Integer result = userService.updateUser(userReq);
         UserRes userRes = userService.getUserById(username);
         model.addAttribute("info", userRes);
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<script>alert('정보가 수정되었습니다.');</script>");
+        writer.flush();
+
         return "user/mypage"; //프론트 경로
     }
 
-    //회원정보 삭제
-    @GetMapping("/deleteInfo") // 조회,삭제가 get
-    public String deleteUser(Model model, @RequestParam String username, @RequestParam Integer memberId, HttpSession session) throws IOException {
-        Integer deleteUser = userService.deleteUser(username);
-        Integer deleteRole = userService.deleteRole(memberId);
-        model.addAttribute("deleteUser", username);
-        session.invalidate();
 
-        return "redirect:/";
+    //회원정보 삭제폼
+    @GetMapping("/deleteInfoForm") // 조회,삭제가 get
+    public String deleteUserForm() {
+        return "user/deleteForm";
+    }
+
+    //회원정보 삭제
+    @PostMapping("/deleteInfo") // 조회,삭제가 get
+    public String deleteUser(Model model, @ModelAttribute UserReq userReq, HttpSession session, HttpServletResponse response) throws IOException {
+        UserRes userRes = userService.getUserById(userReq.getUsername());
+        if (passwordEncoder.matches(userReq.getPassword(), userRes.getPassword())) {
+            Integer deleteRole = userService.deleteRole(userRes.getMember_id());
+            Integer deleteUser = userService.deleteUser(userReq.getUsername());
+//            model.addAttribute("msg", "탈퇴되었습니다.");
+//            model.addAttribute("url", "redirect:/");
+            session.invalidate();
+//            return "user/deleteAlert";
+            return "redirect:/";
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter writer = response.getWriter();
+            writer.println("<script>alert('비밀번호가 틀렸습니다.');</script>");
+            writer.flush();
+            return "user/deleteForm";
+        }
     }
 
     // 아이디 중복 체크

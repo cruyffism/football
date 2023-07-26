@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../../static/js/deleteAlert.js"></script>
+<!--<script type="text/javascript">-->
+<!--    console.log("d옴??")-->
+<!--    const message = $("#msg").val();-->
+<!--    const url = $("#url").val();-->
+<!--    console.log("msg : ", message)-->
+<!--    console.log("url : ", url)-->
+<!--    alert(message);-->
+<!--    document.location.href = url;-->
+<!--</script>-->
+<body>
+<form>
+    <input type="hidden" id="msg" name="msg" th:value="${msg}">
+    <input type="hidden" id="url" name="url" th:value="${url}">
+</form>
+</body>
+</html>

@@ -18,6 +18,8 @@
 
 <section class="page-section bg-light" id="updateInfo">
     <form th:action="@{/user/updateInfo}" method="post" id="updateForm" class="needs-validation" novalidate>
+        <input type="hidden" id="oriNickname" name="oriNickname" th:value="${info.nickname}">
+        <input type="hidden" id="oriEmail" name="oriEmail" th:value="${info.email}">
         <div style="width:70%" class="container">  <!-- container는 꾸며주는 틀 -->
             <div class="text-center card shadow border-0 rounded-4 mb-5">
                 <div class="card-body p-5">
@@ -36,41 +38,45 @@
                         <label for="nickname" class="col-sm-4 col-form-label">닉네임</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="nickname" name="nickname"
-                                   th:value="${info.nickname}">
+                                   th:value="${info.nickname}" onkeyup="nicknameRealCheck(this.value)" required>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary text-uppercase" id="nicknameCheck"
-                                    onclick="nicknameCheckAjax()">중복체크
+                                    onclick="nicknameCheckAjax()" disabled>중복체크
                             </button>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="name" class="col-sm-4 col-form-label">이름</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name" name="name" th:value="${info.name}">
+                            <input type="text" class="form-control" id="name" name="name" th:value="${info.name}"
+                                   required>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="birthday" class="col-sm-4 col-form-label">생일</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="birthday" name="birthday"
-                                   th:value="${info.birthday}">
+                                   th:value="${info.birthday}" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="phone" class="col-sm-4 col-form-label">핸드폰 번호</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="phone" name="phone" th:value="${info.phone}">
+                            <input type="text" class="form-control" id="phone" name="phone" th:value="${info.phone}"
+                                   onkeyup="phoneCheck(this.value)" required>
+                            <div id="phone-error" class="invalid-feedback">숫자만 입력하세요.</div>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-4 col-form-label">이메일 주소</label>
                         <div class="col-sm-6">
-                            <input type="email" class="form-control" id="email" name="email" th:value="${info.email}">
+                            <input type="email" class="form-control" id="email" name="email" th:value="${info.email}"
+                                   onkeyup="emailRealCheck(this.value)" required>
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-primary text-uppercase" id="emailCheck"
-                                    onclick="emailCheckAjax()">중복체크
+                                    onclick="emailCheckAjax()" disabled>중복체크
                             </button>
                         </div>
                     </div>
