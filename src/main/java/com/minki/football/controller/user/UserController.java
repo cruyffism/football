@@ -151,10 +151,7 @@ public class UserController {
         if (passwordEncoder.matches(userReq.getPassword(), userRes.getPassword())) {
             Integer deleteRole = userService.deleteRole(userRes.getMember_id());
             Integer deleteUser = userService.deleteUser(userReq.getUsername());
-//            model.addAttribute("msg", "탈퇴되었습니다.");
-//            model.addAttribute("url", "redirect:/");
             session.invalidate();
-//            return "user/deleteAlert";
             return "redirect:/";
         } else {
             response.setContentType("text/html; charset=UTF-8");
@@ -239,7 +236,6 @@ public class UserController {
             message.setText("안녕하세요. \n\n" + userReq.getUsername() + "님의 임시비밀번호는 " + tempPw + " 입니다.\n\n 로그인 후에 비밀번호를 변경을 해주세요");
             message.setFrom(from);
             message.setReplyTo(from);
-            System.out.println("message: " + message);
             javaMailSender.send(message);
 
             // 3. 임시 비밀번호 db에 수정
@@ -278,7 +274,6 @@ public class UserController {
 
     @PostMapping("/updatePw")
     public String updatePw(Model model, @ModelAttribute UserRes userRes, HttpSession session, HttpServletResponse response) throws IOException {
-        System.out.println("userRes : " + userRes);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         userRes.setUsername(username);

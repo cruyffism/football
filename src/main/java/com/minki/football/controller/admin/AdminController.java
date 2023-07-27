@@ -150,7 +150,6 @@ public class AdminController {
         playerRes.setBack_number(backNumber);
 
         if (img != null && !img.isEmpty()) {
-            System.out.println("name : " + img.getName());
             playerRes.setFile_bytes(img.getBytes());
             playerRes.setFile_name(img.getOriginalFilename());
             playerRes.setFile_size(img.getSize());

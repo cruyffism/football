@@ -46,7 +46,6 @@ public class BoardController { // 기본 클래스 이름
         model.addAttribute("PageMaker", pageMaker);
 
         model.addAttribute("boardList", boardList); //  "/board/list"경로에다가 boardList를  "boardList" 여기 변수명에 담아서 프론트로 보냄
-        System.out.println("게시판 조회 : " + boardList);
         return "board/boardListAjax"; // 프론트엔드로 가는 경로 (템플릿 밑에 경로)
 
     }
