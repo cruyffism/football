@@ -29,12 +29,11 @@ public class SecurityConfig {
         // 권한에 따라 허용하는 url 설정
         // /login, /signup 페이지는 모두 허용, 다른 페이지는 인증된 사용자만 허용
 
-//        http.csrf((csrf)->csrf.disable());
         http
                 .authorizeHttpRequests(
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/", "/admin/**", "/user/**", "/league/**", "/team/**", "/player/**", "/board/**", "/rank/**", "/static/js/**", "/static/assets/img/**", "/static/css/**", "/static/images/**").permitAll()
+                                        .requestMatchers("/", "/user/**", "/static/**").permitAll()
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .anyRequest().authenticated()
                 );
@@ -66,7 +65,7 @@ public class SecurityConfig {
 
     // 비밀번호 암호화
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
